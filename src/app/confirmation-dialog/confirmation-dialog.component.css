@@ -114,6 +114,7 @@
 @media screen and (max-width: 959px) and (orientation: landscape) {
      ::ng-deep .cdk-overlay-pane {
         max-width: 80vw !important;
+        max-height: 100% !important;
         pointer-events: auto !important;
         position: static !important;
     }
@@ -138,7 +139,7 @@
         align-items: center;
     }
     img {
-        width: 30%;
+        width: 20%;
         height: 100%;
     }
     h1 {

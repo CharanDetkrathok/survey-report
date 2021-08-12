@@ -169,6 +169,7 @@ body {
         font-size: 5vw;
         margin: 0.25rem 0;
         padding: 5vw 15vw;
+        width: 100%;
     }
     .btn-go-to-welcom-right img {
         width: 100%;
@@ -292,6 +293,7 @@ body {
         font-size: 5vh;
         margin: 0.15rem 0;
         padding: 5vh 20vh;
+        width: 100%;
     }
     .btn-go-to-welcom-right img {
         width: 10%;
@@ -410,6 +412,7 @@ body {
         font-size: 2vh;
         margin: 0.5rem 0;
         padding: 2.5vh 3.5vh;
+        width: 100%;
     }
     .btn-go-to-welcom-right img {
         width: 10%;
@@ -530,6 +533,7 @@ body {
         font-size: 3.5vh;
         margin: 0.5rem 0;
         padding: 3.5vh 4.5vh;
+        width: 100%;
     }
     .btn-go-to-welcom-right img {
         width: 40%;
