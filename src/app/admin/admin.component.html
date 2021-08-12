@@ -1,0 +1,202 @@
+<div class="bg-welcom">
+
+    <div class="welcom-management-wrapper">
+
+        <div class="welcom-management-content">
+            <img src="assets/imgs/user-setting.png">
+            <div class="welcom-management-content-h2">
+                <h2>ยินดีต้อนรับเข้าสู่</h2>
+                <h2>ระบบการจัดการผู้ใช้งาน</h2>
+                <p>
+                    วันเปิด-ปิดระบบ การตอบแบบสำรวจสำหรับนักศึกษา
+                </p>
+                <p>
+                    เพิ่มข้อมูลผู้ใช้งาน แก้ไขข้อมูลผู้ใช้งาน และลบข้อมูลผู้ใช้งาน
+                </p>
+                <!-- <p>ขอขอบคุณภาพจาก https://unsplash.com/</p> -->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="open-close-wrapper">
+    <div class="open-close-content">
+        <h1>กำหนดวัน เปิด-ปิด ระบบ</h1>
+        <hr>
+        <div class="open-close-section">
+            <section class="open-close-img">
+                <img src="assets/imgs/calendar.png" alt>
+            </section>
+
+            <section class="open-close-setting">
+                <form [formGroup]="dayOpenAndClose" (ngSubmit)="onDayOpenAndCloseSubmit()" id="dayOpenAndCloseForm">
+                    <article class="article-open">
+                        <!-- <label>วันที่เปิดระบบ</label> -->
+                        <mat-form-field appearance="fill">
+                            <mat-label>วันที่เปิดระบบ</mat-label>
+                            <input matInput readonly [matDatepicker]="pickerDayOpen" id="__day_open" name="__day_open" formControlName="__day_open" (dateChange)="onChangeDayOpenAndClose()" class="day-open-and-close">
+                            <mat-datepicker-toggle matSuffix [for]="pickerDayOpen"></mat-datepicker-toggle>
+                            <mat-datepicker touchUi #pickerDayOpen></mat-datepicker>
+                        </mat-form-field>
+                    </article>
+                    <article class="article-close">
+                        <!-- <label>วันที่ปิดระบบ</label> -->
+                        <mat-form-field appearance="fill">
+                            <mat-label>วันที่ปิดระบบ</mat-label>
+                            <input matInput readonly [matDatepicker]="pickerDayClose" id="__day_close" name="__day_close" formControlName="__day_close" (dateChange)="onChangeDayOpenAndClose()" class="day-open-and-close">
+                            <mat-datepicker-toggle matSuffix [for]="pickerDayClose"></mat-datepicker-toggle>
+                            <mat-datepicker touchUi #pickerDayClose></mat-datepicker>
+                        </mat-form-field>
+                    </article>
+                    <article class="article-open-close-btn">
+                        <div class="open-close-btn-submition">
+                            <button class="open-close-btn-submit-save">บันทึก</button>
+                        </div>
+                    </article>
+                </form>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<div class="add-user-wrapper">
+    <div class="add-user-container">
+        <h1>เพิ่มผู้ใช้งาน</h1>
+        <hr>
+        <section class="add-user">
+            <img src="assets/imgs/user-complete.png">
+
+            <form [formGroup]="addUserFormGroup" (ngSubmit)="onAddUserSubmit()" id="addUserForm">
+
+                <article class="article-ru-email">
+                    <div class="ru-email">
+                        <label class="label-ru-email">RU-Mail</label>
+                        <input type="email" id="inputRuMail" class="input-ru-email" name="__addUserRuMail" placeholder="กรอก RU-Mail@ru.ac.th" (keyup)="onKeyUpInputTagAddRuMail($event)" formControlName="__addUserRuMail">
+                    </div>
+                </article>
+
+                <article class="article-department">
+                    <div class="department">
+                        <label class="label-department">Department</label>
+                        <select (change)="onChangedAddDepartment($event)" id="selectDepartmentCode" class="select-department-code" formControlName="__addUserDepartment" name="__addUserDepartment">
+                                <option value>กรุณาเลือก แผนก</option>
+                                <option value="1">กองแผน</option>
+                                <option value="2">คณะ</option>
+                            </select>
+                    </div>
+                </article>
+
+                <article class="article-department-faculty">
+                    <div class="department">
+                        <label id="labelFaculty" class="label-faculty-close">
+                                Faculty
+                            </label>
+                        <select (change)="onChangedAddFaculty($event)" name="facultyCode" id="addFacultyCode" class="faculty-code-close" name="__addUserFaculty_no" formControlName="__addUserFaculty_no">
+                                <option value>กรุณาเลือก คณะ</option>
+                                <option
+                                    *ngFor="let _faculty of __setFacultyData"
+                                    value="{{_faculty.FACULTY_FACULTY_NO}}"
+                                >
+                                    {{_faculty.FACULTY_FACULTY_NAME_THAI}}
+                                </option>
+
+                            </select>
+                    </div>
+                </article>
+
+                <article class="article-btn-submit">
+                    <div class="btn-submition">
+                        <label class="label-btn">btn</label>
+                        <div class="btn-submit-content">
+                            <button class="btn-submit-save" type="submit" [disabled]="!addUserFormGroup.valid">
+                                    บันทึก
+                                </button>
+                        </div>
+                    </div>
+                </article>
+            </form>
+        </section>
+
+    </div>
+</div>
+
+<div class="user-lists-wrapper">
+    <div class="user-lists-container">
+        <h1>รายชื่อผู้ใช้งาน</h1>
+        <hr>
+        <div class="user-table">
+            <table class="user-lists">
+                <tbody>
+                    <tr>
+                        <th>RU-mail</th>
+                        <th>ผู้ใช้งาน</th>
+                        <th>แก้ไข</th>
+                        <th>ลบ</th>
+                    </tr>
+                    <tr id="user-item" *ngFor="let user of __setUserDataForDisplayTable">
+                        <td>
+                            <span id="inputUserID" hidden="true">
+                                    {{user.USER_ID}}
+                                </span>
+                            <input class="input-user-name" type="text" value="{{user.USER_USERNAME}}" readonly (keyup)="onKeyUpInputTagEditRuMail($event, user.USER_USERNAME)" placeholder="กรอก ru-mail@ru.ac.th">
+                        </td>
+                        <td>
+
+                            <input class="input-faculty-display" type="email" value="{{user.USER_FACULTY_NAME}}" readonly *ngIf="user.USER_ROLE_TYPE == '2'">
+
+                            <input class="input-kong-pan-display" type="text" value="กองแผน" readonly *ngIf="user.USER_ROLE_TYPE == 1">
+
+                            <select id="selectDepartment" class="department-edit" hidden="true" (change)="onChangedDepartment($event,user.USER_FACULTY_NO)">
+                                    <option value="1">กองแผน</option>
+                                    <option value="2">คณะ</option>
+                                </select>
+
+                            <select id="department-edit-faculty" class="faculty-code-edit" hidden="true" (change)="onChangedDepartmentSelectedFaculty($event)">
+                                    <option value>--- กรุณาเลือก คณะ ---</option>
+                                    <option
+                                        *ngFor="let __faculty of __setFacultyData"
+                                        value="{{__faculty.FACULTY_FACULTY_NO}}"
+                                    >
+                                        {{__faculty.FACULTY_FACULTY_NAME_THAI}}
+                                    </option>
+                                </select>
+
+                        </td>
+                        <td id="user-item-btn-edit">
+                            <button class="edit" (click)="onEditUserItem($event,user.USER_ID,user.USER_USERNAME,user.USER_FACULTY_NO,user.USER_ROLE_TYPE)">
+                                    <img
+                                        src="assets/imgs/edit.png"
+                                        alt="edit"
+                                        style="width: 1rem;"
+                                    >
+                                </button>
+                            <button class="edit-save" hidden="true" (click)="onSaveEditUser($event,user.USER_ID)">
+                                    <img
+                                        src="assets/imgs/save.png"
+                                        alt="edit"
+                                    >
+                                </button>
+                            <button class="edit-refresh" hidden="true" (click)="onEditUserItemRefresh($event,user.USER_ID,user.USER_USERNAME,user.USER_FACULTY_NO,user.USER_ROLE_TYPE)">
+                                    <img
+                                        src="assets/imgs/refresh.png"
+                                        alt="edit"
+                                    >
+                                </button>
+                        </td>
+                        <td id="user-item-btn-delete">
+                            <button class="delete" (click)="onDeleteUserItem($event,user.USER_ID,user.USER_USERNAME)">
+                                    <img
+                                        src="assets/imgs/trash.png"
+                                        alt="delete"
+                                        style="width: 1rem;"
+                                    >
+                                </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

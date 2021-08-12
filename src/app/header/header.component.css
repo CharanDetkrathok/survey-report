@@ -1,0 +1,224 @@
+nav .list-items ul {
+    display: none;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav .list-items ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+nav .list-items ul li p {
+    color: rgb(255, 255, 255);
+    margin: 0;
+}
+
+nav .list-items ul li button {
+    border: 2px solid rgb(255, 166, 0);
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 166, 0);
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+}
+
+nav .list-items ul li button:hover {
+    background-color: rgb(255, 166, 0);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 2px;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+hr {
+    color: rgb(165, 165, 165);
+    height: 0.5px;
+}
+
+.nav-wrapper nav {
+    width: 100%;
+}
+
+@media screen and (max-width: 959px) and (orientation: portrait) {
+    .bg-header {
+        background-color: rgb(255, 255, 255);
+        height: auto;
+        width: 100%;
+    }
+    nav {
+        top: 0;
+        background-color: rgb(18, 2, 90);
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+        display: flex;
+    }
+    .nav-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    nav .branding {
+        height: 100%;
+        width: 70%;
+        display: flex;
+    }
+    nav .branding img {
+        width: 100%;
+        height: 100%;
+        margin-top: 1.5rem;
+    }
+    nav .list-items {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0 1.5rem 0;
+    }
+    nav .list-items ul li p {
+        font-size: 1rem;
+    }
+    nav .list-items ul li button {
+        padding: 0.5rem 1.2rem;
+    }
+}
+
+@media screen and (max-width: 959px) and (orientation: landscape) {
+    .bg-header {
+        background-color: rgb(255, 255, 255);
+        height: auto;
+        width: 100%;
+    }
+    nav {
+        top: 0;
+        background-color: rgb(18, 2, 90);
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+        display: flex;
+    }
+    .nav-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    nav .branding {
+        height: 100%;
+        width: 50%;
+        display: flex;
+    }
+    nav .branding img {
+        width: 100%;
+        height: 100%;
+        margin-top: 1.5rem;
+    }
+    nav .list-items {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0 1.5rem 0;
+    }
+    nav .list-items ul li p {
+        font-size: 1.2rem;
+    }
+    nav .list-items ul li button {
+        padding: 0.7rem 1.5rem;
+    }
+}
+
+@media screen and (min-width: 960px) and (orientation: portrait) {
+    .bg-header {
+        background-color: rgb(255, 255, 255);
+        height: auto;
+        width: 100%;
+    }
+    nav {
+        top: 0;
+        background-color: rgb(6, 0, 94);
+        height: 5.5rem;
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+        display: flex;
+    }
+    nav .branding {
+        height: 100%;
+        width: 50%;
+        display: flex;
+    }
+    nav .branding img {
+        padding: 0.6rem;
+        margin-left: 1rem;
+        height: 100%;
+    }
+    nav .list-items {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 1.5rem;
+    }
+    nav .list-items ul li p {
+        font-size: 1.2rem;
+    }
+    nav .list-items ul li button {
+        padding: 0.7em 1.5rem;
+    }
+}
+
+@media screen and (min-width: 960px) and (orientation: landscape) {
+    .bg-header {
+        background-color: rgb(255, 255, 255);
+        height: 100vh;
+        width: 100%;
+    }
+    nav {
+        top: 0;
+        background-color: rgb(6, 0, 94);
+        height: 5.5rem;
+        box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+        display: flex;
+    }
+    nav .branding {
+        height: 100%;
+        width: 50%;
+        display: flex;
+    }
+    nav .branding img {
+        padding: 0.6rem;
+        margin-left: 1rem;
+        height: 100%;
+    }
+    nav .list-items {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 1.5rem;
+    }
+    nav .list-items ul li p {
+        font-size: 1.2rem;
+    }
+    nav .list-items ul li button {
+        padding: 0.7em 1.5rem;
+    }
+}

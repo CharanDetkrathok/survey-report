@@ -1,0 +1,437 @@
+::ng-deep hr {
+    color: rgb(165, 165, 165);
+    height: 0.5px;
+    margin-top: 2rem;
+}
+
+@media screen and (max-width: 959px) and (orientation: portrait) {
+     ::ng-deep .cdk-overlay-pane {
+        max-width: 80vw !important;
+        pointer-events: auto !important;
+        position: static !important;
+    }
+     ::ng-deep .mat-dialog-container {
+        display: block;
+        padding: 0 !important;
+        border-radius: 4px;
+        box-sizing: border-box;
+        overflow: auto;
+        outline: 0;
+        min-height: inherit;
+        max-height: inherit;
+    }
+    .dialog-header {
+        top: 0;
+        height: auto;
+        padding: 1rem;
+        background-color: rgb(18, 2, 90);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        width: 30%;
+        height: 100%;
+    }
+    h1 {
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        color: #fff;
+    }
+    .container-content {
+        padding: 2rem 1rem 0 1rem;
+    }
+    p {
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
+    }
+    .container-btn {
+        flex-direction: row;
+        box-sizing: border-box;
+        display: flex;
+        place-content: center;
+        margin-bottom: 0.5rem;
+        margin-right: 1rem;
+        justify-content: flex-end;
+    }
+    .btn-ok {
+        padding: 0.6rem 2.2rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(63, 89, 241);
+        color: rgb(63, 89, 241);
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
+    }
+    .btn-ok:hover {
+        background-color: rgb(63, 89, 241);
+        color: rgb(255, 255, 255);
+    }
+    .btn-ok:disabled {
+        border: 1px solid rgb(255, 255, 255, 0);
+        color: rgb(255, 255, 255, 0);
+        cursor: auto;
+    }
+    .btn-ok:disabled:hover {
+        background-color: #fff;
+        box-shadow: none;
+    }
+    .btn-cancel {
+        margin: 0 0.5rem;
+        padding: 0.6rem 1.5rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(255, 187, 0);
+        color: rgb(255, 187, 0);
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
+    }
+    .btn-cancel:hover {
+        background-color: rgb(255, 187, 0);
+        color: rgb(255, 255, 255);
+    }
+    .btn-cancel:disabled {
+        border: 1px solid rgb(255, 255, 255, 0);
+        color: rgb(255, 255, 255, 0);
+        cursor: auto;
+    }
+    .btn-cancel:disabled:hover {
+        background-color: #fff;
+        box-shadow: none;
+    }
+}
+
+@media screen and (max-width: 959px) and (orientation: landscape) {
+     ::ng-deep .cdk-overlay-pane {
+        max-width: 80vw !important;
+        pointer-events: auto !important;
+        position: static !important;
+    }
+     ::ng-deep .mat-dialog-container {
+        display: block;
+        padding: 0 !important;
+        border-radius: 4px;
+        box-sizing: border-box;
+        overflow: auto;
+        outline: 0;
+        min-height: inherit;
+        max-height: inherit;
+    }
+    .dialog-header {
+        top: 0;
+        height: auto;
+        padding: 1rem;
+        background-color: rgb(18, 2, 90);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        width: 30%;
+        height: 100%;
+    }
+    h1 {
+        padding: 0;
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        color: #fff;
+    }
+    .container-content {
+        padding: 2rem 1rem 0 1rem;
+    }
+    p {
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
+    }
+    .container-btn {
+        flex-direction: row;
+        box-sizing: border-box;
+        display: flex;
+        place-content: center;
+        margin-bottom: 0.5rem;
+        margin-right: 1rem;
+        justify-content: flex-end;
+    }
+    .btn-ok {
+        padding: 0.6rem 2.2rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(63, 89, 241);
+        color: rgb(63, 89, 241);
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
+    }
+    .btn-ok:hover {
+        background-color: rgb(63, 89, 241);
+        color: rgb(255, 255, 255);
+    }
+    .btn-ok:disabled {
+        border: 1px solid rgb(255, 255, 255, 0);
+        color: rgb(255, 255, 255, 0);
+        cursor: auto;
+    }
+    .btn-ok:disabled:hover {
+        background-color: #fff;
+        box-shadow: none;
+    }
+    .btn-cancel {
+        margin: 0 0.5rem;
+        padding: 0.6rem 1.5rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(255, 187, 0);
+        color: rgb(255, 187, 0);
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
+    }
+    .btn-cancel:hover {
+        background-color: rgb(255, 187, 0);
+        color: rgb(255, 255, 255);
+    }
+    .btn-cancel:disabled {
+        border: 1px solid rgb(255, 255, 255, 0);
+        color: rgb(255, 255, 255, 0);
+        cursor: auto;
+    }
+    .btn-cancel:disabled:hover {
+        background-color: #fff;
+        box-shadow: none;
+    }
+}
+
+@media screen and (min-width: 960px) and (orientation: portrait) {
+     ::ng-deep .cdk-overlay-pane {
+        max-width: 50vw !important;
+        pointer-events: auto !important;
+        position: static !important;
+    }
+     ::ng-deep .mat-dialog-container {
+        display: block;
+        padding: 0 !important;
+        border-radius: 4px;
+        box-sizing: border-box;
+        overflow: auto;
+        outline: 0;
+        min-height: inherit;
+        max-height: inherit;
+        align-items: center;
+        justify-content: center;
+    }
+    .dialog-header {
+        top: 0;
+        height: auto;
+        padding: 1rem;
+        background-color: rgb(18, 2, 90);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        width: 30%;
+        height: 100%;
+    }
+    h1 {
+        padding: 0;
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: #fff;
+    }
+    .container-content {
+        padding: 2rem 1rem 0 1rem;
+    }
+    p {
+        font-size: 1.3rem;
+        padding: 0 0 0 1rem;
+        margin: 0;
+    }
+    .container-btn {
+        flex-direction: row;
+        box-sizing: border-box;
+        display: flex;
+        place-content: center;
+        margin-bottom: 0.5rem;
+        margin-right: 1rem;
+        justify-content: flex-end;
+    }
+    .btn-ok {
+        padding: 0.6rem 2.2rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(63, 89, 241);
+        color: rgb(63, 89, 241);
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
+    }
+    .btn-ok:hover {
+        background-color: rgb(63, 89, 241);
+        color: rgb(255, 255, 255);
+    }
+    .btn-ok:disabled {
+        border: 1px solid rgb(255, 255, 255, 0);
+        color: rgb(255, 255, 255, 0);
+        cursor: auto;
+    }
+    .btn-ok:disabled:hover {
+        background-color: #fff;
+        box-shadow: none;
+    }
+    .btn-cancel {
+        margin: 0 0.5rem;
+        padding: 0.6rem 1.5rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(255, 187, 0);
+        color: rgb(255, 187, 0);
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
+    }
+    .btn-cancel:hover {
+        background-color: rgb(255, 187, 0);
+        color: rgb(255, 255, 255);
+    }
+    .btn-cancel:disabled {
+        border: 1px solid rgb(255, 255, 255, 0);
+        color: rgb(255, 255, 255, 0);
+        cursor: auto;
+    }
+    .btn-cancel:disabled:hover {
+        background-color: #fff;
+        box-shadow: none;
+    }
+}
+
+@media screen and (min-width: 960px) and (orientation: landscape) {
+     ::ng-deep .cdk-overlay-pane {
+        max-width: 50vw !important;
+        pointer-events: auto !important;
+        position: static !important;
+    }
+     ::ng-deep .mat-dialog-container {
+        display: block;
+        padding: 0 !important;
+        border-radius: 4px;
+        box-sizing: border-box;
+        overflow: auto;
+        outline: 0;
+        min-height: inherit;
+        max-height: inherit;
+        align-items: center;
+        justify-content: center;
+    }
+    .dialog-header {
+        top: 0;
+        height: auto;
+        padding: 1rem;
+        background-color: rgb(18, 2, 90);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        width: 30%;
+        height: 100%;
+    }
+    h1 {
+        padding: 0;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #fff;
+    }
+    .container-content {
+        padding: 2rem 1rem 0 1rem;
+    }
+    p {
+        font-size: 1.4rem;
+        padding: 0 0 0 1rem;
+        margin: 0;
+    }
+    .container-btn {
+        flex-direction: row;
+        box-sizing: border-box;
+        display: flex;
+        place-content: center;
+        margin-bottom: 0.5rem;
+        margin-right: 1rem;
+        justify-content: flex-end;
+    }
+    .btn-ok {
+        padding: 0.6rem 2.2rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(63, 89, 241);
+        color: rgb(63, 89, 241);
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
+    }
+    .btn-ok:hover {
+        background-color: rgb(63, 89, 241);
+        color: rgb(255, 255, 255);
+    }
+    .btn-ok:disabled {
+        border: 1px solid rgb(255, 255, 255, 0);
+        color: rgb(255, 255, 255, 0);
+        cursor: auto;
+    }
+    .btn-ok:disabled:hover {
+        background-color: #fff;
+        box-shadow: none;
+    }
+    .btn-cancel {
+        margin: 0 0.5rem;
+        padding: 0.6rem 1.5rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0);
+        border: 1px solid rgb(255, 187, 0);
+        color: rgb(255, 187, 0);
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
+    }
+    .btn-cancel:hover {
+        background-color: rgb(255, 187, 0);
+        color: rgb(255, 255, 255);
+    }
+    .btn-cancel:disabled {
+        border: 1px solid rgb(255, 255, 255, 0);
+        color: rgb(255, 255, 255, 0);
+        cursor: auto;
+    }
+    .btn-cancel:disabled:hover {
+        background-color: #fff;
+        box-shadow: none;
+    }
+}
