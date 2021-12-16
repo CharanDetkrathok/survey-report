@@ -5,15 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialsModule } from './materials/materials.module';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 // เปลี่ยนภาษา TH - EN
@@ -26,7 +27,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +37,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     MaterialsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
     // เปลี่ยนภาษา TH - EN
     TranslateModule.forRoot({
       loader: {
@@ -45,7 +47,8 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [CookieService,{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  // providers: [CookieService,{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [CookieService, {provide: LocationStrategy, useClass: PathLocationStrategy} ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })

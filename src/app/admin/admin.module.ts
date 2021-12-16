@@ -14,6 +14,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AdminRoutingModule,
     MaterialsModule,
     ReactiveFormsModule,
-  ]
+  ]  
 })
 export class AdminModule { }

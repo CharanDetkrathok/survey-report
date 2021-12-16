@@ -1,0 +1,55 @@
+<div class="sign-in-staff-wrapper">
+    <div class="sign-in-staff-content">
+
+        <div class="sign-in-presentation">
+            <img src="assets/imgs/user-and-key.png">
+            <!-- <h1>เข้าสู่ระบบ</h1> -->
+            <h1>Authentication</h1>
+            <!-- <h1>สำหรับบุคลากร</h1> -->
+        </div>
+
+        <div class="staff-form-content">
+            <form [formGroup]="signInStaffFormGroup" (ngSubmit)="onStaffSingInSubmit()">
+                <section class="section-input-ru-email">
+                    <input id="ruMail" type="email" class="input-ru-email" placeholder=" " (keyup)="onKeyUpRuMail($event)" formControlName="inputRUmail">
+                    <label class="label-input-ru-email">RU-Mail</label>
+                    <span class="error-message-ru-mail-hidden">กรุณากรอก @ru-mail ให้ถูกต้อง</span>
+                </section>
+                <section class="section-input-password">
+                    <input id="password" type="password" class="input-password" placeholder=" " (keyup)="onKeyUpPassword($event)" formControlName="inputPassword">
+                    <label class="label-input-password">Password</label>
+                    <img src="assets/imgs/eye-password.png" class="img-password-eye-false" (click)="onOpenEye($event)">
+                    <img src="assets/imgs/eye-password-hide.png" class="img-password-eye-hide-true" (click)="onHiddenEye($event)">
+                    <span class="error-message-password-hidden">กรุณากรอก password ให้ถูกต้อง</span>
+                </section>
+                <div class="button-and-checkbox">
+                    <section class="section-btn-sign-in">
+                        <button class="btn-sign-in" disabled="true">Sign in</button>
+                    </section>
+                    <section class="section-remember-staff">
+                        <input type="checkbox" class="check-remember-staff" formControlName="checkRememberMe" (click)="onCheckRememberMe($event)">
+                        <label class="label-remember-staff">Remember me</label>
+                    </section>
+                </div>
+
+                <!-- <section class="section-input-ru-email">
+                    <input type="email" class="input-ru-email" placeholder="Enter your-ru-mail@ru.ac.th">
+                </section>
+                <section class="section-input-password">
+                    <input type="password" class="input-password" placeholder="Enter your password">
+                </section>
+                <div class="button-and-checkbox">
+                    <section class="section-btn-sign-in">
+                        <button class="btn-sign-in">Sign in</button>
+                    </section>
+                    <section class="section-remember-staff">
+                        <input type="checkbox" class="check-remember-staff">
+                        <label class="label-remember-staff">Remember me</label>
+                    </section>
+                </div> -->
+
+            </form>
+        </div>
+
+    </div>
+</div>

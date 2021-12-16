@@ -12,9 +12,6 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
-  // ? slide มาที่ Jumbotron การเข้าสู่ระบบ บุคลากร
   onClickStaffButton() {
 
     document.querySelector<HTMLElement>('div.staff').style.marginLeft = "0";
@@ -22,7 +19,6 @@ export class SignInComponent implements OnInit {
 
   }
 
-  // ? slide มาที่ Jumbotron ยินดีต้อนรับ
   onClickWelcomButton() {
 
     document.querySelector<HTMLElement>('div.staff').style.marginLeft = "-100vw";
@@ -31,7 +27,6 @@ export class SignInComponent implements OnInit {
 
   }
 
-  // ? slide มาที่ Jumbotron การเข้าสู่ระบบ สำหรับนักศึกษา
   onClickStudentButton() {
 
     document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "-100vw";
