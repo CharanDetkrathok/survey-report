@@ -1,4 +1,7 @@
 export const environment = {
   production: true,
-  _base_url: `https://sevkn.ru.ac.th/survey-api/`
+  BASE_URL: `http://localhost:8881/`,
+  AUTHENTICATION: `auth-student/authentication`,
+  REFRESH_AUTHENTICATION: `auth-student/refresh-authentication`,
+  DISCLOSURE: `student/disclosures`
 };

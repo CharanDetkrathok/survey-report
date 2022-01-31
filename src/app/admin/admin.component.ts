@@ -263,73 +263,73 @@ export class AdminComponent implements OnInit {
     const txtBtnLeft = 'CANCEL';
     const txtBtnRight = 'OK';
 
-    const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: dialogData
-    });
+    // const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //   data: dialogData
+    // });
 
-    dialogRef.afterClosed().subscribe(dialogResult => {
-
-
-      this.dialog_confirm_result = dialogResult;
-
-      // กดปุ่ม OK ทำการบันทึก
-      if (this.dialog_confirm_result) {
-
-        this.userAndFaculty.postHttpUpdateDayOpenAndClose(dayOpen, dayClose, username).subscribe(res => {
+    // dialogRef.afterClosed().subscribe(dialogResult => {
 
 
-          if (res.error_message_status == 1) {
+    //   this.dialog_confirm_result = dialogResult;
+
+    //   // กดปุ่ม OK ทำการบันทึก
+    //   if (this.dialog_confirm_result) {
+
+    //     this.userAndFaculty.postHttpUpdateDayOpenAndClose(dayOpen, dayClose, username).subscribe(res => {
 
 
-            const title = 'ยืนยันการแก้ไข วันเปิด-ปิดระบบ';
-            const message = 'ทำการบันทึก วันเปิด-ปิดระบบ สำหรับนักศึกษา เรียบร้อย';
-            const description = '';
-            const descriptionDetail = '';
-            const btnLeftDisable = true;
-            const btnRightDisable = false;
-            const txtBtnLeft = '';
-            const txtBtnRight = 'OK';
-
-            const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-            const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-              data: dialogData
-            });
-
-            dialogRef.afterClosed().subscribe(dialogResult => {
+    //       if (res.error_message_status == 1) {
 
 
-              this.dialog_confirm_result = dialogResult;
+    //         const title = 'ยืนยันการแก้ไข วันเปิด-ปิดระบบ';
+    //         const message = 'ทำการบันทึก วันเปิด-ปิดระบบ สำหรับนักศึกษา เรียบร้อย';
+    //         const description = '';
+    //         const descriptionDetail = '';
+    //         const btnLeftDisable = true;
+    //         const btnRightDisable = false;
+    //         const txtBtnLeft = '';
+    //         const txtBtnRight = 'OK';
 
-              if (this.dialog_confirm_result) {
-                // จบการแก้ไข กด OK ไม่ทำอะไรต่อ ปิดหน้าต่างไป
-              }
+    //         const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    //         const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //           data: dialogData
+    //         });
 
-            });
-
-            // แก้ไขสำเร็จ จัดเรียงข้อมูลที่จะแสดงใหม่
-            this.callApiDayOpenAndClose();
-
-          } else {
-
-            // !!!! เอาไว้ทำ error handler
-
-          }
-
-
-        });
-
-      } else { // กดปุ่ม CANCEL ยกเลิกการบันทีก
+    //         dialogRef.afterClosed().subscribe(dialogResult => {
 
 
-        this.dayOpenAndClose.controls['__day_open'].setValue(new Date(this.__setDayOpenAndClose.START_DATE));
-        this.dayOpenAndClose.controls['__day_close'].setValue(new Date(this.__setDayOpenAndClose.END_DATE));
+    //           this.dialog_confirm_result = dialogResult;
 
-        this.dayOpenAndClose.updateValueAndValidity();
+    //           if (this.dialog_confirm_result) {
+    //             // จบการแก้ไข กด OK ไม่ทำอะไรต่อ ปิดหน้าต่างไป
+    //           }
 
-      }
+    //         });
 
-    });
+    //         // แก้ไขสำเร็จ จัดเรียงข้อมูลที่จะแสดงใหม่
+    //         this.callApiDayOpenAndClose();
+
+    //       } else {
+
+    //         // !!!! เอาไว้ทำ error handler
+
+    //       }
+
+
+    //     });
+
+    //   } else { // กดปุ่ม CANCEL ยกเลิกการบันทีก
+
+
+    //     this.dayOpenAndClose.controls['__day_open'].setValue(new Date(this.__setDayOpenAndClose.START_DATE));
+    //     this.dayOpenAndClose.controls['__day_close'].setValue(new Date(this.__setDayOpenAndClose.END_DATE));
+
+    //     this.dayOpenAndClose.updateValueAndValidity();
+
+    //   }
+
+    // });
 
 
   }
@@ -786,62 +786,62 @@ export class AdminComponent implements OnInit {
     const txtBtnLeft = 'CANCEL';
     const txtBtnRight = 'OK';
 
-    const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: dialogData
-    });
+    // const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //   data: dialogData
+    // });
 
-    dialogRef.afterClosed().subscribe(dialogResult => {
-
-
-      this.dialog_confirm_result = dialogResult;
-
-      if (this.dialog_confirm_result) {
-
-        this.userAndFaculty.postHttpUpdateUser(userId, userName, userFacultyNo, userRoleType).subscribe(res => {
-
-          if (res.error_message_status == 1) {
+    // dialogRef.afterClosed().subscribe(dialogResult => {
 
 
-            const title = 'ยืนยันการแก้ไขผู้ใช้งาน';
-            const message = 'ทำการบันทึก การแก้ไขผู้ใช้งานเรียบร้อย';
-            const description = '';
-            const descriptionDetail = '';
-            const btnLeftDisable = true;
-            const btnRightDisable = false;
-            const txtBtnLeft = '';
-            const txtBtnRight = 'OK';
+    //   this.dialog_confirm_result = dialogResult;
 
-            const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-            const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-              data: dialogData
-            });
+    //   if (this.dialog_confirm_result) {
 
-            dialogRef.afterClosed().subscribe(dialogResult => {
+    //     this.userAndFaculty.postHttpUpdateUser(userId, userName, userFacultyNo, userRoleType).subscribe(res => {
+
+    //       if (res.error_message_status == 1) {
 
 
-              this.dialog_confirm_result = dialogResult;
+    //         const title = 'ยืนยันการแก้ไขผู้ใช้งาน';
+    //         const message = 'ทำการบันทึก การแก้ไขผู้ใช้งานเรียบร้อย';
+    //         const description = '';
+    //         const descriptionDetail = '';
+    //         const btnLeftDisable = true;
+    //         const btnRightDisable = false;
+    //         const txtBtnLeft = '';
+    //         const txtBtnRight = 'OK';
 
-              if (this.dialog_confirm_result) {
-                // จบการแก้ไข กด OK ไม่ทำอะไรต่อ ปิดหน้าต่างไป
-              }
+    //         // const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    //         // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //         //   data: dialogData
+    //         // });
 
-            });
-
-            // แก้ไขสำเร็จ จัดเรียงข้อมูลที่จะแสดงใหม่
-            this.__setUserDataForDisplayTable = [];
-            this.callApiUserAndFaculty();
-
-          } else {
-            // ไม่พบ id ที่ต้องการ
-          }
+    //         // dialogRef.afterClosed().subscribe(dialogResult => {
 
 
-        });
+    //         //   this.dialog_confirm_result = dialogResult;
 
-      }
+    //         //   if (this.dialog_confirm_result) {
+    //         //     // จบการแก้ไข กด OK ไม่ทำอะไรต่อ ปิดหน้าต่างไป
+    //         //   }
 
-    });
+    //         // });
+
+    //         // แก้ไขสำเร็จ จัดเรียงข้อมูลที่จะแสดงใหม่
+    //         this.__setUserDataForDisplayTable = [];
+    //         this.callApiUserAndFaculty();
+
+    //       } else {
+    //         // ไม่พบ id ที่ต้องการ
+    //       }
+
+
+    //     });
+
+    //   }
+
+    // });
 
   }/// ----- Save data editing --- ///
 
@@ -858,84 +858,84 @@ export class AdminComponent implements OnInit {
     const txtBtnLeft = 'CANCEL';
     const txtBtnRight = 'OK';
 
-    const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: dialogData
-    });
+    // const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //   data: dialogData
+    // });
 
-    dialogRef.afterClosed().subscribe(dialogResult => {
+    // dialogRef.afterClosed().subscribe(dialogResult => {
 
-      this.dialog_confirm_result = dialogResult;
+    //   this.dialog_confirm_result = dialogResult;
 
-      if (this.dialog_confirm_result) {
+    //   if (this.dialog_confirm_result) {
 
-        this.userAndFaculty.postHttpDeleteUser(userId).subscribe(res => {
+    //     this.userAndFaculty.postHttpDeleteUser(userId).subscribe(res => {
 
-          if (res.error_message_status == 1) {
+    //       if (res.error_message_status == 1) {
 
-            const title = 'ลบผู้ใช้งาน';
-            const message = `ทำการลบผู้ใช้งาน ${username} เรียบร้อย`;
-            const description = ``;
-            const descriptionDetail = '';
-            const btnLeftDisable = true;
-            const btnRightDisable = false;
-            const txtBtnLeft = '';
-            const txtBtnRight = 'OK';
+    //         const title = 'ลบผู้ใช้งาน';
+    //         const message = `ทำการลบผู้ใช้งาน ${username} เรียบร้อย`;
+    //         const description = ``;
+    //         const descriptionDetail = '';
+    //         const btnLeftDisable = true;
+    //         const btnRightDisable = false;
+    //         const txtBtnLeft = '';
+    //         const txtBtnRight = 'OK';
 
-            const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-            const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-              data: dialogData
-            });
+    //         // const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    //         // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //         //   data: dialogData
+    //         // });
 
-            dialogRef.afterClosed().subscribe(dialogResult => {
+    //         // dialogRef.afterClosed().subscribe(dialogResult => {
 
-              this.dialog_confirm_result = dialogResult;
-              if (this.dialog_confirm_result) {
-
-
-                // ลบสำเร็จ จัดเรียงข้อมูลที่จะแสดงใหม่
-                this.__setUserDataForDisplayTable = [];
-                this.callApiUserAndFaculty();
+    //         //   this.dialog_confirm_result = dialogResult;
+    //         //   if (this.dialog_confirm_result) {
 
 
-              }
-
-            });
-
-
-          } else {
-
-            const title = 'ลบผู้ใช้งาน';
-            const message = `ไม่สามารถทำการลบผู้ใช้งาน ${username} ได้`;
-            const description = ``;
-            const descriptionDetail = '';
-            const btnLeftDisable = true;
-            const btnRightDisable = false;
-            const txtBtnLeft = '';
-            const txtBtnRight = 'OK';
-
-            const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-            const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-              data: dialogData
-            });
-
-            dialogRef.afterClosed().subscribe(dialogResult => {
-
-              this.dialog_confirm_result = dialogResult;
-              if (this.dialog_confirm_result) {
-                //// ลบไม่ได้ ก็ไม่ทำไรต่อ จบ
-              }
-
-            });
-
-          }
+    //         //     // ลบสำเร็จ จัดเรียงข้อมูลที่จะแสดงใหม่
+    //         //     this.__setUserDataForDisplayTable = [];
+    //         //     this.callApiUserAndFaculty();
 
 
-        });
+    //         //   }
 
-      }
+    //         // });
 
-    });
+
+    //       } else {
+
+    //         const title = 'ลบผู้ใช้งาน';
+    //         const message = `ไม่สามารถทำการลบผู้ใช้งาน ${username} ได้`;
+    //         const description = ``;
+    //         const descriptionDetail = '';
+    //         const btnLeftDisable = true;
+    //         const btnRightDisable = false;
+    //         const txtBtnLeft = '';
+    //         const txtBtnRight = 'OK';
+
+    //         const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    //         const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //           data: dialogData
+    //         });
+
+    //         dialogRef.afterClosed().subscribe(dialogResult => {
+
+    //           this.dialog_confirm_result = dialogResult;
+    //           if (this.dialog_confirm_result) {
+    //             //// ลบไม่ได้ ก็ไม่ทำไรต่อ จบ
+    //           }
+
+    //         });
+
+    //       }
+
+
+    //     });
+
+    //   }
+
+    // });
 
 
   }/// ------ Delete user -------- ///
@@ -954,108 +954,108 @@ export class AdminComponent implements OnInit {
     const txtBtnLeft = 'CANCEL';
     const txtBtnRight = 'OK';
 
-    const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: dialogData
-    });
+    // const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //   data: dialogData
+    // });
 
-    dialogRef.afterClosed().subscribe(dialogResult => {
+    // dialogRef.afterClosed().subscribe(dialogResult => {
 
-      this.dialog_confirm_result = dialogResult;
-      if (this.dialog_confirm_result) {
+    //   this.dialog_confirm_result = dialogResult;
+    //   if (this.dialog_confirm_result) {
 
-        let username = this.addUserFormGroup.controls['__addUserRuMail'].value;
-        let role_type = this.addUserFormGroup.controls['__addUserDepartment'].value;
-        let faculty_no = this.addUserFormGroup.controls['__addUserFaculty_no'].value;
+    //     let username = this.addUserFormGroup.controls['__addUserRuMail'].value;
+    //     let role_type = this.addUserFormGroup.controls['__addUserDepartment'].value;
+    //     let faculty_no = this.addUserFormGroup.controls['__addUserFaculty_no'].value;
 
-        this.userAndFaculty.postHttpAddUser(username, role_type, faculty_no).subscribe(res => {
+    //     this.userAndFaculty.postHttpAddUser(username, role_type, faculty_no).subscribe(res => {
 
-          if (res.error_message_status == 1) {
+    //       if (res.error_message_status == 1) {
 
-            const title = 'เพิ่มผู้ใช้งาน';
-            const message = 'ไม่สามารถเพิ่มผู้ใช้งานนี้ได้';
-            const description = `เนื่องจาก ${username} นี้มีอยู่ในระบบแล้ว`;
-            const descriptionDetail = '';
-            const btnLeftDisable = true;
-            const btnRightDisable = false;
-            const txtBtnLeft = '';
-            const txtBtnRight = 'OK';
+    //         const title = 'เพิ่มผู้ใช้งาน';
+    //         const message = 'ไม่สามารถเพิ่มผู้ใช้งานนี้ได้';
+    //         const description = `เนื่องจาก ${username} นี้มีอยู่ในระบบแล้ว`;
+    //         const descriptionDetail = '';
+    //         const btnLeftDisable = true;
+    //         const btnRightDisable = false;
+    //         const txtBtnLeft = '';
+    //         const txtBtnRight = 'OK';
 
-            const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-            const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-              data: dialogData
-            });
+    //         const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    //         const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //           data: dialogData
+    //         });
 
-            dialogRef.afterClosed().subscribe(dialogResult => {
+    //         dialogRef.afterClosed().subscribe(dialogResult => {
 
-              this.dialog_confirm_result = dialogResult;
-              if (this.dialog_confirm_result) {
+    //           this.dialog_confirm_result = dialogResult;
+    //           if (this.dialog_confirm_result) {
 
-              }
+    //           }
 
-            });
+    //         });
 
-          } else if (res.error_message_status == 2) {
+    //       } else if (res.error_message_status == 2) {
 
-            const title = 'เพิ่มผู้ใช้งาน';
-            const message = `เพิ่มผู้ใช้งานเรียบร้อย ${username}`;
-            const description = ``;
-            const descriptionDetail = '';
-            const btnLeftDisable = true;
-            const btnRightDisable = false;
-            const txtBtnLeft = '';
-            const txtBtnRight = 'OK';
+    //         const title = 'เพิ่มผู้ใช้งาน';
+    //         const message = `เพิ่มผู้ใช้งานเรียบร้อย ${username}`;
+    //         const description = ``;
+    //         const descriptionDetail = '';
+    //         const btnLeftDisable = true;
+    //         const btnRightDisable = false;
+    //         const txtBtnLeft = '';
+    //         const txtBtnRight = 'OK';
 
-            const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
-            const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-              data: dialogData
-            });
+    //         const dialogData = new ConfirmDialogModel(title, message, description, descriptionDetail, btnLeftDisable, btnRightDisable, txtBtnLeft, txtBtnRight);
+    //         const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //           data: dialogData
+    //         });
 
-            dialogRef.afterClosed().subscribe(dialogResult => {
+    //         dialogRef.afterClosed().subscribe(dialogResult => {
 
-              this.dialog_confirm_result = dialogResult;
-              if (this.dialog_confirm_result) {
+    //           this.dialog_confirm_result = dialogResult;
+    //           if (this.dialog_confirm_result) {
 
-              }
+    //           }
 
-            });
+    //         });
 
-            this.__setUserDataForDisplayTable = [];
-            this.callApiUserAndFaculty();
+    //         this.__setUserDataForDisplayTable = [];
+    //         this.callApiUserAndFaculty();
 
-          }
+    //       }
 
 
-        });
+    //     });
 
-      }
+    //   }
 
-      this.addUserFormGroup.controls['__addUserRuMail'].setValue('');
-      this.addUserFormGroup.controls['__addUserRuMail'].setValidators([Validators.required, Validators.email]);
-      this.addUserFormGroup.controls['__addUserRuMail'].updateValueAndValidity();
+    //   this.addUserFormGroup.controls['__addUserRuMail'].setValue('');
+    //   this.addUserFormGroup.controls['__addUserRuMail'].setValidators([Validators.required, Validators.email]);
+    //   this.addUserFormGroup.controls['__addUserRuMail'].updateValueAndValidity();
 
-      let selectTagDepartmentsOfFaculty = document.querySelector('select#addFacultyCode');
-      let labelTagDepartmentsOfFaculty = document.querySelector('label#labelFaculty');
+    //   let selectTagDepartmentsOfFaculty = document.querySelector('select#addFacultyCode');
+    //   let labelTagDepartmentsOfFaculty = document.querySelector('label#labelFaculty');
 
-      if (this.addUserFormGroup.controls['__addUserDepartment'].value == 2) {
+    //   if (this.addUserFormGroup.controls['__addUserDepartment'].value == 2) {
 
-        selectTagDepartmentsOfFaculty.classList.remove('faculty-code');
-        selectTagDepartmentsOfFaculty.classList.add('faculty-code-close');
+    //     selectTagDepartmentsOfFaculty.classList.remove('faculty-code');
+    //     selectTagDepartmentsOfFaculty.classList.add('faculty-code-close');
 
-        labelTagDepartmentsOfFaculty.classList.remove('label-faculty');
-        labelTagDepartmentsOfFaculty.classList.add('label-faculty-close');
+    //     labelTagDepartmentsOfFaculty.classList.remove('label-faculty');
+    //     labelTagDepartmentsOfFaculty.classList.add('label-faculty-close');
 
-        this.addUserFormGroup.controls['__addUserFaculty_no'].setValue('');
-        this.addUserFormGroup.controls['__addUserFaculty_no'].setValidators([]);
-        this.addUserFormGroup.controls['__addUserFaculty_no'].updateValueAndValidity();
+    //     this.addUserFormGroup.controls['__addUserFaculty_no'].setValue('');
+    //     this.addUserFormGroup.controls['__addUserFaculty_no'].setValidators([]);
+    //     this.addUserFormGroup.controls['__addUserFaculty_no'].updateValueAndValidity();
 
-      }
+    //   }
 
-      this.addUserFormGroup.controls['__addUserDepartment'].setValue('');
-      this.addUserFormGroup.controls['__addUserDepartment'].setValidators([Validators.required]);
-      this.addUserFormGroup.controls['__addUserDepartment'].updateValueAndValidity();
+    //   this.addUserFormGroup.controls['__addUserDepartment'].setValue('');
+    //   this.addUserFormGroup.controls['__addUserDepartment'].setValidators([Validators.required]);
+    //   this.addUserFormGroup.controls['__addUserDepartment'].updateValueAndValidity();
 
-    });
+    // });
 
     document.querySelector('select.select-department-code').classList.remove('input-ru-email-wrong');
     document.querySelector('select.select-department-code').classList.remove('input-ru-email-correct');

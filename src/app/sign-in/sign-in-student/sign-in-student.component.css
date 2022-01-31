@@ -1,27 +1,279 @@
-@media screen and (max-width: 959px) and (orientation: portrait) {
-    .sign-in-student-wrapper {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .sign-in-student-content {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    .sign-in-presentation {
-        /* height: 100%; */
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.sign-in-student-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-student-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sign-in-presentation {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.student-form-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    margin: 0.3rem;
+}
+
+.input-std-code,
+.input-birthday,
+.input-degree {
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 200;
+    padding: 0.8rem 3.5rem 0.8rem 2rem;
+    border: 2px solid rgb(160, 160, 160);
+    border-radius: 0.5rem;
+}
+
+.label-input-std-code,
+.label-input-birthday {
+    position: absolute;
+    left: 2.5rem;
+    color: #a3a3a3;
+    font-size: 1.2rem;
+    cursor: text;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+
+.label-input-degree {
+    position: absolute;
+    left: 2.5rem;
+    color: #a3a3a3;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+
+
+/*  ส่วนของ class และ id ของ MaterialsModule MatDatepickerModule  */
+
+ ::ng-deep .mat-form-field-wrapper,
+ ::ng-deep .mat-form-field-appearance-fill,
+ ::ng-deep .mat-form-field-flex {
+    padding: 0;
+}
+
+#mat-input-0 {
+    position: relative;
+    cursor: pointer;
+}
+
+#mat-input-0::-webkit-calendar-picker-indicator {
+    position: relative;
+    cursor: pointer;
+}
+
+
+/* จบ ส่วนของ class และ id ของ MaterialsModule MatDatepickerModule  */
+
+#input-birthday-datepicker {
+    position: relative;
+    opacity: 0;
+    z-index: 100;
+    top: -16%;
+    cursor: pointer;
+    width: 99%;
+}
+
+#input-birthday-datepicker::-webkit-calendar-picker-indicator {
+    position: relative;
+    width: 1%;
+    cursor: pointer;
+}
+
+.input-std-code:hover,
+.input-birthday:hover,
+.input-degree:hover {
+    outline: none;
+    box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
+}
+
+.input-std-code:focus,
+.input-birthday:focus,
+.input-degree:focus {
+    border: 2px solid #a3a3a3;
+    box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
+    outline: none;
+}
+
+.input-correct {
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 200;
+    padding: 0.8rem 3.5rem 0.8rem 2rem;
+    border-radius: 0.5rem;
+    border: 3px solid rgb(129, 247, 207);
+    outline: none;
+}
+
+.input-error {
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 200;
+    padding: 0.8rem 3.5rem 0.8rem 2rem;
+    border-radius: 0.5rem;
+    border: 4px solid #f88282;
+    outline: none;
+}
+
+.error-message-std-code-hidden {
+    visibility: hidden;
+}
+
+.error-message-birthday-hidden {
+    visibility: hidden;
+}
+
+.error-message-degree-hidden {
+    visibility: hidden;
+}
+
+.error-message-std-code {
+    visibility: visible;
+}
+
+.error-message-birthday {
+    visibility: visible;
+}
+
+.error-message-degree {
+    visibility: visible;
+}
+
+.input-degree {
+    cursor: pointer;
+}
+
+.input-degree:focus {
+    cursor: pointer;
+}
+
+.section-input-std-code,
+.section-input-birthday {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    font-size: 2rem;
+}
+
+.section-input-degree {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -2.3rem;
+    font-size: 2rem;
+}
+
+select {
+    background-color: rgb(255, 255, 255);
+}
+
+.button-and-checkbox {
+    width: 100%;
+    margin: -0.7rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-sign-in-student {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 1.3rem;
+    margin: 0;
+    border: 2px solid rgb(255, 145, 0);
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 145, 0);
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -ms-transition: all 0.1s;
+    -o-transition: all 0.1s;
+}
+
+.btn-sign-in-student:hover:not(:disabled) {
+    background-color: rgb(255, 145, 0);
+    box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 2px;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+.btn-sign-in-student:focus:not(:disabled) {
+    font-size: 1.7rem;
+    background-color: rgb(255, 145, 0);
+    box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 2px;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+.btn-sign-in-student:disabled {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 1.3rem;
+    margin: 0;
+    border: 2px solid rgb(255, 145, 0);
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 145, 0);
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 767px) and (orientation: portrait) {
     .sign-in-presentation img {
         width: 4.5rem;
         margin: 3rem 0 1rem 0;
@@ -36,26 +288,6 @@
     form {
         padding: 0.5rem;
         width: 100%;
-    }
-    .student-form-content {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    input {
-        margin: 0.3rem;
-    }
-    .section-input-std-code,
-    .section-input-birthday {
-        width: 100%;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1.5rem;
-        font-size: 2rem;
     }
     .section-input-std-code:focus-within .label-input-std-code,
     .section-input-birthday:focus-within .label-input-birthday,
@@ -73,86 +305,47 @@
         -ms-transition: 0.3s;
         -o-transition: 0.3s;
     }
-    .input-std-code,
-    .input-birthday {
-        width: 100%;
-        font-size: 1.5rem;
-        font-weight: 200;
-        padding: 0.8rem 3.5rem 0.8rem 2rem;
-        border: 2px solid rgb(160, 160, 160);
-        border-radius: 0.5rem;
-    }
-    .label-input-std-code,
-    .label-input-birthday {
-        position: absolute;
-        left: 2.5rem;
-        color: #a3a3a3;
-        font-size: 1.2rem;
-        cursor: text;
+    .section-input-degree:focus-within .label-input-degree,
+    .section-input-degree input:not(:placeholder-shown)~.label-input-degree {
+        padding: 0 0.5rem;
+        margin-top: -4.4rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
         transition: 0.3s;
         -webkit-transition: 0.3s;
         -moz-transition: 0.3s;
         -ms-transition: 0.3s;
         -o-transition: 0.3s;
     }
-    .input-std-code:hover,
-    .input-birthday:hover {
-        outline: none;
-        box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
-    }
-    .input-std-code:focus,
-    .input-birthday:focus {
-        border: 2px solid #a3a3a3;
-        box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
-        outline: none;
-    }
-    .input-correct {
-        width: 100%;
-        font-size: 1.5rem;
-        font-weight: 200;
-        padding: 0.8rem 3.5rem 0.8rem 2rem;
-        border-radius: 0.5rem;
-        border: 3px solid rgb(129, 247, 207);
-        /* border: 4px solid #a3a3a3; */
-        outline: none;
-    }
-    .input-error {
-        width: 100%;
-        font-size: 1.5rem;
-        font-weight: 200;
-        padding: 0.8rem 3.5rem 0.8rem 2rem;
-        border-radius: 0.5rem;
-        border: 4px solid #f88282;
-        outline: none;
+    .label-input-degree-focus {
+        position: absolute;
+        padding: 0 0.5rem;
+        margin-top: -4.4rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        color: #a3a3a3;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
     }
     /* จบ แสดง รหัสผ่าน และปิดการแสดง */
     .section-input-std-code span,
-    .section-input-birthday span {
+    .section-input-birthday span,
+    .section-input-degree span {
         position: absolute;
         font-size: 1rem;
         color: rgb(255, 0, 0);
         top: 5rem;
         right: 0.5rem;
     }
-    .error-message-std-code-hidden {
-        visibility: hidden;
-    }
-    .error-message-birthday-hidden {
-        visibility: hidden;
-    }
-    .error-message-std-code {
-        visibility: visible;
-    }
-    .error-message-birthday {
-        visibility: visible;
-    }
     .button-and-checkbox {
-        width: 100%;
-        margin: 0.3rem 0 0 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        margin: 0.7rem 0 0 0;
     }
     .label-remember-student {
         font-size: 1.5rem;
@@ -177,92 +370,107 @@
         width: 100%;
         margin-top: 1rem;
     }
-    .btn-sign-in-student {
-        width: 98%;
+}
+
+@media screen and (min-width: 767px) and (orientation: portrait) {
+    .sign-in-presentation img {
+        width: 8rem;
+        margin: 3rem 0 1rem 0;
+    }
+    .sign-in-presentation h1 {
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 1;
+        padding: 0;
+        margin: 0;
+    }
+    form {
+        padding: 0.5rem;
+        width: 65%;
+    }
+    .section-input-std-code:focus-within .label-input-std-code,
+    .section-input-birthday:focus-within .label-input-birthday,
+    .section-input-std-code input:not(:placeholder-shown)~.label-input-std-code,
+    .section-input-birthday input:not(:placeholder-shown)~.label-input-birthday {
+        padding: 0 0.5rem;
+        top: -0.4rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .section-input-degree:focus-within .label-input-degree,
+    .section-input-degree input:not(:placeholder-shown)~.label-input-degree {
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .label-input-degree {
+        margin-top: -1.3rem;
+    }
+    .label-input-degree-focus {
+        position: absolute;
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        color: #a3a3a3;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    /* จบ แสดง รหัสผ่าน และปิดการแสดง */
+    .section-input-std-code span,
+    .section-input-birthday span {
+        position: absolute;
+        font-size: 1rem;
+        color: rgb(255, 0, 0);
+        top: 5rem;
+        right: 0.5rem;
+    }
+    .label-remember-student {
         font-size: 1.5rem;
-        padding: 1.4rem;
-        margin: 0.3rem;
-        border: 2px solid rgb(255, 145, 0);
-        background-color: rgba(255, 255, 255, 0);
-        color: rgb(255, 145, 0);
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
-        transition: all 0.1s;
-        -webkit-transition: all 0.1s;
-        -moz-transition: all 0.1s;
-        -ms-transition: all 0.1s;
-        -o-transition: all 0.1s;
     }
-    .btn-sign-in-student:hover:not(:disabled) {
-        background-color: rgb(255, 145, 0);
-        box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
-        color: rgb(255, 255, 255);
-        text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 2px;
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
+    .section-remember-student input {
+        height: 2rem;
+        width: 2rem;
+        outline: none;
     }
-    .btn-sign-in-student:focus:not(:disabled) {
-        font-size: 1.8rem;
-        background-color: rgb(255, 145, 0);
-        box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
-        color: rgb(255, 255, 255);
-        text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 2px;
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
+    .section-remember-student input:checked {
+        outline: none;
     }
-    .btn-sign-in-student:disabled {
-        width: 98%;
-        font-size: 1.5rem;
-        padding: 1.4rem;
-        margin: 0.3rem;
-        border: 2px solid rgb(255, 145, 0);
-        background-color: rgba(255, 255, 255, 0);
-        color: rgb(255, 145, 0);
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
+    .section-remember-student {
+        width: 100%;
+        margin: 0.5rem 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .section-btn-sign-in-student {
+        width: 100%;
+        margin-top: 1rem;
     }
 }
 
-@media screen and (max-width: 959px) and (orientation: landscape) {}
-
-@media screen and (min-width: 960px) and (orientation: portrait) {}
-
-@media screen and (min-width: 960px) and (orientation: landscape) {
-    .sign-in-student-wrapper {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .sign-in-student-content {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    .sign-in-presentation {
-        /* height: 100%; */
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+@media screen and (max-width: 959px) and (orientation: landscape) {
     .sign-in-presentation img {
         width: 6.5rem;
         margin: 3rem 0 1rem 0;
@@ -277,26 +485,6 @@
     form {
         padding: 0.5rem;
         width: 35rem;
-    }
-    .student-form-content {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    input {
-        margin: 0.3rem;
-    }
-    .section-input-std-code,
-    .section-input-birthday {
-        width: 100%;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1.5rem;
-        font-size: 2rem;
     }
     .section-input-std-code:focus-within .label-input-std-code,
     .section-input-birthday:focus-within .label-input-birthday,
@@ -314,88 +502,41 @@
         -ms-transition: 0.3s;
         -o-transition: 0.3s;
     }
-    .input-std-code,
-    .input-birthday {
-        width: 100%;
-        font-size: 1.5rem;
-        font-weight: 200;
-        padding: 0.8rem 3.5rem 0.8rem 2rem;
-        border: 2px solid rgb(160, 160, 160);
-        border-radius: 0.5rem;
-    }
-    #input-birthday-datepicker {
-        /* border-color: rgba(0, 0, 0, 0.5); */
-        position: absolute;
-        opacity: 0;
-        z-index: 100;
-        margin: -9% 0 0 0;
-        padding: 1.2rem;
-        cursor: pointer;
-        width: 1%;
-    }
-    #input-birthday-datepicker::-webkit-calendar-picker-indicator {
-        position: relative;
-        width: 1%;
-        cursor: pointer;
-    }
-    /*👉    .input-birthday-datepicker-toggle-button-img {
-        position: absolute;
-        left: +87%;
-        top: 17%;
-        width: 8%;
-        background: transparent;
-        z-index: 50;
-    }👈*/
-    .input-birthday-button-img {
-        position: absolute;
-        left: +750%;
-        margin-top: -116%;
-        width: 70%;
-        background: transparent;
-        z-index: 70;
-    }
-    .label-input-std-code,
-    .label-input-birthday {
-        position: absolute;
-        left: 2.5rem;
-        color: #a3a3a3;
-        font-size: 1.2rem;
-        cursor: text;
+    .section-input-degree:focus-within .label-input-degree,
+    .section-input-degree input:not(:placeholder-shown)~.label-input-degree {
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
         transition: 0.3s;
         -webkit-transition: 0.3s;
         -moz-transition: 0.3s;
         -ms-transition: 0.3s;
         -o-transition: 0.3s;
     }
-    .input-std-code:hover,
-    .input-birthday:hover {
-        outline: none;
-        box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
+    .label-input-degree-focus {
+        position: absolute;
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        color: #a3a3a3;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
     }
-    .input-std-code:focus,
-    .input-birthday:focus {
-        border: 2px solid #a3a3a3;
-        box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
-        outline: none;
-    }
-    .input-correct {
+    .input-birthday-datepicker {
+        position: relative;
+        z-index: 100;
+        padding: 1.2rem;
+        cursor: pointer;
         width: 100%;
-        font-size: 1.5rem;
-        font-weight: 200;
-        padding: 0.8rem 3.5rem 0.8rem 2rem;
-        border-radius: 0.5rem;
-        border: 3px solid rgb(129, 247, 207);
-        /* border: 4px solid #a3a3a3; */
-        outline: none;
-    }
-    .input-error {
-        width: 100%;
-        font-size: 1.5rem;
-        font-weight: 200;
-        padding: 0.8rem 3.5rem 0.8rem 2rem;
-        border-radius: 0.5rem;
-        border: 4px solid #f88282;
-        outline: none;
     }
     /* จบ แสดง รหัสผ่าน และปิดการแสดง */
     .section-input-std-code span,
@@ -406,25 +547,8 @@
         top: 5rem;
         right: 2rem;
     }
-    .error-message-std-code-hidden {
-        visibility: hidden;
-    }
-    .error-message-birthday-hidden {
-        visibility: hidden;
-    }
-    .error-message-std-code {
-        visibility: visible;
-    }
-    .error-message-birthday {
-        visibility: visible;
-    }
-    .button-and-checkbox {
-        width: 100%;
-        margin: 0.3rem 0 0 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    .label-input-degree {
+        margin-top: -1.3rem;
     }
     .label-remember-student {
         font-size: 1.5rem;
@@ -445,60 +569,495 @@
         width: 100%;
         margin-top: 1rem;
     }
-    .btn-sign-in-student {
-        width: 98%;
+}
+
+@media screen and (min-width: 960px) and (orientation: portrait) {
+    .sign-in-presentation img {
+        width: 4.5rem;
+        margin: 3rem 0 1rem 0;
+    }
+    .sign-in-presentation h1 {
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 1;
+        padding: 0;
+        margin: 0;
+    }
+    form {
+        padding: 0.5rem;
+        width: 100%;
+    }
+    .section-input-std-code:focus-within .label-input-std-code,
+    .section-input-birthday:focus-within .label-input-birthday,
+    .section-input-std-code input:not(:placeholder-shown)~.label-input-std-code,
+    .section-input-birthday input:not(:placeholder-shown)~.label-input-birthday {
+        padding: 0 0.5rem;
+        top: -0.4rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .section-input-degree:focus-within .label-input-degree,
+    .section-input-degree input:not(:placeholder-shown)~.label-input-degree {
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .label-input-degree-focus {
+        position: absolute;
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        color: #a3a3a3;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    /* จบ แสดง รหัสผ่าน และปิดการแสดง */
+    .section-input-std-code span,
+    .section-input-birthday span {
+        position: absolute;
+        font-size: 1rem;
+        color: rgb(255, 0, 0);
+        top: 5rem;
+        right: 0.5rem;
+    }
+    .label-remember-student {
         font-size: 1.5rem;
-        padding: 1.3rem;
-        margin: 0.3rem;
-        border: 2px solid rgb(255, 145, 0);
-        background-color: rgba(255, 255, 255, 0);
-        color: rgb(255, 145, 0);
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
-        transition: all 0.1s;
-        -webkit-transition: all 0.1s;
-        -moz-transition: all 0.1s;
-        -ms-transition: all 0.1s;
-        -o-transition: all 0.1s;
     }
-    .btn-sign-in-student:hover:not(:disabled) {
-        background-color: rgb(255, 145, 0);
-        box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
-        color: rgb(255, 255, 255);
-        text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 2px;
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
+    .section-remember-student input {
+        height: 2rem;
+        width: 2rem;
+        outline: none;
     }
-    .btn-sign-in-student:focus:not(:disabled) {
-        font-size: 1.7rem;
-        background-color: rgb(255, 145, 0);
-        box-shadow: rgb(0 0 0 / 28%) 2px 2px 4px;
-        color: rgb(255, 255, 255);
-        text-shadow: rgba(0, 0, 0, 0.5) 1px 2px 2px;
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
+    .section-remember-student input:checked {
+        outline: none;
     }
-    .btn-sign-in-student:disabled {
-        width: 98%;
+    .section-remember-student {
+        width: 100%;
+        margin: 0.5rem 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .section-btn-sign-in-student {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (min-width: 960px) and (orientation: landscape) {
+    .sign-in-presentation img {
+        width: 6.5rem;
+        margin: 3rem 0 1rem 0;
+    }
+    .sign-in-presentation h1 {
+        font-size: 2.5rem;
+        font-weight: 400;
+        line-height: 1;
+        padding: 0;
+        margin: 0;
+    }
+    form {
+        padding: 0.5rem;
+        width: 35rem;
+    }
+    .section-input-std-code:focus-within .label-input-std-code,
+    .section-input-birthday:focus-within .label-input-birthday,
+    .section-input-std-code input:not(:placeholder-shown)~.label-input-std-code,
+    .section-input-birthday input:not(:placeholder-shown)~.label-input-birthday {
+        padding: 0 0.5rem;
+        top: -0.4rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.3rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .section-input-degree:focus-within .label-input-degree,
+    .section-input-degree input:not(:placeholder-shown)~.label-input-degree {
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .label-input-degree-focus {
+        position: absolute;
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        color: #a3a3a3;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .input-birthday-datepicker {
+        position: relative;
+        z-index: 100;
+        padding: 1.2rem;
+        cursor: pointer;
+        width: 100%;
+    }
+    /* จบ แสดง รหัสผ่าน และปิดการแสดง */
+    .section-input-std-code span,
+    .section-input-birthday span {
+        position: absolute;
+        font-size: 1.2rem;
+        color: rgb(255, 0, 0);
+        top: 5rem;
+        right: 2rem;
+    }
+    .label-input-degree {
+        margin-top: -1.3rem;
+    }
+    .label-remember-student {
         font-size: 1.5rem;
-        padding: 1.3rem;
+    }
+    .section-remember-student input {
+        height: 2rem;
+        width: 2rem;
+        outline: none;
+    }
+    .section-remember-student input:checked {
+        outline: none;
+    }
+    .section-remember-student {
+        width: 100%;
         margin: 0.3rem;
-        border: 2px solid rgb(255, 145, 0);
-        background-color: rgba(255, 255, 255, 0);
-        color: rgb(255, 145, 0);
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
+    }
+    .section-btn-sign-in-student {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (min-width: 961px) and (orientation: portrait) {
+    .sign-in-presentation img {
+        width: 8rem;
+        margin: 3rem 0 1rem 0;
+    }
+    .sign-in-presentation h1 {
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 1;
+        padding: 0;
+        margin: 0;
+    }
+    form {
+        padding: 0.5rem;
+        width: 60%;
+    }
+    .section-input-std-code:focus-within .label-input-std-code,
+    .section-input-birthday:focus-within .label-input-birthday,
+    .section-input-std-code input:not(:placeholder-shown)~.label-input-std-code,
+    .section-input-birthday input:not(:placeholder-shown)~.label-input-birthday {
+        padding: 0 0.5rem;
+        top: -0.4rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .section-input-degree:focus-within .label-input-degree,
+    .section-input-degree input:not(:placeholder-shown)~.label-input-degree {
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .label-input-degree-focus {
+        position: absolute;
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        color: #a3a3a3;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    /* จบ แสดง รหัสผ่าน และปิดการแสดง */
+    .section-input-std-code span,
+    .section-input-birthday span {
+        position: absolute;
+        font-size: 1rem;
+        color: rgb(255, 0, 0);
+        top: 5rem;
+        right: 0.5rem;
+    }
+    .label-remember-student {
+        font-size: 1.5rem;
+    }
+    .section-remember-student input {
+        height: 2rem;
+        width: 2rem;
+        outline: none;
+    }
+    .section-remember-student input:checked {
+        outline: none;
+    }
+    .section-remember-student {
+        width: 100%;
+        margin: 0.5rem 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .section-btn-sign-in-student {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 321px) and (orientation: portrait) {
+    .sign-in-presentation img {
+        width: 4rem;
+        margin: 3rem 0 1rem 0;
+    }
+    .sign-in-presentation h1 {
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 1;
+        padding: 0;
+        margin: 0;
+    }
+    form {
+        padding: 0.5rem;
+        width: 100%;
+    }
+    .section-input-std-code:focus-within .label-input-std-code,
+    .section-input-birthday:focus-within .label-input-birthday,
+    .section-input-std-code input:not(:placeholder-shown)~.label-input-std-code,
+    .section-input-birthday input:not(:placeholder-shown)~.label-input-birthday {
+        padding: 0 0.5rem;
+        top: -0.4rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .section-input-degree:focus-within .label-input-degree,
+    .section-input-degree input:not(:placeholder-shown)~.label-input-degree {
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .label-input-degree-focus {
+        position: absolute;
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        color: #a3a3a3;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    /* จบ แสดง รหัสผ่าน และปิดการแสดง */
+    .section-input-std-code span,
+    .section-input-birthday span {
+        position: absolute;
+        font-size: 1rem;
+        color: rgb(255, 0, 0);
+        top: 5rem;
+        right: 0.5rem;
+    }
+    .label-remember-student {
+        font-size: 1.5rem;
+    }
+    .section-remember-student input {
+        height: 2rem;
+        width: 2rem;
+        outline: none;
+    }
+    .section-remember-student input:checked {
+        outline: none;
+    }
+    .section-remember-student {
+        width: 100%;
+        margin: 0.5rem 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .section-btn-sign-in-student {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 321px) and (orientation: landscape) {
+    .sign-in-presentation img {
+        width: 6.5rem;
+        margin: 3rem 0 1rem 0;
+    }
+    .sign-in-presentation h1 {
+        font-size: 2.5rem;
+        font-weight: 400;
+        line-height: 1;
+        padding: 0;
+        margin: 0;
+    }
+    form {
+        padding: 0.5rem;
+        width: 100%;
+    }
+    .section-input-std-code:focus-within .label-input-std-code,
+    .section-input-birthday:focus-within .label-input-birthday,
+    .section-input-std-code input:not(:placeholder-shown)~.label-input-std-code,
+    .section-input-birthday input:not(:placeholder-shown)~.label-input-birthday {
+        padding: 0 0.5rem;
+        top: -0.4rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.3rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .section-input-degree:focus-within .label-input-degree,
+    .section-input-degree input:not(:placeholder-shown)~.label-input-degree {
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .label-input-degree-focus {
+        position: absolute;
+        padding: 0 0.5rem;
+        margin-top: -5.5rem;
+        left: 2rem;
+        bottom: auto;
+        background: #fff;
+        color: #a3a3a3;
+        font-size: 1.25rem;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+    }
+    .input-birthday-datepicker {
+        position: relative;
+        z-index: 100;
+        padding: 1.2rem;
+        cursor: pointer;
+        width: 100%;
+    }
+    /* จบ แสดง รหัสผ่าน และปิดการแสดง */
+    .section-input-std-code span,
+    .section-input-birthday span {
+        position: absolute;
+        font-size: 1.2rem;
+        color: rgb(255, 0, 0);
+        top: 5rem;
+        right: 2rem;
+    }
+    .label-remember-student {
+        font-size: 1.5rem;
+    }
+    .section-remember-student input {
+        height: 2rem;
+        width: 2rem;
+        outline: none;
+    }
+    .section-remember-student input:checked {
+        outline: none;
+    }
+    .section-remember-student {
+        width: 100%;
+        margin: 0.3rem;
+    }
+    .section-btn-sign-in-student {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-height: 320px) and (orientation: landscape) {
+    form {
+        padding: 0.5rem;
+        width: 100%;
     }
 }

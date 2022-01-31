@@ -7,7 +7,6 @@ import { SignInComponent } from '../sign-in/sign-in.component';
 import { SignInStaffComponent } from '../sign-in/sign-in-staff/sign-in-staff.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInStudentComponent } from '../sign-in/sign-in-student/sign-in-student.component';
-import { StackedBarNDataComponent } from '../stacked-bar-n-data/stacked-bar-n-data.component';
 import { MaterialsModule } from '../materials/materials.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
@@ -18,8 +17,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     HomePageComponent,
     SignInComponent, 
     SignInStaffComponent, 
-    SignInStudentComponent, 
-    StackedBarNDataComponent
+    SignInStudentComponent
   ],
   imports: [
     CommonModule,

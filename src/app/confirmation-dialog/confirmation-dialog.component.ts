@@ -16,7 +16,11 @@ export class ConfirmationDialogComponent implements OnInit {
   btnRightDisable: boolean;
   txtBtnLeft: string;
   txtBtnRight: string;
-
+  btnLeftThaiDisable: boolean;
+  btnRightEngDisable: boolean;
+  messageThaiLanguage: string;
+  messageEngLanguage: string;
+  isSelectLanguageDisable:boolean;
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
@@ -30,28 +34,37 @@ export class ConfirmationDialogComponent implements OnInit {
     this.btnRightDisable = data.btnRightDisable;
     this.txtBtnLeft = data.txtBtnLeft;
     this.txtBtnRight = data.txtBtnRight;
-
+    this.messageThaiLanguage = data.messageThaiLanguage;
+    this.messageEngLanguage = data.messageEngLanguage;
+    this.isSelectLanguageDisable = data.isSelectLanguageDisable;
   }
 
   ngOnInit(): void { }
 
   onConfirm(): void {
-    // Close the dialog, return true
     this.dialogRef.close(true);
   }
 
   onDismiss(): void {
-    // Close the dialog, return false
     this.dialogRef.close(false);
+  }
+
+  onSelectLanguage(language: string) {
+
+    if (language === 'TH') {
+      document.querySelector<HTMLButtonElement>('#languageEng').classList.remove('select-this');
+      document.querySelector<HTMLButtonElement>('#languageTh').classList.add('select-this');
+    } else {
+      document.querySelector<HTMLButtonElement>('#languageTh').classList.remove('select-this');
+      document.querySelector<HTMLButtonElement>('#languageEng').classList.add('select-this');
+    }
+
+    localStorage.setItem('LANGUAGE', language);
+    
   }
 
 }
 
-/**
- * Class to represent confirm dialog model.
- *
- * It has been kept here to keep it as part of shared component.
- **/
 export class ConfirmDialogModel {
 
   constructor(
@@ -63,5 +76,8 @@ export class ConfirmDialogModel {
     public btnRightDisable: boolean,
     public txtBtnLeft: string,
     public txtBtnRight: string,
+    public messageThaiLanguage: string,
+    public messageEngLanguage: string,
+    public isSelectLanguageDisable: boolean
   ) { }
 }

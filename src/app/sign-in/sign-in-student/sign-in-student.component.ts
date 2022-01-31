@@ -1,11 +1,18 @@
+
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { DateAdapter } from '@angular/material/core';
-import { MatDatepickerModule, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { SignInService } from '../../services/sign-in.service';
+import { ConfirmationDialogComponent, ConfirmDialogModel } from 'src/app/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { studentResponseInfo } from './sign-in-student-interface';
+import { messagesDialog } from 'src/app/confirmation-dialog/confirmation-dialog-interface';
 
 export enum Languages {
   en = 'en',
@@ -19,11 +26,12 @@ export enum Languages {
 })
 export class SignInStudentComponent implements OnInit {
 
-  pipe = new DatePipe('en-US');
+  pipe = new DatePipe('en-EN');
 
   signInStudentFormGroup = this.formBuilder.group({
     inputStdCode: [''],
     inputBirthday: [''],
+    inputDegree: [''],
     checkRememberMe: ['']
   });
 
@@ -34,21 +42,23 @@ export class SignInStudentComponent implements OnInit {
     private router: Router,
     private cookieService: CookieService,
     private dateAdapter: DateAdapter<Date>,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private signInServices: SignInService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
 
     // เรียกใช้ function จำ email และ password ไว้ในระบบ
     this.pathValueSignInStudentFormGroup_by_CookieRememberUser();
-    this.useLanguage(Languages.th);
+    // this.useLanguage(Languages.th);
 
   }
 
-  useLanguage(language: Languages): void {
-    this.translate.use(language);
-    this.dateAdapter.setLocale(language);
-  }
+  // useLanguage(language: Languages): void {
+  //   this.translate.use(language);
+  //   this.dateAdapter.setLocale(language);
+  // }
 
   pathValueSignInStudentFormGroup_by_CookieRememberUser() {
 
@@ -57,6 +67,7 @@ export class SignInStudentComponent implements OnInit {
       this.signInStudentFormGroup.setValue({
         inputStdCode: this.cookieService.get('__remember_student_code'),
         inputBirthday: this.cookieService.get('__remember_student_birthday'),
+        inputDegree: this.cookieService.get('__remember_student_degree'),
         checkRememberMe: this.cookieService.get('__remember_student_check_remember_me')
       });
 
@@ -72,6 +83,11 @@ export class SignInStudentComponent implements OnInit {
 
       // * เปลี่ยน border password เป็นสีเขียว
       document.querySelector('#birthday').classList.value === 'input-birthday' ? document.querySelector('#birthday').classList.replace('input-birthday', 'input-correct') : document.querySelector('#birthday').classList.replace('input-error', 'input-correct');
+
+      // * เปลี่ยน border degree เป็นสีเขียว
+      document.querySelector('#degree').classList.value === 'input-degree' ? document.querySelector('#degree').classList.replace('input-degree', 'input-correct') : document.querySelector('#degree').classList.replace('input-error', 'input-correct');
+
+      document.querySelector<HTMLLabelElement>('#degree-label').classList.replace('label-input-degree', 'label-input-degree-focus');
 
     }
 
@@ -119,10 +135,13 @@ export class SignInStudentComponent implements OnInit {
 
   onChangeBirthday(type: string, e: MatDatepickerInputEvent<Date>) {
 
-    this.tempInputBirthday = this.pipe.transform(this.signInStudentFormGroup.controls['inputBirthday'].value.toString(), 'MM/dd/yyyy').toString();
-    
-    
-    this.signInStudentFormGroup.controls['inputBirthday'].patchValue(this.tempInputBirthday);
+    this.tempInputBirthday = this.pipe.transform(this.signInStudentFormGroup.controls['inputBirthday'].value.toString(), "MM/dd/yyyy").toString();
+
+    const TEMP_BIRTHDAY: string = this.pipe.transform(this.signInStudentFormGroup.controls['inputBirthday'].value.toString(), "dd/MM/yyyy").toString();
+    const THAI_YEAR: string = (parseInt(TEMP_BIRTHDAY.slice(6)) + 543).toString();
+    const BIRTHDAY: string = TEMP_BIRTHDAY.substring(0, 6) + THAI_YEAR
+
+    this.signInStudentFormGroup.controls['inputBirthday'].patchValue(BIRTHDAY);
     this.signInStudentFormGroup.controls['inputBirthday'].updateValueAndValidity();
 
     if (this.tempInputBirthday === '') {
@@ -150,6 +169,23 @@ export class SignInStudentComponent implements OnInit {
 
   }
 
+  onChangeDegree(e: any) {
+
+    if (this.signInStudentFormGroup.controls['inputDegree'].value != '') {
+
+      this.signInStudentFormGroup.controls['inputDegree'].updateValueAndValidity();
+
+      e.target.classList.value.substr(0, e.target.classList.value.indexOf(' ')) === 'input-degree' ? e.target.classList.replace('input-degree', 'input-correct') : e.target.classList.replace('input-error', 'input-correct');
+
+      document.querySelector<HTMLLabelElement>('#degree-label').classList.replace('label-input-degree', 'label-input-degree-focus');
+
+    }
+
+    // ตรวจสอบค่าของ email และ password ต้องไม่มีช่องใดว่าง
+    this.checkDisabledButtonSubmit();
+
+  }
+
   onCheckRememberMe(e) {
 
     this.signInStudentFormGroup.controls['checkRememberMe'].patchValue(e.target.checked);
@@ -158,11 +194,13 @@ export class SignInStudentComponent implements OnInit {
   }
 
   checkDisabledButtonSubmit() {
-    let checkInputNotEmpty = this.signInStudentFormGroup.controls['inputStdCode'].value !== '' ? this.signInStudentFormGroup.controls['inputBirthday'].value !== '' ? true : false : false;
+    let checkinputStdCode = this.signInStudentFormGroup.controls['inputStdCode'].value !== '' ? this.signInStudentFormGroup.controls['inputStdCode'].value.length === 10 ? true : false : false;
 
-    let checkinputStdCode = this.signInStudentFormGroup.controls['inputStdCode'].value.length === 10 ? true : false;
+    let checkInputBirthday = this.signInStudentFormGroup.controls['inputBirthday'].value !== '' ? true : false;
 
-    if (checkInputNotEmpty && checkinputStdCode) {
+    let checkInputDegree = this.signInStudentFormGroup.controls['inputDegree'].value !== '' ? true : false;
+
+    if (checkinputStdCode && checkInputBirthday && checkInputDegree) {
 
       document.querySelector<HTMLInputElement>('button.btn-sign-in-student').disabled = false;
 
@@ -181,12 +219,14 @@ export class SignInStudentComponent implements OnInit {
 
       this.cookieService.set('__remember_student_code', this.signInStudentFormGroup.controls['inputStdCode'].value);
       this.cookieService.set('__remember_student_birthday', this.signInStudentFormGroup.controls['inputBirthday'].value);
+      this.cookieService.set('__remember_student_degree', this.signInStudentFormGroup.controls['inputDegree'].value);
       this.cookieService.set('__remember_student_check_remember_me', this.signInStudentFormGroup.controls['checkRememberMe'].value);
 
     } else {
 
       this.cookieService.delete('__remember_student_code', this.signInStudentFormGroup.controls['inputStdCode'].value);
       this.cookieService.delete('__remember_student_birthday', this.signInStudentFormGroup.controls['inputBirthday'].value);
+      this.cookieService.delete('__remember_student_degree', this.signInStudentFormGroup.controls['inputDegree'].value);
       this.cookieService.delete('__remember_student_check_remember_me', this.signInStudentFormGroup.controls['checkRememberMe'].value);
 
     }
@@ -195,10 +235,139 @@ export class SignInStudentComponent implements OnInit {
 
   onStudentSingInSubmit() {
 
-    // เรียกใช้ function จำ email และ password ไว้ในระบบ
     this.setCookieRememberUser();
+    // {
+    //     "Std_code":"5912700019",
+    //     "Birth_date":"2/7/2539",
+    //     "Lev_id":"1"
+    // }
+
+    // {
+    //     "Std_code":"5814130063",
+    //     "Birth_date":"5/2/2535",
+    //     "Lev_id":"2"
+    // }
+
+    // {
+    //     "Std_code":"5719480005",
+    //     "Birth_date":"18/6/2529",
+    //     "Lev_id":"3"
+    // }
+
+    const PLAY_LOAD = { Std_code: this.signInStudentFormGroup.controls['inputStdCode'].value, Birth_date: this.signInStudentFormGroup.controls['inputBirthday'].value, Lev_id: this.signInStudentFormGroup.controls['inputDegree'].value };
+
+    this.signInServices.authentication(PLAY_LOAD).subscribe(response => {
+
+      let studentResponse: studentResponseInfo = response;
+      this.signInServices.setStudent(studentResponse);
+      this.signInServices.setLanguage('TH');
+      let makeMessage: messagesDialog = {
+        title: `Sign in`,
+        message: "",
+        description: "",
+        descriptionDetail: "",
+        btnLeftDisable: false,
+        btnRightDisable: false,
+        txtBtnLeft: "CLOSE",
+        txtBtnRight: "OK",
+        messageThaiLanguage: `กรุณาเลือกภาษาสำหรับตอบแบบสำรวจ`,
+        messageEngLanguage: `Please select a language for the survey.`,
+        isSelectLanguageDisable: true
+      };
+
+      let dialogData = this.newMessageDialog(makeMessage);
+      let dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: dialogData });
+      dialogRef.afterClosed().subscribe(dialogResult => {
+
+        let dialog_confirm_result = dialogResult;
+        if (dialog_confirm_result) {
+
+          this.signInServices.setIsAuthen(this.signInServices.getAuthorized());
+
+          if (this.signInServices.getLanguage() === 'TH') {
+            console.log(this.signInServices.getLev_id())
+            switch (this.signInServices.getLev_id()) {
+              case "1":
+                this.router.navigate(['student/bachelor-thai']);
+                break;
+              case "2": case "3":
+                // this.router.navigate(['student/master-phd-thai']);
+                break;
+            }
+
+          } else {
+
+            switch (this.signInServices.getLev_id()) {
+              case "1":
+                this.router.navigate(['student/bachelor-eng']);
+                break;
+              case "2": case "3":
+                // this.router.navigate(['student/master-phd-thai']);
+                break;
+            }
+
+          }
+        } else {
+          this.signInServices.signOut();
+        }
+      });
+
+    }, error => {
+
+      let status_message: string[] = this.checkStatusCode(error.status);
+      let makeMessage: messagesDialog = {
+        title: "Sign in Fail",
+        message: status_message[0],
+        description: status_message[1],
+        descriptionDetail: status_message[2],
+        btnLeftDisable: false,
+        btnRightDisable: true,
+        txtBtnLeft: "CLOSE",
+        txtBtnRight: "",
+        messageThaiLanguage: "",
+        messageEngLanguage: "",
+        isSelectLanguageDisable: false
+      };
+      let dialogData = this.newMessageDialog(makeMessage);
+      let dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: dialogData });
+      dialogRef.afterClosed().subscribe(dialogResult => {
+        let dialog_confirm_result = dialogResult;
+        if (dialog_confirm_result) {
+          // ok true           
+        } else {
+          // cancel false 
+        }
+      });
+    });
 
   }
 
+  newMessageDialog(makeMessage: messagesDialog): any {
+    return new ConfirmDialogModel(makeMessage.title, makeMessage.message, makeMessage.description, makeMessage.descriptionDetail, makeMessage.btnLeftDisable, makeMessage.btnRightDisable, makeMessage.txtBtnLeft, makeMessage.txtBtnRight, makeMessage.messageThaiLanguage, makeMessage.messageEngLanguage, makeMessage.isSelectLanguageDisable);
+  }
+
+  checkStatusCode(status_code: number): string[] {
+
+    let STATUS_MESSAGE: string[] = [];
+
+    switch (status_code) {
+
+      case 401: case 422:
+        STATUS_MESSAGE[0] = `ไม่สามารถเข้าสู่ระบบได้ เนื่องจากไม่พบข้อมูล กรุณากรอกข้อมูลใหม่อีกครั้ง และทำการตรวจสอบความถูกต้องของข้อมูล  ก่อนเข้าสู่ระบบ❗`;
+        STATUS_MESSAGE[1] = `Cannot Sign in!
+        Because information was not found Please enter the information again.
+        And check the correctness of the information Before Sign in.❗`;
+        break;
+
+      default:
+        STATUS_MESSAGE[0] = "ขออภัยในความไม่สะดวก";
+        STATUS_MESSAGE[1] = "ขณะนี้มีผู้เข้าใช้งานเป็นจำนวนมาก กรุณากลับมาเข้าใช้งานใหม่ในภายหลัง❗";
+        STATUS_MESSAGE[2] = "Sorry for the inconvenience We have a large number of users. Please come back later.❗";
+        break;
+
+    }
+
+    return STATUS_MESSAGE;
+  }
 
 }

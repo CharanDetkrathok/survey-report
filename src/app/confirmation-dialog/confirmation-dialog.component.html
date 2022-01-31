@@ -3,14 +3,26 @@
         <img src="assets/imgs/logo-for-survey-dialog.png" alt="">
         <h1>{{title}}</h1>
     </div>
-    <div class="container-content">
+    <div class="container-content" [style.display]="isSelectLanguageDisable? 'none':'flex' ">
         <p>{{message}}</p>
         <p>{{description}}</p>
         <p>{{descriptionDetail}}</p>
         <hr>
     </div>
+    <div class="container-content-select-language" [style.display]="isSelectLanguageDisable? 'flex':'none' ">
+        <p class="p-language">{{messageThaiLanguage}}</p>
+        <p class="p-language">{{messageEngLanguage}}</p>
+        <button (click)="onSelectLanguage('TH')" class="btn-select-thai" id="languageTh">
+            Thailand
+        </button>
 
-    <div class="container-btn">
+        <button (click)="onSelectLanguage('ENG')" class="btn-select-eng" id="languageEng">
+            English
+        </button>
+        <hr>
+    </div>
+
+    <div class="container-btn-wrapper">
 
         <div class="container-btn">
 

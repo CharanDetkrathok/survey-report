@@ -1,0 +1,54 @@
+<div class="disclosure-container-wrapper">
+
+    <div class="disclosure-dialog-header">
+        <img src="assets/imgs/logo-for-survey-dialog.png" alt="">
+        <h1 id="title"></h1>
+    </div>
+
+    <div class="disclosure-wrapper-content">
+        <div class="disclosure-container-content">
+            <b>
+                <p id="HEADER_1"></p>
+            </b>
+            <br/>
+            <p id="DETAIL_1_OF_HEADER_1"></p>
+            <p id="DETAIL_2_OF_HEADER_1"></p>
+            <p id="DETAIL_3_OF_HEADER_1"></p>
+            <br/>
+            <b>
+                <p id="HEADER_2"></p>
+            </b>
+            <br/>
+            <p id="DETAIL_1_OF_HEADER_2"></p>
+            <p id="DETAIL_2_OF_HEADER_2"></p>
+            <p id="DETAIL_3_OF_HEADER_2"></p>
+            <p id="DETAIL_4_OF_HEADER_2"></p>
+            <p id="DETAIL_5_OF_HEADER_2"></p>
+            <p id="DETAIL_6_OF_HEADER_2"></p>
+            <p id="DETAIL_7_OF_HEADER_2"></p>
+            <p id="CONSENT_TO_DISCLOSURE"></p>
+            <br/>
+            <b id="is_confirm" (click)="checkConfirm()">
+            <input type="checkbox" id="check_confirm">
+            <p id="CONFIRM"></p>
+            </b>
+            <hr>
+        </div>
+
+        <div class="disclosure-container-btn-wrapper">
+
+            <div class="disclosure-container-btn">
+
+                <button id="btn_cancel" [disabled]="btnLeftDisable" (click)="onDismiss()" class="disclosure-btn-cancel">
+                    {{txtBtnLeft}}
+                </button>
+                <button id="btn_ok" [disabled]="btnRightDisable" (click)="onConfirm()" class="disclosure-btn-ok">
+                    {{txtBtnRight}}
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

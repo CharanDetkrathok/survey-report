@@ -12,13 +12,13 @@ export class AdminService {
 
   getHttpUserAndFaculty() {
 
-    return this.httpUrl.get<getUserAndFaculty>(`${environment._base_url}admin-get-user-faculty.jsp`);
+    return this.httpUrl.get<getUserAndFaculty>(`${environment.BASE_URL}admin-get-user-faculty.jsp`);
 
   }
 
   getHttpDayOpenAndClose() {
 
-    return this.httpUrl.get<responeDayOpenAndClose>(`${environment._base_url}admin-get-day-open-close.jsp`);
+    return this.httpUrl.get<responeDayOpenAndClose>(`${environment.BASE_URL}admin-get-day-open-close.jsp`);
 
   }
 
@@ -33,7 +33,7 @@ export class AdminService {
 
     const body = urlSearchParams.toString();
 
-    return this.httpUrl.post<responeAfterInsert>(`${environment._base_url}admin-add-user.jsp`, body, { headers: headers });
+    return this.httpUrl.post<responeAfterInsert>(`${environment.BASE_URL}admin-add-user.jsp`, body, { headers: headers });
 
   }
 
@@ -49,7 +49,7 @@ export class AdminService {
 
     const body = urlSearchParams.toString();
 
-    return this.httpUrl.post<responeAfterUpdate>(`${environment._base_url}admin-update-user.jsp`, body, { headers: headers });
+    return this.httpUrl.post<responeAfterUpdate>(`${environment.BASE_URL}admin-update-user.jsp`, body, { headers: headers });
 
   }
 
@@ -63,7 +63,7 @@ export class AdminService {
 
     const body = urlSearchParams.toString();
 
-    return this.httpUrl.post<responeAfterDelete>(`${environment._base_url}admin-delete-user.jsp`, body, { headers: headers });
+    return this.httpUrl.post<responeAfterDelete>(`${environment.BASE_URL}admin-delete-user.jsp`, body, { headers: headers });
 
   }
 
@@ -78,7 +78,7 @@ export class AdminService {
 
     const body = urlSearchParams.toString();
 
-    return this.httpUrl.post<resPoneUpdateDayOpenAndClose>(`${environment._base_url}admin-update-day-open-and-close.jsp`, body, { headers: headers });
+    return this.httpUrl.post<resPoneUpdateDayOpenAndClose>(`${environment.BASE_URL}admin-update-day-open-and-close.jsp`, body, { headers: headers });
 
   }
 }

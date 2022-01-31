@@ -9,7 +9,28 @@
     width: 100%;
 }
 
-.dialog-header {
+.disclosure-wrapper-content {
+    overflow: scroll;
+    height: 60vh;
+}
+
+b {
+    display: flex;
+    align-items: baseline;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+#check_confirm {
+    transform: scale(1.6);
+}
+
+#is_confirm {
+    cursor: pointer;
+}
+
+.disclosure-dialog-header {
     top: 0;
     height: auto;
     padding: 1rem;
@@ -20,7 +41,7 @@
     align-items: center;
 }
 
-.container-btn-wrapper {
+.disclosure-container-btn-wrapper {
     flex-direction: row;
     display: flex;
     overflow: hidden;
@@ -29,7 +50,7 @@
     margin-right: 1rem;
 }
 
-.container-btn {
+.disclosure-container-btn {
     flex-direction: row;
     box-sizing: border-box;
     display: flex;
@@ -38,53 +59,14 @@
     margin-bottom: 1rem;
 }
 
-.container-content {
+.disclosure-container-content {
     padding: 2rem 1rem 0 1rem;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.p-language {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.4rem;
-    padding: 0.3rem 0 0 0;
-    margin: 0;
-    line-height: 1.3;
-}
-
-.container-content-select-language {
-    padding: 2rem 1rem 0 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.btn-select-thai,
-.btn-select-eng {
-    font-size: 1.3rem;
-    width: 50%;
-    padding: 0.9rem 2.2rem;
-    border-radius: 0.5rem;
-    background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(33, 2, 90);
-    color: rgb(18, 2, 90);
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
-    -o-border-radius: 0.5rem;
-    margin: 0.5rem;
-}
-
-.btn-select-thai:hover,
-.btn-select-eng:hover,
-.btn-select-thai:focus,
-.btn-select-eng:focus,
-.select-this {
+.disclosure-select-this {
     background-color: rgb(23 251 174);
     border: 1px solid rgb(23 251 174);
     color: rgb(18, 2, 90);
@@ -92,7 +74,7 @@
     box-shadow: rgb(125 124 124) 0px 3px 8px;
 }
 
-.btn-ok {
+.disclosure-btn-ok {
     padding: 0.6rem 2.2rem;
     margin: 0 0.2rem;
     border-radius: 0.5rem;
@@ -105,17 +87,41 @@
     -o-border-radius: 0.5rem;
 }
 
-.btn-ok:hover {
+.disclosure-btn-ok:hover {
     background-color: rgb(18, 2, 90);
     color: rgb(255, 255, 255);
     box-shadow: rgb(125 124 124) 0px 3px 8px;
 }
 
-.btn-ok:disabled {
+.disclosure-btn-ok:disabled {
     opacity: 0;
 }
 
-.btn-cancel {
+.disclosure-btn-ok-is-Confirm,
+.disclosure-btn-ok-is-Confirm:disabled {
+    padding: 0.6rem 2.2rem;
+    margin: 0 0.2rem;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgb(109, 109, 109);
+    color: rgb(41, 41, 41);
+    cursor: default;
+}
+
+.disclosure-btn-ok-is-Confirm:hover,
+.disclosure-btn-ok-is-Confirm:disabled:hover {
+    border: 1px solid rgb(209, 209, 209);
+    color: rgb(121, 121, 121);
+    background-color: rgb(209, 209, 209);
+    box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
+    cursor: no-drop;
+}
+
+.disclosure-btn-cancel {
     margin: 0 0.2rem;
     padding: 0.6rem 1.5rem;
     border-radius: 0.5rem;
@@ -128,13 +134,13 @@
     -o-border-radius: 0.5rem;
 }
 
-.btn-cancel:hover {
+.disclosure-btn-cancel:hover {
     background-color: rgb(255, 145, 0);
     color: rgb(255, 255, 255);
     box-shadow: rgb(125 124 124) 0px 3px 8px;
 }
 
-.btn-cancel:disabled {
+.disclosure-btn-cancel:disabled {
     opacity: 0;
 }
 
@@ -165,10 +171,10 @@
         font-weight: 400;
         color: #fff;
     }
-    .container-content {
+    .disclosure-container-content {
         padding: 2rem 1rem 0 1rem;
     }
-    .container-btn-wrapper {
+    .disclosure-container-btn-wrapper {
         align-items: center;
         justify-content: center;
         margin: 0;
@@ -179,17 +185,10 @@
         margin: 0;
         line-height: 1.3;
     }
-    .p-language {
-        font-size: 0.8rem;
-    }
-    .btn-select-thai,
-    .btn-select-eng {
-        width: 90%;
-    }
-    .container-btn {
+    .disclosure-container-btn {
         margin-right: -1.5rem;
     }
-    .btn-ok:disabled {
+    .disclosure-btn-ok:disabled {
         margin-right: -12rem;
     }
 }
@@ -222,12 +221,8 @@
         font-weight: 400;
         color: #fff;
     }
-    .container-content,
-    .container-content-select-language {
+    .disclosure-container-content {
         padding: 2rem 1rem 0 1rem;
-    }
-    .container-content-select-language {
-        margin: -1rem 0 -3rem 0;
     }
     p {
         font-size: 1rem;
@@ -235,12 +230,7 @@
         margin: 0;
         line-height: 1.3;
     }
-    .btn-select-thai,
-    .btn-select-eng {
-        width: 50%;
-        padding: 0.2rem 2.2rem;
-    }
-    .btn-ok:disabled {
+    .disclosure-btn-ok:disabled {
         margin-right: -4.5rem;
     }
 }
@@ -274,25 +264,24 @@
         font-weight: 400;
         color: #fff;
     }
-    .container-content,
-    .container-content-select-language {
+    .disclosure-container-content {
         padding: 2rem 1rem 0 1rem;
     }
     p {
-        font-size: 1.3rem;
+        font-size: 1rem;
         padding: 0 0 0 1rem;
         margin: 0;
         line-height: 1.3;
     }
-    .container-btn-wrapper {
+    .disclosure-container-btn-wrapper {
         align-items: center;
         justify-content: center;
         margin: 0;
     }
-    .container-btn {
+    .disclosure-container-btn {
         margin-right: -1.5rem;
     }
-    .btn-ok:disabled {
+    .disclosure-btn-ok:disabled {
         margin-right: -19rem;
     }
 }
@@ -326,17 +315,24 @@
         font-weight: 400;
         color: #fff;
     }
-    .container-content,
-    .container-content-select-language {
+    .disclosure-container-content {
         padding: 2rem 1rem 0 1rem;
     }
-    p {
-        font-size: 1.4rem;
-        padding: 0.5rem 0 0 1rem;
+    #HEADER_1,
+    #HEADER_2,
+    #CONFIRM {
+        font-size: 1.3rem;
+        padding: 0 0 0 1rem;
         margin: 0;
         line-height: 1.3;
     }
-    .btn-ok:disabled {
+    p {
+        font-size: 1.2rem;
+        padding: 0 0 0 1rem;
+        margin: 0;
+        line-height: 1.3;
+    }
+    .disclosure-btn-ok:disabled {
         margin-right: -4.5rem;
     }
 }
