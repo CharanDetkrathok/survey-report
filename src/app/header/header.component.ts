@@ -11,10 +11,11 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("header")
+       
     if(localStorage.getItem('isAuthen') == 'true') {
       this.isAuthen = true;
     }
+
   }
 
 }
