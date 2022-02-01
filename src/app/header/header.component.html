@@ -3,17 +3,19 @@
         <div class="branding">
             <img src="assets/imgs/logo-for-survey.png" alt>
         </div>
-        <div class="list-items" [style.display]="isAuthen? 'flex':'none'">
-            <ul>
-                <li>
-                    <p>charan@ru.ac.th</p>
-                </li>
-                <li>
-                    <button>
-                        <span>Logout</span>
-                    </button>
-                </li>
-            </ul>
+        <div *ngIf="isSigningIn$ | async as isSigningIn">
+            <div class="list-items" [style.display]="isSigningIn ? 'flex' :'none'">
+                <ul>
+                    <li>
+                        <p>charan@ru.ac.th</p>
+                    </li>
+                    <li>
+                        <button (click)="signOut()">
+                            <span>Logout</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </div>

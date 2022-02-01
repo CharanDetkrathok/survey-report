@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { SignInService } from 'src/app/services/sign-in.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   isAuthen: boolean = false;
-  constructor() { }
+  isSigningIn$: Observable<boolean>;
+
+  constructor(
+    private signInService: SignInService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-       
-    if(localStorage.getItem('isAuthen') == 'true') {
-      this.isAuthen = true;
-    }
 
+    this.isSigningIn$ = this.signInService.isSigningIn
+
+  }
+
+  public signOut() {
+    this.signInService.signOut();
+    this.router.navigate(['/home-page']);
   }
 
 }

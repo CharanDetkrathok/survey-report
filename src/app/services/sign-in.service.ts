@@ -4,23 +4,37 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { studentResponseInfo, refreshTokenResponse } from '../sign-in/sign-in-student/sign-in-student-interface';
 import { tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignInService {
 
+  private signingIn = new BehaviorSubject<boolean>(false);
+
+  get isSigningIn() {
+    return this.signingIn.asObservable();
+  }
+
   constructor(private http: HttpClient) { }
 
   public authentication(PLAY_LOAD: any): any {
+
     return this.http.post<studentResponseInfo>(`${environment.BASE_URL}${environment.AUTHENTICATION}`, PLAY_LOAD);
+
   }
 
   public signOut() {
+
+    this.signingIn.next(false);
+
     if ((this.getAccessToken() === null || this.getAccessToken() !== null) && this.getRefreshToken() !== null) {
-      this.Unauthorized().subscribe()
+      this.Unauthorized().subscribe();      
     }
-    this.revokeLocalstorages();
+
+    this.revokeLocalstorages();    
+
   }
 
   public Unauthorized() {
@@ -52,15 +66,26 @@ export class SignInService {
   }
 
   public setIsAuthen(auth: string) {
+
     localStorage.setItem('isAuthen', auth)
+    if (auth == 'true') {
+      this.signingIn.next(true);
+    } else {
+      this.signingIn.next(false);
+    }
+
   }
 
   public getIsAuthen(): boolean {
-    if (localStorage.getItem('isAuthen') === 'true') {
+
+    if (localStorage.getItem('isAuthen') == 'true') {
+      this.signingIn.next(true);
       return true;
     } else {
+      this.signingIn.next(false);
       return false;
     }
+
   }
 
   public revokeIsAuthen() {
@@ -183,6 +208,7 @@ export class SignInService {
   }
 
   public revokeLocalstorages() {
+    this.signingIn.next(false);
     // this.revokeIsAuthen();
     // this.revokeLanguage();
     // this.revokeStudent();

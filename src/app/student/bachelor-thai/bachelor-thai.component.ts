@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { messagesDialog } from 'src/app/disclosure-dialog/disclosure-dialog-interface';
 import { DisclosureDialogComponent, DisclosureDialogModel } from '../../disclosure-dialog/disclosure-dialog.component';
-import { threadId } from 'worker_threads';
+
 
 @Component({
   selector: 'app-bachelor-thai',
@@ -196,11 +196,6 @@ export class BachelorThaiComponent implements OnInit {
     }
 
     return STATUS_MESSAGE;
-  }
-
-  public signOut() {
-    this.signInServices.signOut();
-    this.router.navigate(['/home-page']);
   }
 
 }
