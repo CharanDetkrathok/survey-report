@@ -24,18 +24,18 @@
                     </h1>
                     <h1>มหาวิทยาลัยรามคำแหง</h1>
                 </div>
-
-                <div class="welcom-btn">
-                    <button class="btn-go-to-student" (click)="onClickStudentButton()">
-                        <!-- เข้าสู่ระบบ สำหรับบัณฑิต -->
-                        Sign in for Graduates
-                    </button>
-                    <button class="btn-go-to-staff" (click)="onClickStaffButton()">
-                        <!-- เข้าสู่ระบบ สำหรับบุคลากร -->
-                        Sign in for Personnel
-                    </button>
+                <div [style.display]="!isAuthen ? 'block' : 'none'">
+                    <div class="welcom-btn">
+                        <button class="btn-go-to-student" (click)="onClickStudentButton()">
+                            <!-- เข้าสู่ระบบ สำหรับบัณฑิต -->
+                            Sign in for Graduates
+                        </button>
+                        <button class="btn-go-to-staff" (click)="onClickStaffButton()">
+                            <!-- เข้าสู่ระบบ สำหรับบุคลากร -->
+                            Sign in for Personnel
+                        </button>
+                    </div>
                 </div>
-
             </div>
         </div>
         <div class="slide student">

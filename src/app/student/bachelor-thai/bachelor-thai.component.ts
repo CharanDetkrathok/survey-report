@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { messagesDialog } from 'src/app/disclosure-dialog/disclosure-dialog-interface';
 import { DisclosureDialogComponent, DisclosureDialogModel } from '../../disclosure-dialog/disclosure-dialog.component';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-bachelor-thai',
@@ -22,7 +23,9 @@ export class BachelorThaiComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getDisclosure();
+    if (localStorage.getItem('isDisclosure') != 'true') {
+      this.getDisclosure();
+    }
 
   }
 
@@ -71,6 +74,7 @@ export class BachelorThaiComponent implements OnInit {
         let dialog_confirm_result = dialogResult;
         if (dialog_confirm_result) {
           // ok call api for get choice
+          localStorage.setItem('isDisclosure', 'true')
         } else {
           this.signInServices.signOut();
           this.router.navigate(['/home-page']);
@@ -192,6 +196,11 @@ export class BachelorThaiComponent implements OnInit {
     }
 
     return STATUS_MESSAGE;
+  }
+
+  public signOut() {
+    this.signInServices.signOut();
+    this.router.navigate(['/home-page']);
   }
 
 }

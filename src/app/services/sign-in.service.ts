@@ -17,11 +17,9 @@ export class SignInService {
   }
 
   public signOut() {
-
-    this.Unauthorized().subscribe(res => {
-      console.log(res)
-      console.log(res.message)
-    })
+    if ((this.getAccessToken() === null || this.getAccessToken() !== null) && this.getRefreshToken() !== null) {
+      this.Unauthorized().subscribe()
+    }
     this.revokeLocalstorages();
   }
 
@@ -91,6 +89,9 @@ export class SignInService {
 
   public revokeLanguage() {
     localStorage.removeItem('LANGUAGE');
+  }
+  public revokeIsDisclosure() {
+    localStorage.removeItem('isDisclosure');
   }
 
   public setAccessToken(new_access_token: string) {
@@ -182,9 +183,11 @@ export class SignInService {
   }
 
   public revokeLocalstorages() {
-    this.revokeIsAuthen();
-    this.revokeLanguage();
-    this.revokeStudent();
+    // this.revokeIsAuthen();
+    // this.revokeLanguage();
+    // this.revokeStudent();
+    // this.revokeIsDisclosure();
+    localStorage.clear();
   }
 
 }

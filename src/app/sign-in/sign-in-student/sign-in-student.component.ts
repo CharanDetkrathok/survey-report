@@ -236,23 +236,6 @@ export class SignInStudentComponent implements OnInit {
   onStudentSingInSubmit() {
 
     this.setCookieRememberUser();
-    // {
-    //     "Std_code":"5912700019",
-    //     "Birth_date":"2/7/2539",
-    //     "Lev_id":"1"
-    // }
-
-    // {
-    //     "Std_code":"5814130063",
-    //     "Birth_date":"5/2/2535",
-    //     "Lev_id":"2"
-    // }
-
-    // {
-    //     "Std_code":"5719480005",
-    //     "Birth_date":"18/6/2529",
-    //     "Lev_id":"3"
-    // }
 
     const PLAY_LOAD = { Std_code: this.signInStudentFormGroup.controls['inputStdCode'].value, Birth_date: this.signInStudentFormGroup.controls['inputBirthday'].value, Lev_id: this.signInStudentFormGroup.controls['inputDegree'].value };
 
@@ -314,6 +297,8 @@ export class SignInStudentComponent implements OnInit {
 
     }, error => {
 
+    console.log(error)
+
       let status_message: string[] = this.checkStatusCode(error.status);
       let makeMessage: messagesDialog = {
         title: "Sign in Fail",
@@ -353,10 +338,9 @@ export class SignInStudentComponent implements OnInit {
     switch (status_code) {
 
       case 401: case 422:
-        STATUS_MESSAGE[0] = `ไม่สามารถเข้าสู่ระบบได้ เนื่องจากไม่พบข้อมูล กรุณากรอกข้อมูลใหม่อีกครั้ง และทำการตรวจสอบความถูกต้องของข้อมูล  ก่อนเข้าสู่ระบบ❗`;
-        STATUS_MESSAGE[1] = `Cannot Sign in!
-        Because information was not found Please enter the information again.
-        And check the correctness of the information Before Sign in.❗`;
+        STATUS_MESSAGE[0] = `ไม่พบข้อมูลของท่าน กรุณากรอกข้อมูลใหม่อีกครั้ง❗`;
+        STATUS_MESSAGE[1] = `
+        Can't find your information Please enter your information again.❗`;
         break;
 
       default:
