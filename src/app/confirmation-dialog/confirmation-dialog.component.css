@@ -67,11 +67,11 @@
 .btn-select-thai,
 .btn-select-eng {
     font-size: 1.3rem;
-    width: 50%;
-    padding: 0.9rem 2.2rem;
+    width: 40%;
+    padding: 1.2rem 2.2rem;
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(255, 145, 0);
+    border: 2px solid rgb(255, 145, 0);
     color: rgb(255, 145, 0);
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
@@ -86,18 +86,19 @@
 .btn-select-eng:focus,
 .select-this {
     background-color: rgb(18 2 90);
-    border: 1px solid rgb(18 2 90);
+    border: 2px solid rgb(18 2 90);
     color: rgb(255 255 255);
     font-size: 1.4rem;
     box-shadow: rgb(26 0 255 / 42%) 3px 3px 5px;
 }
 
 .btn-ok {
+    font-size: medium;
     padding: 0.6rem 2.2rem;
     margin: 0 0.2rem;
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(18, 2, 90);
+    border: 2px solid rgb(18, 2, 90);
     color: rgb(18, 2, 90);
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
@@ -116,11 +117,12 @@
 }
 
 .btn-cancel {
+    font-size: medium;
     margin: 0 0.2rem;
     padding: 0.6rem 1.5rem;
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(255, 145, 0);
+    border: 2px solid rgb(255, 145, 0);
     color: rgb(255, 145, 0);
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
@@ -140,7 +142,7 @@
 
 @media screen and (max-width: 959px) and (orientation: portrait) {
      ::ng-deep .cdk-overlay-pane {
-        max-width: 80vw !important;
+        max-width: 95vw !important;
         pointer-events: auto !important;
         position: static !important;
     }
@@ -180,7 +182,7 @@
         line-height: 1.3;
     }
     .p-language {
-        font-size: 0.8rem;
+        font-size: 3.6vw;
     }
     .btn-select-thai,
     .btn-select-eng {
@@ -331,7 +333,7 @@
         padding: 2rem 1rem 0 1rem;
     }
     p {
-        font-size: 1.15rem;
+        font-size: 1.5vw;
         padding: 0.5rem 0 0 1rem;
         margin: 0;
         line-height: 1.3;

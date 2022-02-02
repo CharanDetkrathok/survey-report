@@ -268,7 +268,6 @@ export class SignInStudentComponent implements OnInit {
           this.signInServices.setIsAuthen(this.signInServices.getAuthorized());
 
           if (this.signInServices.getLanguage() === 'TH') {
-            console.log(this.signInServices.getLev_id())
             switch (this.signInServices.getLev_id()) {
               case "1":
                 this.router.navigate(['student/bachelor-thai']);
@@ -296,8 +295,6 @@ export class SignInStudentComponent implements OnInit {
       });
 
     }, error => {
-
-    console.log(error)
 
       let status_message: string[] = this.checkStatusCode(error.status);
       let makeMessage: messagesDialog = {

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { studentResponseInfo, refreshTokenResponse } from '../sign-in/sign-in-student/sign-in-student-interface';
 import { tap } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,11 @@ import { BehaviorSubject } from 'rxjs';
 export class SignInService {
 
   private signingIn = new BehaviorSubject<boolean>(false);
+  private studentUsername = new BehaviorSubject<string>(null)
+
+  public get studentUser() {
+    return this.studentUsername.asObservable();
+  };
 
   get isSigningIn() {
     return this.signingIn.asObservable();
@@ -28,6 +33,7 @@ export class SignInService {
   public signOut() {
 
     this.signingIn.next(false);
+    this.studentUsername.next(null);
 
     if ((this.getAccessToken() === null || this.getAccessToken() !== null) && this.getRefreshToken() !== null) {
       this.Unauthorized().subscribe();      
@@ -40,7 +46,7 @@ export class SignInService {
   public Unauthorized() {
     const PLAY_LOAD = {
       refresh_token: this.getRefreshToken()
-    }
+    };
     return this.http.post<any>(`${environment.BASE_URL}${environment.UN_AUTHORIZATION}`, PLAY_LOAD);
   }
 
@@ -52,7 +58,7 @@ export class SignInService {
       first_name_eng: this.getFirstNameENG(),
       fev_id: this.getLev_id(),
       refresh_token: this.getRefreshToken()
-    }
+    };
 
     return this.http.post<refreshTokenResponse>(`${environment.BASE_URL}${environment.REFRESH_AUTHENTICATION}`, PLAY_LOAD).pipe(tap(response => {
       let ACCESS_TOKEN: string = response.access_token;
@@ -67,11 +73,13 @@ export class SignInService {
 
   public setIsAuthen(auth: string) {
 
-    localStorage.setItem('isAuthen', auth)
+    localStorage.setItem('isAuthen', auth);
     if (auth == 'true') {
       this.signingIn.next(true);
+      this.studentUsername.next(this.getFirstNameENG());
     } else {
       this.signingIn.next(false);
+      this.studentUsername.next(null);
     }
 
   }
@@ -80,9 +88,11 @@ export class SignInService {
 
     if (localStorage.getItem('isAuthen') == 'true') {
       this.signingIn.next(true);
+      this.studentUsername.next(this.getFirstNameENG());
       return true;
     } else {
       this.signingIn.next(false);
+      this.studentUsername.next(null);
       return false;
     }
 
@@ -182,6 +192,7 @@ export class SignInService {
     if (student != null || student != undefined) {
       const First_name_eng: string = student.StudentInfo.First_name_eng;
       return First_name_eng;
+
     } else {
       return null;
     }
@@ -209,6 +220,7 @@ export class SignInService {
 
   public revokeLocalstorages() {
     this.signingIn.next(false);
+    this.studentUsername.next(null);
     // this.revokeIsAuthen();
     // this.revokeLanguage();
     // this.revokeStudent();

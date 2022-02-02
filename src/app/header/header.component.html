@@ -3,15 +3,18 @@
         <div class="branding">
             <img src="assets/imgs/logo-for-survey.png" alt>
         </div>
-        <div *ngIf="isSigningIn$ | async as isSigningIn">
+        <div class="list-items-wrapper" *ngIf="isSigningIn$ | async as isSigningIn">
             <div class="list-items" [style.display]="isSigningIn ? 'flex' :'none'">
-                <ul>
+                <ul style="color:white;">
+                    <li (click)="goHomePage()">Home</li>
+                    <li (click)="goSurveyPage()">Survey</li>
+                    <li>Report</li>
                     <li>
-                        <p>charan@ru.ac.th</p>
+                        <p>{{usernameText}}</p>
                     </li>
                     <li>
                         <button (click)="signOut()">
-                            <span>Logout</span>
+                            <span>SignOut</span>
                         </button>
                     </li>
                 </ul>

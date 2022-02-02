@@ -68,18 +68,19 @@ b {
 
 .disclosure-select-this {
     background-color: rgb(23 251 174);
-    border: 1px solid rgb(23 251 174);
+    border: 2px solid rgb(23 251 174);
     color: rgb(18, 2, 90);
     font-size: 1.4rem;
     box-shadow: rgb(125 124 124) 0px 3px 8px;
 }
 
 .disclosure-btn-ok {
+    font-size: medium;
     padding: 0.6rem 2.2rem;
     margin: 0 0.2rem;
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(18, 2, 90);
+    border: 2px solid rgb(18, 2, 90);
     color: rgb(18, 2, 90);
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
@@ -99,6 +100,7 @@ b {
 
 .disclosure-btn-ok-is-Confirm,
 .disclosure-btn-ok-is-Confirm:disabled {
+    font-size: medium;
     padding: 0.6rem 2.2rem;
     margin: 0 0.2rem;
     border-radius: 0.5rem;
@@ -107,14 +109,14 @@ b {
     -ms-border-radius: 0.5rem;
     -o-border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(109, 109, 109);
+    border: 2px solid rgb(109, 109, 109);
     color: rgb(41, 41, 41);
     cursor: default;
 }
 
 .disclosure-btn-ok-is-Confirm:hover,
 .disclosure-btn-ok-is-Confirm:disabled:hover {
-    border: 1px solid rgb(209, 209, 209);
+    border: 2px solid rgb(209, 209, 209);
     color: rgb(121, 121, 121);
     background-color: rgb(209, 209, 209);
     box-shadow: rgba(255, 255, 255, 0) 0px 3px 8px;
@@ -122,11 +124,12 @@ b {
 }
 
 .disclosure-btn-cancel {
+    font-size: medium;
     margin: 0 0.2rem;
     padding: 0.6rem 1.5rem;
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(255, 145, 0);
+    border: 2px solid rgb(255, 145, 0);
     color: rgb(255, 145, 0);
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
@@ -146,7 +149,7 @@ b {
 
 @media screen and (max-width: 959px) and (orientation: portrait) {
      ::ng-deep .cdk-overlay-pane {
-        max-width: 80vw !important;
+        max-width: 99vw !important;
         pointer-events: auto !important;
         position: static !important;
     }
@@ -254,7 +257,7 @@ b {
         justify-content: center;
     }
     img {
-        width: 30%;
+        width: 20%;
         height: 100%;
     }
     h1 {
@@ -288,7 +291,7 @@ b {
 
 @media screen and (min-width: 960px) and (orientation: landscape) {
      ::ng-deep .cdk-overlay-pane {
-        max-width: 50vw !important;
+        max-width: 80vw !important;
         pointer-events: auto !important;
         position: static !important;
     }
@@ -305,7 +308,7 @@ b {
         justify-content: center;
     }
     img {
-        width: 30%;
+        width: 20%;
         height: 100%;
     }
     h1 {

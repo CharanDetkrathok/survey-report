@@ -85,9 +85,6 @@ export class DisclosureDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.DETAIL_1_OF_HEADER_1_TH)
-    console.log(this.DETAIL_2_OF_HEADER_1_TH)
-
     if (this.isConfirm === false) {
       document.querySelector<HTMLButtonElement>('#btn_ok').classList.add("disclosure-btn-ok-is-Confirm");
       document.querySelector<HTMLButtonElement>('#btn_ok').classList.remove("disclosure-btn-ok");
