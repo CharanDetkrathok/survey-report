@@ -48,3 +48,10 @@ interface StudentInfo {
   Major_name_eng: string;
   Lev_id: string;
 }
+
+export interface ActiveLinkObject {
+  isHomePage: boolean,
+  isBechelorThPage: boolean,
+  isBechelorEngPage: boolean,
+  isReportPage: boolean,
+}

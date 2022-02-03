@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bayon&display=swap');
+* {
+    font-family: 'Bayon', sans-serif !important;
+}
+
 nav .list-items-wrapper {
     height: 100%;
     width: 100%;
     display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 nav .list-items ul {
@@ -15,6 +23,45 @@ nav .list-items ul {
     margin: 0;
 }
 
+nav ul li a {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    font-family: "Lato";
+    /* font-size: 2rem; */
+    color: #ecf0f1;
+    text-transform: uppercase;
+    padding: 4px 0;
+    transition: 0.5s;
+}
+
+nav ul li a::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+    top: 100%;
+    left: 0;
+    background: rgb(255, 166, 0);
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+.active-link {
+    border-bottom: 3px solid rgb(255, 166, 0);
+}
+
+nav ul li a:hover {
+    color: #858585;
+    cursor: pointer;
+}
+
+nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
 nav .list-items ul li {
     display: flex;
     align-items: center;
@@ -22,11 +69,12 @@ nav .list-items ul li {
     height: 100%;
     text-decoration: none;
     margin-left: 0.5rem;
-}
-
-nav .list-items ul li p {
     color: rgb(255, 255, 255);
     margin: 0;
+}
+
+nav .list-items ul li span {
+    color: rgb(255, 166, 0);
 }
 
 nav .list-items ul li button {
@@ -98,11 +146,12 @@ hr {
     nav .list-items {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         padding: 0.5rem 0 1.5rem 0;
     }
-    nav .list-items ul li p {
+    nav .list-items ul li {
         font-size: 1rem;
+        padding: 0 0.3rem;
     }
     nav .list-items ul li button {
         padding: 0.5rem 1.2rem;
@@ -140,11 +189,12 @@ hr {
     nav .list-items {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         padding: 0.5rem 0 1.5rem 0;
     }
-    nav .list-items ul li p {
-        font-size: 1.2rem;
+    nav .list-items ul li {
+        font-size: 1rem;
+        padding: 0 0.3rem;
     }
     nav .list-items ul li button {
         padding: 0.7rem 1.5rem;
@@ -179,11 +229,12 @@ hr {
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-evenly;
         padding: 1.5rem;
     }
-    nav .list-items ul li p {
-        font-size: 1.2rem;
+    nav .list-items ul li {
+        font-size: 1rem;
+        padding: 0 0.3rem;
     }
     nav .list-items ul li button {
         padding: 0.7em 1.5rem;
@@ -221,10 +272,12 @@ hr {
         justify-content: flex-end;
         padding: 1.5rem;
     }
-    nav .list-items ul li p {
-        font-size: 1.2rem;
+    nav .list-items ul li {
+        font-size: 1.5rem;
+        padding: 0 0.5rem;
     }
     nav .list-items ul li button {
-        padding: 0.7em 1.5rem;
+        padding: 0.5em 1.5rem;
+        font-size: 1.5rem;
     }
 }

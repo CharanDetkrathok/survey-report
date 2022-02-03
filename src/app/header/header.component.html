@@ -6,15 +6,15 @@
         <div class="list-items-wrapper" *ngIf="isSigningIn$ | async as isSigningIn">
             <div class="list-items" [style.display]="isSigningIn ? 'flex' :'none'">
                 <ul style="color:white;">
-                    <li (click)="goHomePage()">Home</li>
-                    <li (click)="goSurveyPage()">Survey</li>
-                    <li>Report</li>
+                    <li><a id="home-page" (click)="goHomePage()" class="">Home</a></li>
+                    <li><a id="survey-page" (click)="goSurveyPage()" class="">Survey</a></li>
+                    <li><a id="report-page" (click)="goReportPage()" class="">Report</a></li>
                     <li>
-                        <p>{{usernameText}}</p>
+                        <span>{{usernameText}}</span>
                     </li>
                     <li>
                         <button (click)="signOut()">
-                            <span>SignOut</span>
+                            SignOut
                         </button>
                     </li>
                 </ul>

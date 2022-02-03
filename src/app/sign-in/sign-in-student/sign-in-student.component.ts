@@ -7,17 +7,16 @@ import { DateAdapter } from '@angular/material/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
 import { SignInService } from '../../services/sign-in.service';
 import { ConfirmationDialogComponent, ConfirmDialogModel } from 'src/app/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { studentResponseInfo } from './sign-in-student-interface';
 import { messagesDialog } from 'src/app/confirmation-dialog/confirmation-dialog-interface';
 
-export enum Languages {
-  en = 'en',
-  th = 'th'
-}
+// export enum Languages {
+//   en = 'en',
+//   th = 'th'
+// }
 
 @Component({
   selector: 'app-sign-in-student',

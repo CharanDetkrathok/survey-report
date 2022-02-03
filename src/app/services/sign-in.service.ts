@@ -12,14 +12,30 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class SignInService {
 
   private signingIn = new BehaviorSubject<boolean>(false);
-  private studentUsername = new BehaviorSubject<string>(null)
+  private studentUsername = new BehaviorSubject<string>(null);
 
-  public get studentUser() {
+  private homePageActiveLink = new BehaviorSubject<boolean>(false);
+  private surveyPageActiveLink = new BehaviorSubject<boolean>(false);
+  private reportPageActiveLink = new BehaviorSubject<boolean>(false);
+
+  get studentUser() {
     return this.studentUsername.asObservable();
   };
-
   get isSigningIn() {
     return this.signingIn.asObservable();
+  }
+
+  get isHomePageActiveLink() {
+    this.getHomePageActiveLink();
+    return this.homePageActiveLink.asObservable();
+  }
+  get isSurveyPageActiveLink() {
+    this.getSurveyPageActiveLink();
+    return this.surveyPageActiveLink.asObservable();
+  }
+  get isReportPageActiveLink() {
+    this.getReportActiveLink();
+    return this.reportPageActiveLink.asObservable();
   }
 
   constructor(private http: HttpClient) { }
@@ -36,10 +52,10 @@ export class SignInService {
     this.studentUsername.next(null);
 
     if ((this.getAccessToken() === null || this.getAccessToken() !== null) && this.getRefreshToken() !== null) {
-      this.Unauthorized().subscribe();      
+      this.Unauthorized().subscribe();
     }
 
-    this.revokeLocalstorages();    
+    this.revokeLocalstorages();
 
   }
 
@@ -226,6 +242,30 @@ export class SignInService {
     // this.revokeStudent();
     // this.revokeIsDisclosure();
     localStorage.clear();
+  }
+
+  public getHomePageActiveLink() {
+    if (localStorage.getItem('isHomePageActive') == 'true') {
+      this.homePageActiveLink.next(true);
+    } else {
+      this.homePageActiveLink.next(false);
+    }
+  }
+
+  public getSurveyPageActiveLink() {
+    if (localStorage.getItem('isSurveyPageActive') == 'true') {
+      this.surveyPageActiveLink.next(true);
+    } else {
+      this.surveyPageActiveLink.next(false);
+    }
+  }
+
+  public getReportActiveLink() {
+    if (localStorage.getItem('isReportPageActive') == 'true') {
+      this.reportPageActiveLink.next(true);
+    } else {
+      this.reportPageActiveLink.next(false);
+    }
   }
 
 }
