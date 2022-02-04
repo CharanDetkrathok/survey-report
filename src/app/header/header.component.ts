@@ -14,11 +14,6 @@ import { MatDialog } from '@angular/material/dialog';
 export class HeaderComponent implements OnInit {
 
   isSigningIn$: Observable<boolean>;
-
-  isHomePageActiveLink$: Observable<boolean>;
-  isSurveyPageActiveLink$: Observable<boolean>;
-  isReportPageActiveLink$: Observable<boolean>;
-
   username$: Observable<string>;
   usernameText: string = "";
 
@@ -28,24 +23,7 @@ export class HeaderComponent implements OnInit {
     private dialog: MatDialog
   ) { }
 
-  ngOnInit(): void {
-    this.isHomePageActiveLink$ = this.signInService.isHomePageActiveLink;
-    this.isSurveyPageActiveLink$ = this.signInService.isSurveyPageActiveLink;
-    this.isReportPageActiveLink$ = this.signInService.isReportPageActiveLink;
-    if (this.isHomePageActiveLink$["source"]["_value"] == true) {
-      console.log("isHomePageActive")
-      // console.log(window.document.querySelector<HTMLElement>('#home-page').className); 
-    } else if (this.isSurveyPageActiveLink$["source"]["_value"] == true) {
-      console.log("isSurveyPageActive")
-      // document.querySelector<HTMLElement>('#home-page').classList.remove('active-link');
-      // document.querySelector<HTMLElement>('#survey-page').classList.add('active-link');
-      // document.querySelector<HTMLElement>('#report-page').classList.remove('active-link');
-    } else if (this.isReportPageActiveLink$["source"]["_value"] == true) {
-      console.log("isReportPageActive")
-      // document.querySelector<HTMLElement>('#home-page').classList.remove('active-link');
-      // document.querySelector<HTMLElement>('#survey-page').classList.remove('active-link');
-      // document.querySelector<HTMLElement>('#report-page').classList.add('active-link');
-    }
+  ngOnInit(): void {   
 
     this.isSigningIn$ = this.signInService.isSigningIn;
     this.signInService.studentUser.subscribe(username => {
@@ -53,40 +31,6 @@ export class HeaderComponent implements OnInit {
     });
 
   }
-
-  public goHomePage() {
-    localStorage.setItem('isHomePageActive', 'true');
-    localStorage.setItem('isSurveyPageActive', 'false');
-    localStorage.setItem('isReportPageActive', 'false');
-    document.querySelector<HTMLElement>('#home-page').classList.add('active-link');
-    document.querySelector<HTMLElement>('#survey-page').classList.remove('active-link');
-    document.querySelector<HTMLElement>('#report-page').classList.remove('active-link');
-    this.ngOnInit();
-    this.router.navigate(['/home-page']);
-  }
-
-  public goSurveyPage() {
-    localStorage.setItem('isHomePageActive', 'false');
-    localStorage.setItem('isSurveyPageActive', 'true');
-    localStorage.setItem('isReportPageActive', 'false');
-    document.querySelector<HTMLElement>('#home-page').classList.remove('active-link');
-    document.querySelector<HTMLElement>('#survey-page').classList.add('active-link');
-    document.querySelector<HTMLElement>('#report-page').classList.remove('active-link');
-    this.ngOnInit();
-    this.router.navigate(['student/bachelor-thai']);
-  }
-
-  public goReportPage() {
-    localStorage.setItem('isHomePageActive', 'false');
-    localStorage.setItem('isSurveyPageActive', 'false');
-    localStorage.setItem('isReportPageActive', 'true');
-    document.querySelector<HTMLElement>('#home-page').classList.remove('active-link');
-    document.querySelector<HTMLElement>('#survey-page').classList.remove('active-link');
-    document.querySelector<HTMLElement>('#report-page').classList.add('active-link');
-    this.ngOnInit();
-    this.router.navigate(['/home-page']);
-  }
-
 
   public signOut() {
 
@@ -110,8 +54,7 @@ export class HeaderComponent implements OnInit {
 
       let dialog_confirm_result = dialogResult;
       if (dialog_confirm_result) {
-        this.signInService.signOut();
-        this.router.navigate(['/home-page']);
+        this.signInService.signOut();       
       }
     });
 

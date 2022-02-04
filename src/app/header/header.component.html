@@ -6,13 +6,18 @@
         <div class="list-items-wrapper" *ngIf="isSigningIn$ | async as isSigningIn">
             <div class="list-items" [style.display]="isSigningIn ? 'flex' :'none'">
                 <ul style="color:white;">
-                    <li><a id="home-page" (click)="goHomePage()" class="">Home</a></li>
-                    <li><a id="survey-page" (click)="goSurveyPage()" class="">Survey</a></li>
-                    <li><a id="report-page" (click)="goReportPage()" class="">Report</a></li>
+                    <li>
+                        <a id="home-page" routerLink="/home-page" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a>
+                    </li>
+                    <li>
+                        <a id="survey-page" routerLink="/student/bachelor-thai" routerLinkActive="active-link">Survey</a>
+                    </li>
+                    <li><a id="report-page">Report</a></li>
                     <li>
                         <span>{{usernameText}}</span>
                     </li>
                     <li>
+                        <!-- <button (click)="signOut()" routerLink="/home-page"> -->
                         <button (click)="signOut()">
                             SignOut
                         </button>

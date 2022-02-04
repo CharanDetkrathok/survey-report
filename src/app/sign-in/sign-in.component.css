@@ -119,7 +119,7 @@ body {
         align-items: center;
     }
     .welcom-text img {
-        width: 25vh;
+        width: 90vw;
         height: 100%;
         margin: 2rem 0 1rem 0;
     }
@@ -259,7 +259,7 @@ body {
         align-items: center;
     }
     .welcom-text img {
-        width: 45vh;
+        width: 80vw;
         height: 100%;
         margin: 2rem 0 1rem 0;
     }
@@ -390,7 +390,7 @@ body {
         align-items: center;
     }
     .welcom-text img {
-        width: 20vh;
+        width: 60vw;
         height: 100%;
         margin: 2rem 0 1rem 0;
     }
@@ -521,7 +521,7 @@ body {
         align-items: center;
     }
     .welcom-text img {
-        width: 30vh;
+        width: 50vw;
         height: 100%;
         margin: 2rem 0 1rem 0;
     }
@@ -653,11 +653,11 @@ body {
         justify-content: center;
         align-items: center;
     }
-    .welcom-text img {
+    /*👉    .welcom-text img {
         width: 20vh;
         height: 100%;
         margin: 2rem 0 1rem 0;
-    }
+    }👈*/
     .welcom-text h1 {
         font-size: 2.8vh;
         font-weight: 600;

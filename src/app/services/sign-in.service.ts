@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { studentResponseInfo, refreshTokenResponse } from '../sign-in/sign-in-student/sign-in-student-interface';
 import { tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,6 @@ export class SignInService {
   private signingIn = new BehaviorSubject<boolean>(false);
   private studentUsername = new BehaviorSubject<string>(null);
 
-  private homePageActiveLink = new BehaviorSubject<boolean>(false);
-  private surveyPageActiveLink = new BehaviorSubject<boolean>(false);
-  private reportPageActiveLink = new BehaviorSubject<boolean>(false);
-
   get studentUser() {
     return this.studentUsername.asObservable();
   };
@@ -25,20 +22,10 @@ export class SignInService {
     return this.signingIn.asObservable();
   }
 
-  get isHomePageActiveLink() {
-    this.getHomePageActiveLink();
-    return this.homePageActiveLink.asObservable();
-  }
-  get isSurveyPageActiveLink() {
-    this.getSurveyPageActiveLink();
-    return this.surveyPageActiveLink.asObservable();
-  }
-  get isReportPageActiveLink() {
-    this.getReportActiveLink();
-    return this.reportPageActiveLink.asObservable();
-  }
-
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   public authentication(PLAY_LOAD: any): any {
 
@@ -46,17 +33,19 @@ export class SignInService {
 
   }
 
-  public signOut() {
+  public async signOut() {
 
     this.signingIn.next(false);
     this.studentUsername.next(null);
 
     if ((this.getAccessToken() === null || this.getAccessToken() !== null) && this.getRefreshToken() !== null) {
-      this.Unauthorized().subscribe();
+      await this.Unauthorized().subscribe();
     }
 
-    this.revokeLocalstorages();
-
+    await this.revokeLocalstorages();
+    await this.router.navigate(['/home-page']).then(() => {
+      window.location.replace('/');
+    });
   }
 
   public Unauthorized() {
@@ -234,38 +223,14 @@ export class SignInService {
     }
   }
 
-  public revokeLocalstorages() {
-    this.signingIn.next(false);
-    this.studentUsername.next(null);
+  public async revokeLocalstorages() {
+    await this.signingIn.next(false);
+    await this.studentUsername.next(null);
     // this.revokeIsAuthen();
     // this.revokeLanguage();
     // this.revokeStudent();
     // this.revokeIsDisclosure();
-    localStorage.clear();
-  }
-
-  public getHomePageActiveLink() {
-    if (localStorage.getItem('isHomePageActive') == 'true') {
-      this.homePageActiveLink.next(true);
-    } else {
-      this.homePageActiveLink.next(false);
-    }
-  }
-
-  public getSurveyPageActiveLink() {
-    if (localStorage.getItem('isSurveyPageActive') == 'true') {
-      this.surveyPageActiveLink.next(true);
-    } else {
-      this.surveyPageActiveLink.next(false);
-    }
-  }
-
-  public getReportActiveLink() {
-    if (localStorage.getItem('isReportPageActive') == 'true') {
-      this.reportPageActiveLink.next(true);
-    } else {
-      this.reportPageActiveLink.next(false);
-    }
+    await localStorage.clear();    
   }
 
 }
