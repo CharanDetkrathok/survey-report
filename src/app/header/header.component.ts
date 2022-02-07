@@ -32,6 +32,10 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  public openMenu() {
+    document.querySelector<HTMLElement>('ul').style.display == 'flex' ? document.querySelector<HTMLElement>('ul').style.display = 'none' : document.querySelector<HTMLElement>('ul').style.display = 'flex';
+  }
+
   public signOut() {
 
     let makeMessage: messagesDialog = {
