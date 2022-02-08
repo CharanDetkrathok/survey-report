@@ -7,16 +7,12 @@ import { DateAdapter } from '@angular/material/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
-import { SignInService } from '../../services/sign-in.service';
+import { SignInService, StudentStateInterface } from '../../services/sign-in.service';
 import { ConfirmationDialogComponent, ConfirmDialogModel } from 'src/app/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { studentResponseInfo } from './sign-in-student-interface';
 import { messagesDialog } from 'src/app/confirmation-dialog/confirmation-dialog-interface';
 
-// export enum Languages {
-//   en = 'en',
-//   th = 'th'
-// }
 
 @Component({
   selector: 'app-sign-in-student',
@@ -50,7 +46,6 @@ export class SignInStudentComponent implements OnInit {
 
     // เรียกใช้ function จำ email และ password ไว้ในระบบ
     this.pathValueSignInStudentFormGroup_by_CookieRememberUser();
-    // this.useLanguage(Languages.th);
 
   }
 
@@ -63,6 +58,10 @@ export class SignInStudentComponent implements OnInit {
 
     if (this.cookieService.get('__remember_student_check_remember_me')) {
 
+      let tempBirthday: string = this.pipe.transform(this.cookieService.get('__remember_student_birthday').toString(), "dd/MM/yyyy").toString();
+      let engBirthday: string = (parseInt(tempBirthday.slice(6)) - 543).toString();
+      let birthday: string = tempBirthday.substring(0, 6) + engBirthday
+
       this.signInStudentFormGroup.setValue({
         inputStdCode: this.cookieService.get('__remember_student_code'),
         inputBirthday: this.cookieService.get('__remember_student_birthday'),
@@ -70,7 +69,7 @@ export class SignInStudentComponent implements OnInit {
         checkRememberMe: this.cookieService.get('__remember_student_check_remember_me')
       });
 
-      this.tempInputBirthday = this.cookieService.get('__remember_student_birthday');
+      this.tempInputBirthday = birthday;
 
       this.signInStudentFormGroup.updateValueAndValidity();
 
@@ -269,6 +268,13 @@ export class SignInStudentComponent implements OnInit {
           if (this.signInServices.getLanguage() === 'TH') {
             switch (this.signInServices.getLev_id()) {
               case "1":
+                let info: StudentStateInterface = {
+                  isAuthentication: true,
+                  language: "TH",
+                  role: "1",
+                  studentResponseInfo:studentResponse,
+                }
+                this.signInServices.setStudentStateInformation(info);                
                 this.router.navigate(['student/bachelor-thai']);
                 break;
               case "2": case "3":
@@ -280,6 +286,13 @@ export class SignInStudentComponent implements OnInit {
 
             switch (this.signInServices.getLev_id()) {
               case "1":
+              let info: StudentStateInterface = {
+                isAuthentication: true,
+                language: "ENG",
+                role: "1",
+                studentResponseInfo:studentResponse,
+              }
+              this.signInServices.setStudentStateInformation(info);
                 this.router.navigate(['student/bachelor-eng']);
                 break;
               case "2": case "3":

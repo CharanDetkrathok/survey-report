@@ -2,8 +2,8 @@
     <nav class="nav-bar">
         <div class="branding">
             <img src="assets/imgs/logo-for-survey.png" alt>
-            <div id="hamburger-menu">
-                <input id="open-menu" type="checkbox" (click)="openMenu()"> />
+            <div id="hamburger-menu" *ngIf="isSigningIn$ | async as isSigningIn">
+                <input id="open-menu" type="checkbox" (click)="openMenu()" />
                 <span></span>
                 <span></span>
                 <span></span>
@@ -11,7 +11,7 @@
         </div>
         <div class="list-items-wrapper" *ngIf="isSigningIn$ | async as isSigningIn">
             <div class="list-items" [style.display]="isSigningIn ? 'flex' :'none'">
-                <ul id="menu" style="display: none;">
+                <ul id="menu">
                     <li>
                         <a id="home-page" routerLink="/home-page" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a>
                     </li>

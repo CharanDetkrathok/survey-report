@@ -30,10 +30,12 @@ export class HeaderComponent implements OnInit {
       this.usernameText = username;
     });
 
+    console.log(this.signInService.getStudentStateInformation)
+
   }
 
   public openMenu() {
-    document.querySelector<HTMLElement>('ul').style.display == 'flex' ? document.querySelector<HTMLElement>('ul').style.display = 'none' : document.querySelector<HTMLElement>('ul').style.display = 'flex';
+    document.querySelector<HTMLElement>('ul').classList.value == 'active-menu' ? document.querySelector<HTMLElement>('ul').classList.remove('active-menu') : document.querySelector<HTMLElement>('ul').classList.add('active-menu');
   }
 
   public signOut() {

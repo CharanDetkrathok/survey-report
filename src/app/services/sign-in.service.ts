@@ -7,25 +7,52 @@ import { tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
+export interface StudentStateInterface {
+  isAuthentication: boolean;
+  language: string;
+  role: string;
+  studentResponseInfo: studentResponseInfo;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class SignInService {
 
+  private studentStateInfo: StudentStateInterface = {
+    isAuthentication: false,
+    language: "",
+    role: "",
+    studentResponseInfo: null,
+  }
+
+  private studentState = new BehaviorSubject<StudentStateInterface>(this.studentStateInfo);
+
+  public setStudentStateInformation(info: StudentStateInterface) {
+    this.studentStateInfo = info;
+    this.studentState.next(this.studentStateInfo);
+  }
+
+  public get getStudentStateInformation() {
+    return this.studentState.asObservable();
+  }
+
   private signingIn = new BehaviorSubject<boolean>(false);
   private studentUsername = new BehaviorSubject<string>(null);
 
-  get studentUser() {
+  public get studentUser() {
     return this.studentUsername.asObservable();
-  };
-  get isSigningIn() {
+  }
+  public get isSigningIn() {
     return this.signingIn.asObservable();
   }
 
   constructor(
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+    console.log(this.studentState.subscribe())
+   }
 
   public authentication(PLAY_LOAD: any): any {
 
@@ -230,7 +257,7 @@ export class SignInService {
     // this.revokeLanguage();
     // this.revokeStudent();
     // this.revokeIsDisclosure();
-    await localStorage.clear();    
+    await localStorage.clear();
   }
 
 }

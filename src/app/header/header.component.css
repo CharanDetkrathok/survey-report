@@ -3,6 +3,12 @@
     font-family: 'Bayon', sans-serif !important;
 }
 
+nav .branding {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 nav .list-items-wrapper {
     height: 100%;
     width: 100%;
@@ -10,6 +16,10 @@ nav .list-items-wrapper {
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
+}
+
+#hamburger-menu {
+    display: none;
 }
 
 nav .list-items ul {
@@ -151,7 +161,6 @@ hr {
     nav .branding {
         height: 100%;
         width: 70%;
-        display: flex;
     }
     nav .branding img {
         width: 100%;
@@ -231,6 +240,32 @@ hr {
         align-items: center;
         justify-content: space-evenly;
         padding: 0.5rem 0 1.5rem 0;
+        margin-left: -200%;
+        margin-top: -100%;
+        transform: translate(-100%, 0);
+        transition: margin-top 1s ease-in-out;
+        -webkit-transition: margin-top 1s ease-in-out;
+        -moz-transition: margin-top 1s ease-in-out;
+        -ms-transition: margin-top 1s ease-in-out;
+        -o-transition: margin-top 1s ease-in-out;
+        -webkit-transform: translate(-100%, 0);
+        -moz-transform: translate(-100%, 0);
+        -ms-transform: translate(-100%, 0);
+        -o-transform: translate(-100%, 0);
+    }
+    .active-menu {
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        transition: margin-left 1s ease-in-out !important;
+        -webkit-transition: margin-left 1s ease-in-out !important;
+        -moz-transition: margin-left 1s ease-in-out !important;
+        -ms-transition: margin-left 1s ease-in-out !important;
+        -o-transition: margin-left 1s ease-in-out !important;
+        transform: translate(0, 0) !important;
+        -webkit-transform: translate(0, 0) !important;
+        -moz-transform: translate(0, 0) !important;
+        -ms-transform: translate(0, 0) !important;
+        -o-transform: translate(0, 0) !important;
     }
     nav .list-items ul li {
         font-size: 1.5rem;
@@ -263,7 +298,6 @@ hr {
     nav .branding {
         height: 100%;
         width: 100%;
-        display: flex;
     }
     nav .branding img {
         width: 100%;
@@ -304,7 +338,6 @@ hr {
     nav .branding {
         height: 100%;
         width: 100%;
-        display: flex;
     }
     nav .branding img {
         padding: 0.6rem;
@@ -347,7 +380,6 @@ hr {
     nav .branding {
         height: 100%;
         width: 100%;
-        display: flex;
     }
     nav .branding img {
         padding: 0.6rem;
