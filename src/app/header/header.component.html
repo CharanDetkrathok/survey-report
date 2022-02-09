@@ -2,28 +2,34 @@
     <nav class="nav-bar">
         <div class="branding">
             <img src="assets/imgs/logo-for-survey.png" alt>
-            <div id="hamburger-menu" *ngIf="isSigningIn$ | async as isSigningIn">
+            <div id="hamburger-menu" *ngIf="isAuthentication">
                 <input id="open-menu" type="checkbox" (click)="openMenu()" />
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
-        <div class="list-items-wrapper" *ngIf="isSigningIn$ | async as isSigningIn">
-            <div class="list-items" [style.display]="isSigningIn ? 'flex' :'none'">
+        <div class="list-items-wrapper" *ngIf="isAuthentication">
+            <div class="list-items" [style.display]="isAuthentication ? 'flex' :'none'">
                 <ul id="menu">
-                    <li>
+                    <li (click)="closeMenu()">
                         <a id="home-page" routerLink="/home-page" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a>
                     </li>
+                    <div *ngIf="isBechelor">
+                        <div [style.display]="isLanguageTH ? 'flex' : 'none'" style="flex-wrap: wrap; align-items: center; justify-content: space-evenly;">
+                            <li (click)="closeMenu()">
+                                <a id="survey-page" routerLink="/student/bachelor-thai" routerLinkActive="active-link">Survey</a>
+                            </li>
+                            <li (click)="closeMenu()">
+                                <a id="report-page">Report</a>
+                            </li>
+                        </div>
+                    </div>
+
                     <li>
-                        <a id="survey-page" routerLink="/student/bachelor-thai" routerLinkActive="active-link">Survey</a>
+                        <span>{{studentName}}</span>
                     </li>
-                    <li><a id="report-page">Report</a></li>
                     <li>
-                        <span>{{usernameText}}</span>
-                    </li>
-                    <li>
-                        <!-- <button (click)="signOut()" routerLink="/home-page"> -->
                         <button (click)="signOut()">
                             SignOut
                         </button>

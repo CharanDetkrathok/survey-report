@@ -5,8 +5,6 @@
 
 nav .branding {
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 nav .list-items-wrapper {
@@ -161,6 +159,9 @@ hr {
     nav .branding {
         height: 100%;
         width: 70%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
     }
     nav .branding img {
         width: 100%;

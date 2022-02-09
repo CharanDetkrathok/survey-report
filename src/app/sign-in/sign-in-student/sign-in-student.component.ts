@@ -7,11 +7,12 @@ import { DateAdapter } from '@angular/material/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
-import { SignInService, StudentStateInterface } from '../../services/sign-in.service';
+import { SignInService } from '../../services/sign-in.service';
 import { ConfirmationDialogComponent, ConfirmDialogModel } from 'src/app/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { studentResponseInfo } from './sign-in-student-interface';
 import { messagesDialog } from 'src/app/confirmation-dialog/confirmation-dialog-interface';
+import { switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -43,16 +44,8 @@ export class SignInStudentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    // เรียกใช้ function จำ email และ password ไว้ในระบบ
     this.pathValueSignInStudentFormGroup_by_CookieRememberUser();
-
   }
-
-  // useLanguage(language: Languages): void {
-  //   this.translate.use(language);
-  //   this.dateAdapter.setLocale(language);
-  // }
 
   pathValueSignInStudentFormGroup_by_CookieRememberUser() {
 
@@ -210,7 +203,6 @@ export class SignInStudentComponent implements OnInit {
 
   }
 
-  // จำ email และ password ไว้ในระบบ
   setCookieRememberUser() {
 
     if (this.signInStudentFormGroup.controls['checkRememberMe'].value) {
@@ -267,17 +259,12 @@ export class SignInStudentComponent implements OnInit {
 
           if (this.signInServices.getLanguage() === 'TH') {
             switch (this.signInServices.getLev_id()) {
-              case "1":
-                let info: StudentStateInterface = {
-                  isAuthentication: true,
-                  language: "TH",
-                  role: "1",
-                  studentResponseInfo:studentResponse,
-                }
-                this.signInServices.setStudentStateInformation(info);                
+              case "1":  
+              console.log("ป.ตรี ไทย");        
                 this.router.navigate(['student/bachelor-thai']);
                 break;
               case "2": case "3":
+                console.log("ป.โท-ป.เอก ไทย");
                 // this.router.navigate(['student/master-phd-thai']);
                 break;
             }
@@ -286,16 +273,11 @@ export class SignInStudentComponent implements OnInit {
 
             switch (this.signInServices.getLev_id()) {
               case "1":
-              let info: StudentStateInterface = {
-                isAuthentication: true,
-                language: "ENG",
-                role: "1",
-                studentResponseInfo:studentResponse,
-              }
-              this.signInServices.setStudentStateInformation(info);
-                this.router.navigate(['student/bachelor-eng']);
+                console.log("ป.ตรี อังกฤษ");
+                // this.router.navigate(['student/bachelor-eng']);
                 break;
               case "2": case "3":
+                console.log("ป.โท-ป.เอก อังกฤษ");
                 // this.router.navigate(['student/master-phd-thai']);
                 break;
             }

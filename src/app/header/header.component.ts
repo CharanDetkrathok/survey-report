@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { messagesDialog } from '../confirmation-dialog/confirmation-dialog-interface';
 import { ConfirmDialogModel, ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { StudentStateInterface } from '../services/sign-in.service';
 
 @Component({
   selector: 'app-header',
@@ -13,28 +14,38 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class HeaderComponent implements OnInit {
 
-  isSigningIn$: Observable<boolean>;
-  username$: Observable<string>;
-  usernameText: string = "";
+  isAuthentication: boolean;
+  isLanguageTH: boolean;
+  isLanguageENG: boolean;
+  isBechelor: boolean;
+  studentName: string;
+  role: string;
 
   constructor(
     private signInService: SignInService,
     private router: Router,
     private dialog: MatDialog
-  ) { }
+  ) {     
 
-  ngOnInit(): void {   
-
-    this.isSigningIn$ = this.signInService.isSigningIn;
-    this.signInService.studentUser.subscribe(username => {
-      this.usernameText = username;
+    this.signInService.getStudentStateInformation.subscribe( obs => {      
+      this.isAuthentication = obs.isAuthentication;
+      this.isLanguageTH = obs.isLanguageTH;
+      this.isLanguageENG = obs.isLanguageENG;
+      this.isBechelor = obs.isBechelor;
+      this.studentName = obs.studentName;
+      this.role = obs.role;
     });
-
-    console.log(this.signInService.getStudentStateInformation)
 
   }
 
+  ngOnInit(): void { }
+
   public openMenu() {
+    document.querySelector<HTMLElement>('ul').classList.value == 'active-menu' ? document.querySelector<HTMLElement>('ul').classList.remove('active-menu') : document.querySelector<HTMLElement>('ul').classList.add('active-menu');
+  }
+
+  public closeMenu() {
+    document.querySelector<HTMLInputElement>('#open-menu').checked === true ? document.querySelector<HTMLInputElement>('#open-menu').checked = false: null;
     document.querySelector<HTMLElement>('ul').classList.value == 'active-menu' ? document.querySelector<HTMLElement>('ul').classList.remove('active-menu') : document.querySelector<HTMLElement>('ul').classList.add('active-menu');
   }
 
@@ -60,7 +71,11 @@ export class HeaderComponent implements OnInit {
 
       let dialog_confirm_result = dialogResult;
       if (dialog_confirm_result) {
-        this.signInService.signOut();       
+        this.signInService.signOut();   
+        // this.router.navigate(['/home-page']);  
+        this.router.navigate(['/home-page']).then(() => {
+          window.location.replace('/');
+        }); 
       }
     });
 

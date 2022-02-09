@@ -1,17 +1,19 @@
+import { switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 // import { environment } from 'src/environments/environment.prod';
 import { environment } from 'src/environments/environment';
 import { studentResponseInfo, refreshTokenResponse } from '../sign-in/sign-in-student/sign-in-student-interface';
-import { tap } from 'rxjs/operators';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 export interface StudentStateInterface {
   isAuthentication: boolean;
-  language: string;
+  isLanguageTH: boolean;
+  isLanguageENG: boolean;
+  isBechelor: boolean;
+  studentName: string;
   role: string;
-  studentResponseInfo: studentResponseInfo;
 }
 
 @Injectable({
@@ -21,38 +23,25 @@ export class SignInService {
 
   private studentStateInfo: StudentStateInterface = {
     isAuthentication: false,
-    language: "",
+    isLanguageTH: false,
+    isLanguageENG: false,
+    isBechelor: false,
+    studentName: "",
     role: "",
-    studentResponseInfo: null,
   }
 
   private studentState = new BehaviorSubject<StudentStateInterface>(this.studentStateInfo);
 
-  public setStudentStateInformation(info: StudentStateInterface) {
-    this.studentStateInfo = info;
-    this.studentState.next(this.studentStateInfo);
-  }
-
   public get getStudentStateInformation() {
     return this.studentState.asObservable();
-  }
-
-  private signingIn = new BehaviorSubject<boolean>(false);
-  private studentUsername = new BehaviorSubject<string>(null);
-
-  public get studentUser() {
-    return this.studentUsername.asObservable();
-  }
-  public get isSigningIn() {
-    return this.signingIn.asObservable();
   }
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) {
-    console.log(this.studentState.subscribe())
-   }
+    this.setIsAuthen(localStorage.getItem('isAuthen'));
+  }
 
   public authentication(PLAY_LOAD: any): any {
 
@@ -62,17 +51,12 @@ export class SignInService {
 
   public async signOut() {
 
-    this.signingIn.next(false);
-    this.studentUsername.next(null);
-
+    this.revokeStudentStateAll();
     if ((this.getAccessToken() === null || this.getAccessToken() !== null) && this.getRefreshToken() !== null) {
       await this.Unauthorized().subscribe();
     }
 
     await this.revokeLocalstorages();
-    await this.router.navigate(['/home-page']).then(() => {
-      window.location.replace('/');
-    });
   }
 
   public Unauthorized() {
@@ -105,29 +89,68 @@ export class SignInService {
 
   public setIsAuthen(auth: string) {
 
-    localStorage.setItem('isAuthen', auth);
-    if (auth == 'true') {
-      this.signingIn.next(true);
-      this.studentUsername.next(this.getFirstNameENG());
-    } else {
-      this.signingIn.next(false);
-      this.studentUsername.next(null);
+    if (auth != null) {
+      localStorage.setItem('isAuthen', auth);
+      if (auth == 'true') {
+        this.setStudentStateAll();
+      } else {
+        this.revokeStudentStateAll()
+      }
     }
 
+  }
+
+  public setStudentStateAll(): void {
+    let s: StudentStateInterface = {
+      isAuthentication: true,
+      isLanguageTH: this.getLanguageTHboolean(),
+      isLanguageENG: this.getLanguageENGboolean(),
+      isBechelor: this.getBechelorBoolean(),
+      studentName: this.getFirstNameENG(),
+      role: this.getRole(),
+    }
+    console.log(s)
+    this.studentState.next(s);
+  }
+
+  public revokeStudentStateAll(): void {
+    let s: StudentStateInterface = {
+      isAuthentication: false,
+      isLanguageTH: false,
+      isLanguageENG: false,
+      isBechelor: false,
+      studentName: "",
+      role: "",
+    }
+    this.studentState.next(s);
   }
 
   public getIsAuthen(): boolean {
 
     if (localStorage.getItem('isAuthen') == 'true') {
-      this.signingIn.next(true);
-      this.studentUsername.next(this.getFirstNameENG());
       return true;
     } else {
-      this.signingIn.next(false);
-      this.studentUsername.next(null);
       return false;
     }
 
+  }
+
+  public getBechelorBoolean(): boolean {
+    const s: studentResponseInfo = JSON.parse(localStorage.getItem('student'))
+    if (s != null && s.role == '1') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public getRole(): string {
+    const s: studentResponseInfo = JSON.parse(localStorage.getItem('student'))
+    if (s != null) {
+      return s.role;
+    } else {
+      return "";
+    }
   }
 
   public revokeIsAuthen() {
@@ -137,6 +160,8 @@ export class SignInService {
   public setStudent(student: studentResponseInfo) {
     localStorage.setItem('student', JSON.stringify(student));
   }
+
+
 
   public getStudent(): studentResponseInfo {
     return JSON.parse(localStorage.getItem('student'));
@@ -152,6 +177,26 @@ export class SignInService {
 
   public getLanguage(): string {
     return localStorage.getItem('LANGUAGE');
+  }
+  public getLanguageTHboolean(): boolean {
+
+    console.log(localStorage.getItem('LANGUAGE'))
+    if (localStorage.getItem('LANGUAGE') == 'TH') {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  public getLanguageENGboolean(): boolean {
+
+    if (localStorage.getItem('LANGUAGE') == 'ENG') {
+      return true;
+    } else {
+      return false;
+    }
+
   }
 
   public revokeLanguage() {
@@ -251,13 +296,11 @@ export class SignInService {
   }
 
   public async revokeLocalstorages() {
-    await this.signingIn.next(false);
-    await this.studentUsername.next(null);
-    // this.revokeIsAuthen();
-    // this.revokeLanguage();
-    // this.revokeStudent();
-    // this.revokeIsDisclosure();
-    await localStorage.clear();
+    await this.revokeStudentStateAll();
+    await this.revokeIsAuthen();
+    await this.revokeLanguage();
+    await this.revokeStudent();
+    await this.revokeIsDisclosure();
   }
 
 }
