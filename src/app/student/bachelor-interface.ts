@@ -51,3 +51,12 @@ export interface bechelorPartsOfArticlesRepose {
   PART_CONTENT_TH: string;
   PART_CONTENT_EN: string;
 }
+
+export interface headersRepose {
+  HEADER_ID: string;
+  HEADER_TITLE: string;
+  HEADER_CONTENT_TH: string;
+  HEADER_CONTENT_EN: string;
+  HEADER_DIRECTION_TH: string;
+  HEADER_DIRECTION_EN: string;
+}

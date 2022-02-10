@@ -1,12 +1,43 @@
 <div>
-    <article id="article-1">
-        <div style="display: flex; flex-direction: column;">
-            <!-- <span>{{article1['PART_ID']}}</span>
-            <span>{{article1['PART_ID']}}</span>
-            <span>{{article1['ARTICLE_CONTENT_TH']}}</span>
-            <span>{{article1['ARTICLE_NO']}}</span>
-            <span>{{article1['ARTICLE_SUB_NO']}}</span>
-            <span>{{article1['CHOICES']}}</span> -->
+    <div>
+        <div>
+            <div>
+                <img id="logo-img" src="assets/imgs/logo-for-survey-welcom-yellow.png" style="width:20vw;">
+            </div>
+            <div>
+                <h1>{{header['HEADER_CONTENT_TH']}}</h1>
+            </div>
+            <div>
+                <h1>{{header['HEADER_DIRECTION_TH']}}</h1>
+            </div>
         </div>
-    </article>
+    </div>
+
+    <div>
+        <section id="part-1">
+            <div>
+                <h2>{{part1['PART_CONTENT_TH']}}</h2>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <article id="article-1-1">
+                    <p>1.</p>
+                    <ng-container *ngFor="let a1_1 of article1_1">
+                        <p>{{a1_1.ARTICLE_CONTENT_TH}}</p>
+                    </ng-container>
+                </article>
+                <article id="article-1-2">
+                    <p>2.</p>
+                    <ng-container *ngFor="let a1_2 of article1_2">
+                        <p>{{a1_2.ARTICLE_CONTENT_TH}}</p>
+                        <ng-container *ngIf="a1_2.ARTICLE_SUB_NO == '6'">
+                            {{a1_2.CHOICES | json}}
+                        </ng-container>
+
+                    </ng-container>
+
+                </article>
+            </div>
+        </section>
+    </div>
+
 </div>

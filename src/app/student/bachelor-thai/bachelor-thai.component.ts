@@ -16,16 +16,32 @@ import { bechelorArticlesAndChoicesResponse } from '../bachelor-interface';
 })
 export class BachelorThaiComponent implements OnInit {
 
-  ARTICLES_N_CHOICES: bechelorArticlesAndChoicesResponse;
+  header = {};
+  
   part1 = {};
   part2 = {};
   part3 = {};
   part4 = {};
   part5 = {};
   part6 = {};
-  article1 = {
 
-  };
+  article1_1 = [];
+  article1_2 = [];
+  article1_3 = [];
+  article1_4 = [];
+  article1_5 = [];
+  article1_6 = [];
+  article1_7 = [];
+  article1_8 = [];
+  article1_9 = [];
+  article1_10 = [];
+  article1_11 = [];
+
+  article2 = [];
+  article3 = [];
+  article4 = [];
+  article5 = [];
+  article6 = [];
 
   constructor(
     private http: BechelorThaiService,
@@ -40,6 +56,7 @@ export class BachelorThaiComponent implements OnInit {
     if (localStorage.getItem('isDisclosure') != 'true') {
       this.getDisclosure();
     }
+    this.getHeaders();
     this.getPartsOfArticles();
     this.getArticlesAndChoices();
 
@@ -150,6 +167,12 @@ export class BachelorThaiComponent implements OnInit {
     });
   }
 
+  private getHeaders() {
+    this.http.fetchHeaders().subscribe(response => {
+      this.header = response[0];
+    });
+  }
+
   private getPartsOfArticles() {
     this.http.fetchPartsOfArticles().subscribe(response => {
       this.part1 = response[0];
@@ -158,47 +181,76 @@ export class BachelorThaiComponent implements OnInit {
       this.part4 = response[4];
       this.part5 = response[5];
       this.part6 = response[6];
-      // console.log(this.part1 );
-      // console.log(this.part2 );
-      // console.log(this.part3 );
-      // console.log(this.part4 );
-      // console.log(this.part5 );
-      // console.log(this.part6 );
-    })
+    });
   }
 
   private getArticlesAndChoices() {
     this.http.fetchArticlesAndChoices().subscribe(response => {
-      // this.ARTICLES_N_CHOICES = response;
-      // this.article1 = this.ARTICLES_N_CHOICES[0];
-      // console.log(this.ARTICLES_N_CHOICES)
-      // console.log(this.ARTICLES_N_CHOICES[0].PART_ID)
 
-      // response.forEach(partInArticle => {
-
-      //   switch (partInArticle.PART_ID) {
-      //     case '1':
-      //       this.part1.append(partInArticle)
-      //       break;
-      //     case '2':
-      //       this.part2
-      //       break;
-      //     case '3':
-      //       this.part3
-      //       break;
-      //     case '4':
-      //       this.part4
-      //       break;
-      //     case '5':
-      //       this.part5
-      //       break;
-      //     case '6':
-      //       this.part6
-      //       break;
-      //     default:
-      //   }
-
-      // })
+      response.forEach(partInArticle => {
+        switch (partInArticle.PART_ID) {
+          case '1':
+            switch (partInArticle.ARTICLE_NO) {
+              case '1':
+                this.article1_1.push(partInArticle);
+                break;
+              case '2':
+                this.article1_2.push(partInArticle);
+                break;
+              case '3':
+                this.article1_3.push(partInArticle);
+                break;
+              case '4':
+                this.article1_4.push(partInArticle);
+                break;
+              case '5':
+                this.article1_5.push(partInArticle);
+                break;
+              case '6':
+                this.article1_6.push(partInArticle);
+                break;
+              case '7':
+                this.article1_7.push(partInArticle);
+                break;
+              case '8':
+                this.article1_8.push(partInArticle);
+                break;
+              case '9':
+                this.article1_9.push(partInArticle);
+                break;
+              case '10':
+                this.article1_10.push(partInArticle);
+                break;
+              case '11':
+                this.article1_11.push(partInArticle);
+                break;
+            }
+            break;
+          case '2':
+            // this.article2.push(partInArticle);
+            break;
+          case '3':
+            this.article3.push(partInArticle);
+            break;
+          case '4':
+            this.article4.push(partInArticle);
+            break;
+          case '5':
+            this.article5.push(partInArticle);
+            break;
+          case '6':
+            this.article6.push(partInArticle);
+            break;
+          default:
+        }
+      });
+      // console.log("this.article1_1", this.article1_1)
+      // console.log("this.article1", this.article2)
+      // console.log("this.article2", this.article2)
+      // console.log("this.article3", this.article3)
+      // console.log("this.article4", this.article4)
+      // console.log("this.article5", this.article5)
+      // console.log("this.article6", this.article6)
     });
   }
 
