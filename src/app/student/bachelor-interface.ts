@@ -28,3 +28,26 @@ export interface disclosureResponse {
   CONFIRM_TH: string;
   CONFIRM_EN: string;
 }
+
+export interface bechelorArticlesAndChoicesResponse {
+  PART_ID: string;
+  ARTICLE_NO: string;
+  ARTICLE_SUB_NO: string;
+  ARTICLE_CONTENT_TH: string;
+  ARTICLE_CONTENT_EN: string;
+  CHOICES: bechelorChoices[];
+}
+
+interface bechelorChoices {
+  CHOICE_NO: string;
+  CHOICE_SUB_NO: string;
+  CHOICE_VALUED: string;
+  CHOICE_CONTENT_TH: string;
+  CHOICE_CONTENT_EN: string;
+}
+
+export interface bechelorPartsOfArticlesRepose {
+  PART_ID: string;
+  PART_CONTENT_TH: string;
+  PART_CONTENT_EN: string;
+}

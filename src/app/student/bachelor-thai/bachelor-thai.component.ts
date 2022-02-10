@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { messagesDialog } from 'src/app/disclosure-dialog/disclosure-dialog-interface';
 import { DisclosureDialogComponent, DisclosureDialogModel } from '../../disclosure-dialog/disclosure-dialog.component';
+import { FormBuilder } from '@angular/forms';
+import { bechelorArticlesAndChoicesResponse } from '../bachelor-interface';
 
 
 @Component({
@@ -14,11 +16,23 @@ import { DisclosureDialogComponent, DisclosureDialogModel } from '../../disclosu
 })
 export class BachelorThaiComponent implements OnInit {
 
+  ARTICLES_N_CHOICES: bechelorArticlesAndChoicesResponse;
+  part1 = {};
+  part2 = {};
+  part3 = {};
+  part4 = {};
+  part5 = {};
+  part6 = {};
+  article1 = {
+
+  };
+
   constructor(
     private http: BechelorThaiService,
     public dialog: MatDialog,
     private signInServices: SignInService,
-    private router: Router
+    private router: Router,
+    private formGroup: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +40,8 @@ export class BachelorThaiComponent implements OnInit {
     if (localStorage.getItem('isDisclosure') != 'true') {
       this.getDisclosure();
     }
+    this.getPartsOfArticles();
+    this.getArticlesAndChoices();
 
   }
 
@@ -82,8 +98,6 @@ export class BachelorThaiComponent implements OnInit {
 
       });
 
-
-
     }, error => {
 
       let status_message: string[] = this.checkStatusCode(error.status);
@@ -133,6 +147,58 @@ export class BachelorThaiComponent implements OnInit {
         }
       });
 
+    });
+  }
+
+  private getPartsOfArticles() {
+    this.http.fetchPartsOfArticles().subscribe(response => {
+      this.part1 = response[0];
+      this.part2 = response[2];
+      this.part3 = response[3];
+      this.part4 = response[4];
+      this.part5 = response[5];
+      this.part6 = response[6];
+      // console.log(this.part1 );
+      // console.log(this.part2 );
+      // console.log(this.part3 );
+      // console.log(this.part4 );
+      // console.log(this.part5 );
+      // console.log(this.part6 );
+    })
+  }
+
+  private getArticlesAndChoices() {
+    this.http.fetchArticlesAndChoices().subscribe(response => {
+      // this.ARTICLES_N_CHOICES = response;
+      // this.article1 = this.ARTICLES_N_CHOICES[0];
+      // console.log(this.ARTICLES_N_CHOICES)
+      // console.log(this.ARTICLES_N_CHOICES[0].PART_ID)
+
+      // response.forEach(partInArticle => {
+
+      //   switch (partInArticle.PART_ID) {
+      //     case '1':
+      //       this.part1.append(partInArticle)
+      //       break;
+      //     case '2':
+      //       this.part2
+      //       break;
+      //     case '3':
+      //       this.part3
+      //       break;
+      //     case '4':
+      //       this.part4
+      //       break;
+      //     case '5':
+      //       this.part5
+      //       break;
+      //     case '6':
+      //       this.part6
+      //       break;
+      //     default:
+      //   }
+
+      // })
     });
   }
 

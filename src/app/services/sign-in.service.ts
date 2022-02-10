@@ -109,7 +109,6 @@ export class SignInService {
       studentName: this.getFirstNameENG(),
       role: this.getRole(),
     }
-    console.log(s)
     this.studentState.next(s);
   }
 
@@ -180,7 +179,6 @@ export class SignInService {
   }
   public getLanguageTHboolean(): boolean {
 
-    console.log(localStorage.getItem('LANGUAGE'))
     if (localStorage.getItem('LANGUAGE') == 'TH') {
       return true;
     } else {

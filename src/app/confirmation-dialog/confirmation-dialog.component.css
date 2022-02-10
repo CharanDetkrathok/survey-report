@@ -36,6 +36,7 @@
     place-content: center;
     justify-content: flex-end;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .container-content {
@@ -113,7 +114,8 @@
 }
 
 .btn-ok:disabled {
-    opacity: 0;
+    /*👉opacity: 0;👈*/
+    display: none;
 }
 
 .btn-cancel {
@@ -189,7 +191,7 @@
         width: 90%;
     }
     .container-btn {
-        margin-right: -1.5rem;
+        margin-right: 1.5rem;
     }
     .btn-ok:disabled {
         margin-right: -12rem;
@@ -292,7 +294,7 @@
         margin: 0;
     }
     .container-btn {
-        margin-right: -1.5rem;
+        margin-right: 1.5rem;
     }
     .btn-ok:disabled {
         margin-right: -19rem;

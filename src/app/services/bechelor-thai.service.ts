@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 // import { environment } from 'src/environments/environment.prod';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { disclosureResponse } from '../student/bachelor-thai/bachelor-interface';
+import { disclosureResponse, bechelorArticlesAndChoicesResponse, bechelorPartsOfArticlesRepose } from '../student/bachelor-interface';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,19 @@ export class BechelorThaiService {
   fetchDisclosure(): any {
     return this.http.get<disclosureResponse>(`${environment.BASE_URL}${environment.DISCLOSURE}`);
   }
+
+  fetchPartsOfArticles(): any {
+    return this.http.get<bechelorPartsOfArticlesRepose>(`${environment.BASE_URL}${environment.BECHELOR_PART_OF_ARTICLE}`).pipe(tap(res => {
+      // do something
+    }))
+  }
+
+  fetchArticlesAndChoices(): any {
+    return this.http.get<bechelorArticlesAndChoicesResponse>(`${environment.BASE_URL}${environment.BECHELOR_ARTICLE_AND_CHOICE}`).pipe(tap(res => {
+      // to do something
+    }));
+  }
+
+
 
 }
