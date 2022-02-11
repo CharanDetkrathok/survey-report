@@ -260,11 +260,11 @@ export class SignInStudentComponent implements OnInit {
           if (this.signInServices.getLanguage() === 'TH') {
             switch (this.signInServices.getLev_id()) {
               case "1":  
-              console.log("ป.ตรี ไทย");        
+              // console.log("ป.ตรี ไทย");        
                 this.router.navigate(['student/bachelor-thai']);
                 break;
               case "2": case "3":
-                console.log("ป.โท-ป.เอก ไทย");
+                // console.log("ป.โท-ป.เอก ไทย");
                 // this.router.navigate(['student/master-phd-thai']);
                 break;
             }
@@ -273,11 +273,11 @@ export class SignInStudentComponent implements OnInit {
 
             switch (this.signInServices.getLev_id()) {
               case "1":
-                console.log("ป.ตรี อังกฤษ");
+                // console.log("ป.ตรี อังกฤษ");
                 // this.router.navigate(['student/bachelor-eng']);
                 break;
               case "2": case "3":
-                console.log("ป.โท-ป.เอก อังกฤษ");
+                // console.log("ป.โท-ป.เอก อังกฤษ");
                 // this.router.navigate(['student/master-phd-thai']);
                 break;
             }

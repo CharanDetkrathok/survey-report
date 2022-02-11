@@ -20,21 +20,113 @@
             </div>
             <div style="display: flex; flex-direction: column;">
                 <article id="article-1-1">
-                    <p>1.</p>
+                    <label>1.</label>
                     <ng-container *ngFor="let a1_1 of article1_1">
                         <p>{{a1_1.ARTICLE_CONTENT_TH}}</p>
                     </ng-container>
                 </article>
                 <article id="article-1-2">
-                    <p>2.</p>
+                    <label>2.</label>
                     <ng-container *ngFor="let a1_2 of article1_2">
                         <p>{{a1_2.ARTICLE_CONTENT_TH}}</p>
                         <ng-container *ngIf="a1_2.ARTICLE_SUB_NO == '6'">
-                            {{a1_2.CHOICES | json}}
+                            <ng-container *ngFor="let choice of a1_2.CHOICES">
+                                <input type="radio" id="sex" name="sex" value="">
+                                <span>{{choice.CHOICE_CONTENT_TH}}</span>
+
+                            </ng-container>
                         </ng-container>
-
                     </ng-container>
+                </article>
+                <article id="article-1-3">
+                    <label>3.</label>
+                    <ng-container *ngFor="let a1_3 of article1_3">
+                        <p>{{a1_3.ARTICLE_CONTENT_TH}}</p>
+                        <ng-container *ngFor="let article7 of article7 | slice:2; let i = index">
+                            <ng-container *ngIf="article7.ARTICLE_NO == '11'">
+                                <span>{{article7.ARTICLE_CONTENT_TH}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                            </ng-container>
+                            <ng-container *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                <span>{{article7.ARTICLE_CONTENT_TH}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </article>
+                <article id="article-1-4">
+                    <label>4.</label>
+                    <ng-container *ngFor="let a1_4 of article1_4">
+                        <p>{{a1_4.ARTICLE_CONTENT_TH}}</p>
+                        <ng-container *ngFor="let choice of a1_4.CHOICES">
+                            <input type="radio" id="current-address" name="current-address" value="">
+                            <span>{{choice.CHOICE_CONTENT_TH}}</span><br>
+                            <ng-container *ngIf="choice.CHOICE_NO == '2'">
+                                <ng-container *ngFor="let article7 of article7 | slice:2; let i = index;">
+                                    <span>{{article7.ARTICLE_CONTENT_TH}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                </ng-container>
+                            </ng-container>
 
+                        </ng-container>
+                    </ng-container>
+                </article>
+                <article id="article-1-5">
+                    <label>5.</label>
+                    <ng-container *ngFor="let a1_5 of article1_5">
+                        <p>{{a1_5.ARTICLE_CONTENT_TH}}</p>
+                        <ng-container *ngFor="let choice of a1_5.CHOICES">
+                            <ng-container *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_SUB_NO == '0'">
+                                <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="choice.CHOICE_NO == '1' || choice.CHOICE_SUB_NO != '0'">
+                                <input type="radio" id="u-applied-to-study-by" name="applied-to-study-by" value="">
+                                <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                            </ng-container>
+                            <br>
+                        </ng-container>
+                    </ng-container>
+                </article>
+                <article id="article-1-6">
+                    <label>6.</label>
+                    <ng-container *ngFor="let a1_6 of article1_6">
+                        <p>{{a1_6.ARTICLE_CONTENT_TH}}</p>
+                        <ng-container *ngFor="let choice of a1_6.CHOICES">
+                            <input type="radio" id="program-attended" name="program-attended" value="">
+                            <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                            <br>
+                        </ng-container>
+                    </ng-container>
+                </article>
+                <article id="article-1-7">
+                    <label>7.</label>
+                    <ng-container *ngFor="let a1_7 of article1_7">
+                        <p>{{a1_7.ARTICLE_CONTENT_TH}}</p>
+                        <ng-container *ngFor="let choice of a1_7.CHOICES">
+                            <input type="radio" id="disability" name="disability" value="">
+                            <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                            <br>
+                        </ng-container>
+                    </ng-container>
+                </article>
+                <article id="article-1-8">
+                    <label>8.</label>
+                    <ng-container *ngFor="let a1_8 of article1_8">
+                        <p>{{a1_8.ARTICLE_CONTENT_TH}}</p>
+                        <ng-container *ngFor="let choice of a1_8.CHOICES">
+                            <input type="radio" id="are-you-offered-funds-to-study" name="are-you-offered-funds-to-study" value="">
+                            <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                            <br>
+                        </ng-container>
+                    </ng-container>
+                </article>
+                <article id="article-1-9">
+                    <label>9.</label>
+                    <ng-container *ngFor="let a1_9 of article1_9">
+                        <p>{{a1_9.ARTICLE_CONTENT_TH}}</p>
+                        <ng-container *ngFor="let choice of a1_9.CHOICES">
+                            <input type="radio" id="graduate-period-of-time-in-the-program" name="graduate-period-of-time-in-the-program" value="">
+                            <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                            <br>
+                        </ng-container>
+                    </ng-container>
                 </article>
             </div>
         </section>

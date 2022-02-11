@@ -1,3 +1,4 @@
+import { bechelorArticlesAndChoicesResponse } from './../bachelor-interface';
 import { Component, OnInit } from '@angular/core';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { BechelorThaiService } from '../../services/bechelor-thai.service';
@@ -6,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { messagesDialog } from 'src/app/disclosure-dialog/disclosure-dialog-interface';
 import { DisclosureDialogComponent, DisclosureDialogModel } from '../../disclosure-dialog/disclosure-dialog.component';
 import { FormBuilder } from '@angular/forms';
-import { bechelorArticlesAndChoicesResponse } from '../bachelor-interface';
+
 
 
 @Component({
@@ -17,13 +18,14 @@ import { bechelorArticlesAndChoicesResponse } from '../bachelor-interface';
 export class BachelorThaiComponent implements OnInit {
 
   header = {};
-  
+
   part1 = {};
   part2 = {};
   part3 = {};
   part4 = {};
   part5 = {};
   part6 = {};
+  part7 = {};
 
   article1_1 = [];
   article1_2 = [];
@@ -42,6 +44,8 @@ export class BachelorThaiComponent implements OnInit {
   article4 = [];
   article5 = [];
   article6 = [];
+  article7 = [];
+  article8 = [];
 
   constructor(
     private http: BechelorThaiService,
@@ -176,16 +180,26 @@ export class BachelorThaiComponent implements OnInit {
   private getPartsOfArticles() {
     this.http.fetchPartsOfArticles().subscribe(response => {
       this.part1 = response[0];
-      this.part2 = response[2];
-      this.part3 = response[3];
-      this.part4 = response[4];
-      this.part5 = response[5];
-      this.part6 = response[6];
+      this.part2 = response[1];
+      this.part3 = response[2];
+      this.part4 = response[3];
+      this.part5 = response[4];
+      this.part6 = response[5];
+      this.part7 = response[6];
+      // console.log(this.part1)
+      // console.log(this.part2)
+      // console.log(this.part3)
+      // console.log(this.part4)
+      // console.log(this.part5)
+      // console.log(this.part6)
+      // console.log(this.part7)
     });
   }
 
   private getArticlesAndChoices() {
     this.http.fetchArticlesAndChoices().subscribe(response => {
+
+      console.log(response)
 
       response.forEach(partInArticle => {
         switch (partInArticle.PART_ID) {
@@ -227,7 +241,7 @@ export class BachelorThaiComponent implements OnInit {
             }
             break;
           case '2':
-            // this.article2.push(partInArticle);
+            this.article2.push(partInArticle);
             break;
           case '3':
             this.article3.push(partInArticle);
@@ -241,16 +255,25 @@ export class BachelorThaiComponent implements OnInit {
           case '6':
             this.article6.push(partInArticle);
             break;
+          case '7':
+            this.article7.push(partInArticle);
+            break;
+          case '8':
+            this.article8.push(partInArticle);
+            break;
           default:
+            break;
         }
       });
-      // console.log("this.article1_1", this.article1_1)
+      console.log("this.article1_9", this.article1_9)
       // console.log("this.article1", this.article2)
       // console.log("this.article2", this.article2)
       // console.log("this.article3", this.article3)
       // console.log("this.article4", this.article4)
       // console.log("this.article5", this.article5)
       // console.log("this.article6", this.article6)
+      console.log("this.article7", this.article7)
+      console.log("this.article8", this.article8)
     });
   }
 
