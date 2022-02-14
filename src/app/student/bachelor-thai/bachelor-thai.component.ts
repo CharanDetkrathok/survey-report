@@ -39,11 +39,33 @@ export class BachelorThaiComponent implements OnInit {
   article1_10 = [];
   article1_11 = [];
 
-  article2 = [];
-  article3 = [];
-  article4 = [];
-  article5 = [];
-  article6 = [];
+  article2_1 = [];
+  article2_2 = [];
+  article2_3 = [];
+  article2_4 = [];
+  article2_5 = [];
+  article2_6 = [];
+  article2_7 = [];
+
+  article3_1 = [];
+  article3_2 = [];
+  article3_3 = [];
+  article3_4 = [];
+  article3_5 = [];
+
+  article4_1 = [];
+  article4_2 = [];
+
+  article5_1 = [];
+  article5_2 = [];
+  article5_3 = [];
+  article5_4 = [];
+  article5_5 = [];
+
+  article6_1 = [];
+  article6_2 = [];
+  article6_3 = [];
+
   article7 = [];
   article8 = [];
 
@@ -63,7 +85,7 @@ export class BachelorThaiComponent implements OnInit {
     this.getHeaders();
     this.getPartsOfArticles();
     this.getArticlesAndChoices();
-
+    console.log(this.signInServices.getAge())
   }
 
   private getDisclosure() {
@@ -171,14 +193,14 @@ export class BachelorThaiComponent implements OnInit {
     });
   }
 
-  private getHeaders() {
-    this.http.fetchHeaders().subscribe(response => {
+  private async getHeaders() {
+    await this.http.fetchHeaders().subscribe(response => {
       this.header = response[0];
     });
   }
 
-  private getPartsOfArticles() {
-    this.http.fetchPartsOfArticles().subscribe(response => {
+  private async getPartsOfArticles() {
+    await this.http.fetchPartsOfArticles().subscribe(response => {
       this.part1 = response[0];
       this.part2 = response[1];
       this.part3 = response[2];
@@ -186,18 +208,13 @@ export class BachelorThaiComponent implements OnInit {
       this.part5 = response[4];
       this.part6 = response[5];
       this.part7 = response[6];
-      // console.log(this.part1)
-      // console.log(this.part2)
-      // console.log(this.part3)
-      // console.log(this.part4)
-      // console.log(this.part5)
-      // console.log(this.part6)
-      // console.log(this.part7)
+
+      console.log("this.part7 => ", this.part7)
     });
   }
 
-  private getArticlesAndChoices() {
-    this.http.fetchArticlesAndChoices().subscribe(response => {
+  private async getArticlesAndChoices() {
+    await this.http.fetchArticlesAndChoices().subscribe(response => {
 
       console.log(response)
 
@@ -238,22 +255,105 @@ export class BachelorThaiComponent implements OnInit {
               case '11':
                 this.article1_11.push(partInArticle);
                 break;
+              default:
+                break;
             }
             break;
           case '2':
-            this.article2.push(partInArticle);
+            switch (partInArticle.ARTICLE_NO) {
+              case '1':
+                this.article2_1.push(partInArticle);
+                break;
+              case '2':
+                this.article2_2.push(partInArticle);
+                break;
+              case '3':
+                this.article2_3.push(partInArticle);
+                break;
+              case '4':
+                this.article2_4.push(partInArticle);
+                break;
+              case '5':
+                this.article2_5.push(partInArticle);
+                break;
+              case '6':
+                this.article2_6.push(partInArticle);
+                break;
+              case '7':
+                this.article2_7.push(partInArticle);
+                break;
+              default:
+                break;
+            }
             break;
           case '3':
-            this.article3.push(partInArticle);
+            switch (partInArticle.ARTICLE_NO) {
+              case '1':
+                this.article3_1.push(partInArticle);
+                break;
+              case '2':
+                this.article3_2.push(partInArticle);
+                break;
+              case '3':
+                this.article3_3.push(partInArticle);
+                break;
+              case '4':
+                this.article3_4.push(partInArticle);
+                break;
+              case '5':
+                this.article3_5.push(partInArticle);
+                break;
+              default:
+                break;
+            }
             break;
           case '4':
-            this.article4.push(partInArticle);
+            switch (partInArticle.ARTICLE_NO) {
+              case '1':
+                this.article4_1.push(partInArticle);
+                break;
+              case '2':
+                this.article4_2.push(partInArticle);
+                break;
+              default:
+                break;
+            }
             break;
           case '5':
-            this.article5.push(partInArticle);
+            switch (partInArticle.ARTICLE_NO) {
+              case '1':
+                this.article5_1.push(partInArticle);
+                break;
+              case '2':
+                this.article5_2.push(partInArticle);
+                break;
+              case '3':
+                this.article5_3.push(partInArticle);
+                break;
+              case '4':
+                this.article5_4.push(partInArticle);
+                break;
+              case '5':
+                this.article5_5.push(partInArticle);
+                break;
+              default:
+                break;
+            }
             break;
           case '6':
-            this.article6.push(partInArticle);
+            switch (partInArticle.ARTICLE_NO) {
+              case '1':
+                this.article6_1.push(partInArticle);
+                break;
+              case '2':
+                this.article6_2.push(partInArticle);
+                break;
+              case '3':
+                this.article6_3.push(partInArticle);
+                break;
+              default:
+                break;
+            }
             break;
           case '7':
             this.article7.push(partInArticle);
@@ -265,14 +365,14 @@ export class BachelorThaiComponent implements OnInit {
             break;
         }
       });
-      console.log("this.article1_9", this.article1_9)
-      // console.log("this.article1", this.article2)
-      // console.log("this.article2", this.article2)
-      // console.log("this.article3", this.article3)
-      // console.log("this.article4", this.article4)
-      // console.log("this.article5", this.article5)
-      // console.log("this.article6", this.article6)
-      console.log("this.article7", this.article7)
+      console.log("this.article6_1 ==> ", this.article6_1)
+      console.log("this.article6_2 ==> ", this.article6_2)
+      console.log("this.article6_3 ==> ", this.article6_3)
+      // console.log("this.article5_4 ==> ", this.article5_4)
+      // console.log("this.article5_5 ==> ", this.article5_5)
+      // console.log("this.article2_6 ==> ", this.article2_6)
+      // console.log("this.article2_7 ==> ", this.article2_7)
+      // console.log("this.article7", this.article7)
       console.log("this.article8", this.article8)
     });
   }

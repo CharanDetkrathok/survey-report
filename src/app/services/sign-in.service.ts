@@ -177,6 +177,21 @@ export class SignInService {
   public getLanguage(): string {
     return localStorage.getItem('LANGUAGE');
   }
+
+  public setAge(birthday: string) {
+    const YEAR = (new Date()).getFullYear();
+    let birth_year: string = (parseInt(birthday.slice(6)) - 543).toString();
+    const AGE = (YEAR - Number(birth_year)).toString();
+    localStorage.setItem('Age', AGE);
+  }
+
+  public getAge(): string {
+    return localStorage.getItem('Age');
+  }
+
+  public revokeAge() {
+    localStorage.removeItem('Age');
+  }
   public getLanguageTHboolean(): boolean {
 
     if (localStorage.getItem('LANGUAGE') == 'TH') {
@@ -298,6 +313,7 @@ export class SignInService {
     await this.revokeIsAuthen();
     await this.revokeLanguage();
     await this.revokeStudent();
+    await this.revokeAge();
     await this.revokeIsDisclosure();
   }
 

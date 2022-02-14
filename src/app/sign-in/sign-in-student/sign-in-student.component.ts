@@ -233,7 +233,8 @@ export class SignInStudentComponent implements OnInit {
 
       let studentResponse: studentResponseInfo = response;
       this.signInServices.setStudent(studentResponse);
-      this.signInServices.setLanguage('TH');
+      this.signInServices.setLanguage('TH');      
+      this.signInServices.setAge(response.StudentInfo.Birth_date)      
       let makeMessage: messagesDialog = {
         title: `Sign in`,
         message: "",

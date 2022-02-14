@@ -1,0 +1,29 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 12rem 10rem 12rem;
+}
+
+.logo-img {
+    width: 10vw;
+}
+
+.header-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.header-h1-1 h1 {
+    font-weight: 600;
+    line-height: 1.2;
+    font-size: 1.8rem;
+    padding: 0 11rem;
+}
+
+.header-h1-2 h1 {
+    font-size: 1.7rem;
+}
