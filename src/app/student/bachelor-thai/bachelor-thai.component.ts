@@ -196,6 +196,7 @@ export class BachelorThaiComponent implements OnInit {
   private async getHeaders() {
     await this.http.fetchHeaders().subscribe(response => {
       this.header = response[0];
+      console.log(this.header);
     });
   }
 
@@ -365,15 +366,15 @@ export class BachelorThaiComponent implements OnInit {
             break;
         }
       });
-      console.log("this.article6_1 ==> ", this.article6_1)
-      console.log("this.article6_2 ==> ", this.article6_2)
       console.log("this.article6_3 ==> ", this.article6_3)
+      // console.log("this.article6_2 ==> ", this.article6_2)
+      // console.log("this.article6_3 ==> ", this.article6_3)
       // console.log("this.article5_4 ==> ", this.article5_4)
       // console.log("this.article5_5 ==> ", this.article5_5)
       // console.log("this.article2_6 ==> ", this.article2_6)
       // console.log("this.article2_7 ==> ", this.article2_7)
       // console.log("this.article7", this.article7)
-      console.log("this.article8", this.article8)
+      // console.log("this.article8", this.article8)
     });
   }
 
