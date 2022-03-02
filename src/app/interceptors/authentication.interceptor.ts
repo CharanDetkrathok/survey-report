@@ -42,8 +42,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
       if (error_access_token instanceof HttpErrorResponse && error_access_token.status === 401) {
 
-        console.log(this.signInServices.getAccessToken());
-
         this.signInServices.setIsAuthen("false");
         return this.handle401Unauthorized(request, next);
 

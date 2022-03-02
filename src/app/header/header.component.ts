@@ -25,16 +25,16 @@ export class HeaderComponent implements OnInit {
     private signInService: SignInService,
     private router: Router,
     private dialog: MatDialog
-  ) {     
+  ) {
 
-    this.signInService.getStudentStateInformation.subscribe( obs => {      
+    this.signInService.getStudentStateInformation.subscribe(obs => {
       this.isAuthentication = obs.isAuthentication;
       this.isLanguageTH = obs.isLanguageTH;
       this.isLanguageENG = obs.isLanguageENG;
       this.isBechelor = obs.isBechelor;
       this.studentName = obs.studentName;
-      this.role = obs.role;
-    });
+      this.role = obs.role;      
+    });    
 
   }
 
@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public closeMenu() {
-    document.querySelector<HTMLInputElement>('#open-menu').checked === true ? document.querySelector<HTMLInputElement>('#open-menu').checked = false: null;
+    document.querySelector<HTMLInputElement>('#open-menu').checked === true ? document.querySelector<HTMLInputElement>('#open-menu').checked = false : null;
     document.querySelector<HTMLElement>('ul').classList.value == 'active-menu' ? document.querySelector<HTMLElement>('ul').classList.remove('active-menu') : document.querySelector<HTMLElement>('ul').classList.add('active-menu');
   }
 
@@ -71,11 +71,11 @@ export class HeaderComponent implements OnInit {
 
       let dialog_confirm_result = dialogResult;
       if (dialog_confirm_result) {
-        this.signInService.signOut();   
+        this.signInService.signOut();
         // this.router.navigate(['/home-page']);  
         this.router.navigate(['/home-page']).then(() => {
           window.location.replace('/');
-        }); 
+        });
       }
     });
 

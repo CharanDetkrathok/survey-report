@@ -13,8 +13,8 @@ export interface refreshTokenResponse {
   refresh_token: string;
   expires_access_token: number;
   expires_refresh_token: number;
-  access_token_uuid: string;
-  refresh_token_uuid: string;
+  access_token_id: string;
+  refresh_token_id: string;
   authorized: string;
 }
 
@@ -23,8 +23,8 @@ interface StudentToken {
   refresh_token: string;
   expires_access_token: number;
   expires_refresh_token: number;
-  access_token_uuid: string;
-  refresh_token_uuid: string;
+  access_token_id: string;
+  refresh_token_id: string;
   authorized: string;
 }
 

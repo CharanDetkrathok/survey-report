@@ -11,7 +11,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialsModule } from './materials/materials.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -37,6 +37,7 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
     HttpClientModule,
     MaterialsModule,
     FlexLayoutModule,
+    FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
     // เปลี่ยนภาษา TH - EN

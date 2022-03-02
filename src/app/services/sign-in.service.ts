@@ -1,8 +1,7 @@
 import { switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
-// import { environment } from 'src/environments/environment.prod';
-import { environment } from 'src/environments/environment';
+import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 import { studentResponseInfo, refreshTokenResponse } from '../sign-in/sign-in-student/sign-in-student-interface';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -43,9 +42,20 @@ export class SignInService {
     this.setIsAuthen(localStorage.getItem('isAuthen'));
   }
 
-  public authentication(PLAY_LOAD: any): any {
+  public authentication(PLAY_LOAD: any): Observable<any> {
 
     return this.http.post<studentResponseInfo>(`${environment.BASE_URL}${environment.AUTHENTICATION}`, PLAY_LOAD);
+
+  }
+
+  public authorization(): Observable<any> {
+
+    let headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.getAccessToken()}`,
+      'Content-Type': 'application/json'
+    })
+
+    return this.http.post<studentResponseInfo>(`${environment.BASE_URL}${environment.AUTHORIZATION}`,{headers});
 
   }
 

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { messagesDialog } from 'src/app/disclosure-dialog/disclosure-dialog-interface';
 import { DisclosureDialogComponent, DisclosureDialogModel } from '../../disclosure-dialog/disclosure-dialog.component';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -16,6 +16,27 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./bachelor-thai.component.css']
 })
 export class BachelorThaiComponent implements OnInit {
+
+  // answerSurvey = this.formGroup.group({
+  //   Std_code: [this.signInServices.getStdCode()],
+  //   Prename_no: [this.signInServices.getStudent().StudentInfo.Prename_no],
+  //   Prename_thai: [this.signInServices.getStudent().StudentInfo.Prename_thai],
+  //   Prename_eng: [this.signInServices.getStudent().StudentInfo.Prename_eng],
+  //   First_name_thai: [this.signInServices.getStudent().StudentInfo.First_name_thai],
+  //   First_name_eng: [this.signInServices.getStudent().StudentInfo.Faculty_name_eng],
+  //   Last_name_thai: [this.signInServices.getStudent().StudentInfo.Last_name_thai],
+  //   Last_name_eng: [this.signInServices.getStudent().StudentInfo.Last_name_eng],
+  //   Birth_date: [this.signInServices.getStudent().StudentInfo.Birth_date],
+  //   Faculty_no: [this.signInServices.getStudent().StudentInfo.Faculty_no],
+  //   Faculty_name_thai: [this.signInServices.getStudent().StudentInfo.Faculty_name_thai],
+  //   Faculty_name_eng: [this.signInServices.getStudent().StudentInfo.Faculty_name_eng],
+  //   Curr_no: [this.signInServices.getStudent().StudentInfo.Curr_no],
+  //   Major_no: [this.signInServices.getStudent().StudentInfo.Major_no],
+  //   Major_flag: [this.signInServices.getStudent().StudentInfo.Major_flag],
+  //   Major_name_thai: [this.signInServices.getStudent().StudentInfo.Major_name_thai],
+  //   Major_name_eng: [this.signInServices.getStudent().StudentInfo.Major_name_eng],
+  //   Lev_id: [this.signInServices.getStudent().StudentInfo.Lev_id],
+  // });
 
   header = {};
 
@@ -46,6 +67,7 @@ export class BachelorThaiComponent implements OnInit {
   article2_5 = [];
   article2_6 = [];
   article2_7 = [];
+  article2_8 = [];
 
   article3_1 = [];
   article3_2 = [];
@@ -69,6 +91,95 @@ export class BachelorThaiComponent implements OnInit {
   article7 = [];
   article8 = [];
 
+  answerSurvey = this.formGroup.group({
+
+    Lev_id: [this.signInServices.getStudent().StudentInfo.Lev_id],
+    Language: [this.signInServices.getLanguage()],
+
+    // -------- ตอนที่ 1 ข้อ 1 ย่อย --------
+    Faculty_no: [this.signInServices.getStudent().StudentInfo.Faculty_no],
+    Faculty_name_thai: [this.signInServices.getStudent().StudentInfo.Faculty_name_thai],
+    Faculty_name_eng: [this.signInServices.getStudent().StudentInfo.Faculty_name_eng],
+
+    Curr_no: [this.signInServices.getStudent().StudentInfo.Curr_no],
+    Major_no: [this.signInServices.getStudent().StudentInfo.Major_no],
+    Major_flag: [this.signInServices.getStudent().StudentInfo.Major_flag],
+    Major_name_thai: [this.signInServices.getStudent().StudentInfo.Major_name_thai],
+    Major_name_eng: [this.signInServices.getStudent().StudentInfo.Major_name_eng],
+
+    Year_end: ['', Validators.required],
+    Semester_end: ['', Validators.required],
+    GPA: ['', Validators.required],
+    Campus: ['', Validators.required],
+
+    // -------- ตอนที่ 1 ข้อ 2 ย่อย --------
+
+    Prename_no: [this.signInServices.getStudent().StudentInfo.Prename_no],
+    Prename_thai: [this.signInServices.getStudent().StudentInfo.Prename_thai],
+    Prename_eng: [this.signInServices.getStudent().StudentInfo.Prename_eng],
+    First_name_thai: [this.signInServices.getStudent().StudentInfo.First_name_thai],
+    First_name_eng: [this.signInServices.getStudent().StudentInfo.Faculty_name_eng],
+
+    Last_name_thai: [this.signInServices.getStudent().StudentInfo.Last_name_thai],
+    Last_name_eng: [this.signInServices.getStudent().StudentInfo.Last_name_eng],
+    Birth_date: [this.signInServices.getStudent().StudentInfo.Birth_date],
+
+    Std_code: [this.signInServices.getStdCode()],
+    Personal_id: ['', Validators.required],
+    Age: [this.signInServices.getAge(), Validators.required], // 5   
+    Sex: ['', Validators.required],
+
+    // -------- ตอนที่ 1 ข้อ 3 ย่อย -------
+
+    House_domicile: ['', Validators.required],
+    House_address_no: ['', Validators.required],
+    House_address_village_no: [''],
+    House_address_village: ['', Validators.required],
+    House_address_building: ['', Validators.required],
+    House_address_floor: [''],
+    House_address_alley: [''],
+    House_address_road: [''],
+    House_address_sub_district: ['', Validators.required],
+    House_address_district: ['', Validators.required],
+    House_address_province: ['', Validators.required],
+    House_address_country: ['', Validators.required],
+    House_address_zip_code: ['', Validators.required],
+    // House_address_phone_number: ['' , Validators.required],
+    // House_address_tel: ['' , Validators.required],
+    // House_address_fax: ['' , Validators.required],
+    // House_address_e_mail: ['' , Validators.required],
+    // House_address_website: ['' , Validators.required],
+
+    // -------- ตอนที่ 1 ข้อ 4 ย่อย -------
+
+    current_address: ['', Validators.required],
+    current_address_no: [''],
+    current_address_village_no: [''],
+    current_address_village: [''],
+    current_address_building: [''],
+    current_address_floor: [''],
+    current_address_alley: [''],
+    current_address_road: [''],
+    current_address_sub_district: [''],
+    current_address_district: [''],
+    current_address_province: [''],
+    current_address_country: [''],
+    current_address_zip_code: [''],
+    current_address_phone_number: [''],
+    current_address_e_mail: [''],
+
+    // -------- ตอนที่ 1 ข้อ 5 ย่อย -------
+
+    you_applied_to_study_by: ['', Validators.required],
+    program_attended: ['', Validators.required],
+    disability: ['', Validators.required],
+
+  });
+
+  get validating() { return this.answerSurvey.controls; }
+
+  get validatingFormGroup() { return this.answerSurvey; }
+
   constructor(
     private http: BechelorThaiService,
     public dialog: MatDialog,
@@ -79,13 +190,15 @@ export class BachelorThaiComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log(this.answerSurvey)
+
     if (localStorage.getItem('isDisclosure') != 'true') {
       this.getDisclosure();
     }
     this.getHeaders();
     this.getPartsOfArticles();
     this.getArticlesAndChoices();
-    console.log(this.signInServices.getAge())
+    // console.log(this.signInServices.getAge())
   }
 
   private getDisclosure() {
@@ -196,7 +309,7 @@ export class BachelorThaiComponent implements OnInit {
   private async getHeaders() {
     await this.http.fetchHeaders().subscribe(response => {
       this.header = response[0];
-      console.log(this.header);
+      // console.log(this.header);
     });
   }
 
@@ -210,7 +323,7 @@ export class BachelorThaiComponent implements OnInit {
       this.part6 = response[5];
       this.part7 = response[6];
 
-      console.log("this.part7 => ", this.part7)
+      // console.log("this.part7 => ", this.part7)
     });
   }
 
@@ -282,6 +395,9 @@ export class BachelorThaiComponent implements OnInit {
                 break;
               case '7':
                 this.article2_7.push(partInArticle);
+                break;
+              case '8':
+                this.article2_8.push(partInArticle);
                 break;
               default:
                 break;
@@ -366,7 +482,7 @@ export class BachelorThaiComponent implements OnInit {
             break;
         }
       });
-      console.log("this.article6_3 ==> ", this.article6_3)
+      // console.log("this.article6_3 ==> ", this.article6_3)
       // console.log("this.article6_2 ==> ", this.article6_2)
       // console.log("this.article6_3 ==> ", this.article6_3)
       // console.log("this.article5_4 ==> ", this.article5_4)
@@ -440,4 +556,136 @@ export class BachelorThaiComponent implements OnInit {
     return STATUS_MESSAGE;
   }
 
-}
+  keyPress(e: KeyboardEvent) {
+    return /[0-9a-zA-Z]/i.test(e.key);
+  }
+
+  keyPressText(e: KeyboardEvent) {
+    return /[a-zA-Z]/i.test(e.key);
+  }
+
+  keyPressSlash(e: KeyboardEvent) {
+    return /[0-9/]/i.test(e.key);
+  }
+
+  keyPressNumber(e: KeyboardEvent) {
+    return /[0-9]/i.test(e.key);
+  }
+
+  keyPressSemester(e: KeyboardEvent) {
+    return /[1-3]/i.test(e.key);
+  }
+
+  keyPressGPA(e: KeyboardEvent) {
+    return /[0-9a-zA-Z\.]/i.test(e.key);
+  }
+
+  // ตอนที่ 1 ข้อย่อยที่ 3 และ ข้อย่อยที่ 4
+  // กรณีเลือกกรอกข้อมูล หมู่บ้าน หรือกรอก อาคาร/ตึก
+  // ทำการยกเลือก Validators.required
+  // state == 1 คือ "หมู่บ้าน" 
+  // state == 2 คือ "อาคาร/ตึก" 
+  // async setRequireHouseAddressVillageAndBuilding(event, state) {
+  async setRequireAddressVillageAndBuilding(event, state: number, FormControlName: string) {
+    const VILLAGE = FormControlName + "village";
+    const BUILDING = FormControlName + "building";
+    const FLOOR = FormControlName + "floor";
+    const ALLEY = FormControlName + "alley";
+    const ROAD = FormControlName + "road"
+
+    const TEXT_VALUE = await event.target.value != '' ? true : false;
+
+    if (TEXT_VALUE) {
+
+      if (state == 1) {
+        await this.answerSurvey.controls[BUILDING].setValidators([]);
+      } else {
+        await this.answerSurvey.controls[VILLAGE].setValidators([]);
+        await this.answerSurvey.controls[FLOOR].setValidators([Validators.required]);
+        await this.answerSurvey.controls[ALLEY].setValidators([Validators.required]);
+        await this.answerSurvey.controls[ROAD].setValidators([Validators.required]);
+      }
+
+    } else {
+      if (state == 1) {
+        await this.answerSurvey.controls[BUILDING].setValidators([Validators.required]);
+      } else {
+        await this.answerSurvey.controls[VILLAGE].setValidators([Validators.required]);
+        await this.answerSurvey.controls[FLOOR].setValidators([]);
+        await this.answerSurvey.controls[ALLEY].setValidators([]);
+        await this.answerSurvey.controls[ROAD].setValidators([]);
+      }
+    }
+
+    await this.answerSurvey.controls[VILLAGE].updateValueAndValidity();
+
+    await this.answerSurvey.controls[BUILDING].updateValueAndValidity();
+    await this.answerSurvey.controls[FLOOR].updateValueAndValidity();
+    await this.answerSurvey.controls[ALLEY].updateValueAndValidity();
+    await this.answerSurvey.controls[ROAD].updateValueAndValidity();
+
+  }
+
+  // ตอนที่ 1 ข้อย่อยที่ 4
+  currentAddressRadioChoices(event) {
+    console.log(this.answerSurvey.controls['current_address'].value)
+
+    if (this.answerSurvey.controls['current_address'].value == 2) {
+
+      this.answerSurvey.controls['current_address_no'].setValidators([Validators.required]);
+      this.answerSurvey.controls['current_address_village'].setValidators([Validators.required]);
+      this.answerSurvey.controls['current_address_building'].setValidators([Validators.required]);
+      this.answerSurvey.controls['current_address_sub_district'].setValidators([Validators.required]);
+      this.answerSurvey.controls['current_address_district'].setValidators([Validators.required]);
+      this.answerSurvey.controls['current_address_province'].setValidators([Validators.required]);
+      this.answerSurvey.controls['current_address_country'].setValidators([Validators.required]);
+      this.answerSurvey.controls['current_address_zip_code'].setValidators([Validators.required]);
+      this.answerSurvey.controls['current_address_phone_number'].setValidators([Validators.required]);
+
+
+    } else {
+
+      this.answerSurvey.controls['current_address_no'].clearValidators();
+      this.answerSurvey.controls['current_address_village'].clearValidators()
+      this.answerSurvey.controls['current_address_building'].clearValidators()
+      this.answerSurvey.controls['current_address_sub_district'].clearValidators()
+      this.answerSurvey.controls['current_address_district'].clearValidators()
+      this.answerSurvey.controls['current_address_province'].clearValidators()
+      this.answerSurvey.controls['current_address_country'].clearValidators()
+      this.answerSurvey.controls['current_address_zip_code'].clearValidators()
+      this.answerSurvey.controls['current_address_phone_number'].clearValidators()
+
+    }
+
+    this.answerSurvey.controls['current_address_no'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_village'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_building'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_sub_district'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_district'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_province'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_country'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_zip_code'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_phone_number'].updateValueAndValidity();
+
+    // current_address: ['', Validators.required],
+    // current_address_no: ['', Validators.required],
+    // current_address_village_no: [''],
+    // current_address_village: ['', Validators.required],
+    // current_address_building: ['', Validators.required],
+    // current_address_floor: [''],
+    // current_address_alley: [''],
+    // current_address_road: [''],
+    // current_address_sub_district: ['', Validators.required],
+    // current_address_district: ['', Validators.required],
+    // current_address_province: ['', Validators.required],
+    // current_address_country: ['', Validators.required],
+    // current_address_zip_code: ['', Validators.required],
+    // current_address_phone_number: ['', Validators.required],
+    // current_address_e_mail: ['', Validators.required],
+  }
+
+  onSave() {
+    console.log("submit", this.answerSurvey.controls['disability'].value)
+  }
+
+} // จบ class
