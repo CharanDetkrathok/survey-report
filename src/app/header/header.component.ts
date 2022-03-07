@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
 
     let makeMessage: messagesDialog = {
       title: `Sign Out`,
-      message: "คุณต้องการที่จะออกจากระบบใช่หรือไม่?",
+      message: "คุณต้องการออกจากระบบใช่หรือไม่?",
       description: "Do you want to Sign out?",
       descriptionDetail: "",
       btnLeftDisable: false,
@@ -71,10 +71,8 @@ export class HeaderComponent implements OnInit {
 
       let dialog_confirm_result = dialogResult;
       if (dialog_confirm_result) {
-        this.signInService.signOut();
-        // this.router.navigate(['/home-page']);  
-        this.router.navigate(['/home-page']).then(() => {
-          window.location.replace('/');
+        this.signInService.signOut().then(() => {
+          this.router.navigate(['/home-page']);
         });
       }
     });

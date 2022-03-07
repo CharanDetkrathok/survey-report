@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { SignInService } from 'src/app/services/sign-in.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private signInServices: SignInService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -19,25 +20,16 @@ export class AuthGuardGuard implements CanActivate {
 
   isCheckedSignin(): boolean {
 
-    let isAuthen: boolean = false;
+    let isAuthen: boolean = this.signInServices.getIsAuthen();
 
-    if (localStorage.getItem('isAuthen') === 'true' || localStorage.getItem('isAuthen') != null || localStorage.getItem('isAuthen') != undefined) {
-
-      isAuthen = true;
-
+    if ( isAuthen === true) {
+      return true;
     } else {
-
-      isAuthen = false;
-
-      if(localStorage.getItem('student') != null || localStorage.getItem('student') != undefined) {
-        localStorage.removeItem('isAuthen');
-        localStorage.removeItem('student');
-        localStorage.removeItem('LANGUAGE');
-      }
-
-      this.router.navigate(['/home-page']);
+      this.signInServices.signOut()     
+      this.router.navigate(['/home-page']); 
+      return false;
     }
-    return isAuthen;
+    
 
   }
 

@@ -55,18 +55,22 @@ export class SignInService {
       'Content-Type': 'application/json'
     })
 
-    return this.http.post<studentResponseInfo>(`${environment.BASE_URL}${environment.AUTHORIZATION}`,{headers});
+    return this.http.post<studentResponseInfo>(`${environment.BASE_URL}${environment.AUTHORIZATION}`, { headers });
 
   }
 
   public async signOut() {
 
-    this.revokeStudentStateAll();
+    await this.revokeStudentStateAll();
+
     if ((this.getAccessToken() === null || this.getAccessToken() !== null) && this.getRefreshToken() !== null) {
+
       await this.Unauthorized().subscribe();
+      
     }
 
     await this.revokeLocalstorages();
+
   }
 
   public Unauthorized() {
