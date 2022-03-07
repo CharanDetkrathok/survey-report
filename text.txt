@@ -1,3 +1,4 @@
 1 -- ignore environments folder
 2 -- ลบ cached ก่อนใช้ git ignore
-git rm -r --cached -- ./src/environments/
+3 -- ใช้คำสั่ง git rm -r --cached -- ./src/environments/
+4 -- ใส่ในไฟล์ .gitignore ===> **/src/environments/*
