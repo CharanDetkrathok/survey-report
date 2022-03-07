@@ -1,7 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # boilerplate files
-**/src/environments/*.ts
+**/src/environments/*
 # **/src/environments/environment.prod.ts
 # **/src/environments/environment.ts
 
