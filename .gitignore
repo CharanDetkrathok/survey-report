@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# boilerplate files
+**/src/environments/environment.prod.ts
+**/src/environments/environment.ts
+
 # compiled output
 /dist
 /tmp
@@ -46,4 +50,4 @@ testem.log
 Thumbs.db
 
 
-**/src/environments/environment.ts
+
