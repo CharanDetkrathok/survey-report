@@ -153,26 +153,44 @@ export class BachelorThaiComponent implements OnInit {
     // -------- ตอนที่ 1 ข้อ 4 ย่อย -------
 
     current_address: ['', Validators.required],
-    current_address_no: [''],
-    current_address_village_no: [''],
-    current_address_village: [''],
-    current_address_building: [''],
-    current_address_floor: [''],
-    current_address_alley: [''],
-    current_address_road: [''],
-    current_address_sub_district: [''],
-    current_address_district: [''],
-    current_address_province: [''],
-    current_address_country: [''],
-    current_address_zip_code: [''],
-    current_address_phone_number: [''],
-    current_address_e_mail: [''],
+    current_address_no: [{value:'', disabled: true}],
+    current_address_village_no: [{value:'', disabled: true}],
+    current_address_village: [{value:'', disabled: true}],
+    current_address_building: [{value:'', disabled: true}],
+    current_address_floor: [{value:'', disabled: true}],
+    current_address_alley: [{value:'', disabled: true}],
+    current_address_road: [{value:'', disabled: true}],
+    current_address_sub_district: [{value:'', disabled: true}],
+    current_address_district: [{value:'', disabled: true}],
+    current_address_province: [{value:'', disabled: true}],
+    current_address_country: [{value:'', disabled: true}],
+    current_address_zip_code: [{value:'', disabled: true}],
+    current_address_phone_number: [{value:'', disabled: true}],
+    current_address_e_mail: [{value:'', disabled: true}],
 
     // -------- ตอนที่ 1 ข้อ 5 ย่อย -------
 
     you_applied_to_study_by: ['', Validators.required],
+
+    // -------- ตอนที่ 1 ข้อ 6 ย่อย -------
     program_attended: ['', Validators.required],
+
+    // -------- ตอนที่ 1 ข้อ 7 ย่อย -------
     disability: ['', Validators.required],
+
+    // -------- ตอนที่ 1 ข้อ 8 ย่อย -------
+    offered_funds_to_study: ['', Validators.required],
+
+    // -------- ตอนที่ 1 ข้อ 9 ย่อย -------
+    could_you_graduate_in_the_set_period_of_time_in_the_program: ['', Validators.required],
+
+    // -------- ตอนที่ 1 ข้อ 10 ย่อย -------
+    before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere: ['', Validators.required],
+    before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere_text: ['', Validators.required],
+
+    // -------- ตอนที่ 1 ข้อ 11 ย่อย -------
+    current_working_status: ['', Validators.required],
+    current_working_status_text: [''],
 
   });
 
@@ -482,15 +500,6 @@ export class BachelorThaiComponent implements OnInit {
             break;
         }
       });
-      // console.log("this.article6_3 ==> ", this.article6_3)
-      // console.log("this.article6_2 ==> ", this.article6_2)
-      // console.log("this.article6_3 ==> ", this.article6_3)
-      // console.log("this.article5_4 ==> ", this.article5_4)
-      // console.log("this.article5_5 ==> ", this.article5_5)
-      // console.log("this.article2_6 ==> ", this.article2_6)
-      // console.log("this.article2_7 ==> ", this.article2_7)
-      // console.log("this.article7", this.article7)
-      // console.log("this.article8", this.article8)
     });
   }
 
@@ -627,6 +636,7 @@ export class BachelorThaiComponent implements OnInit {
   }
 
   // ตอนที่ 1 ข้อย่อยที่ 4
+  // ถ้าเลือกข้อ radio ข้อ 1 ที่อยู่ตามทะเบียนบ้าน ให้ disable ข้อ 2 ที่อยู่ปัจจุบัน
   currentAddressRadioChoices(event) {
     console.log(this.answerSurvey.controls['current_address'].value)
 
@@ -642,6 +652,16 @@ export class BachelorThaiComponent implements OnInit {
       this.answerSurvey.controls['current_address_zip_code'].setValidators([Validators.required]);
       this.answerSurvey.controls['current_address_phone_number'].setValidators([Validators.required]);
 
+      this.answerSurvey.controls['current_address_no'].enable();
+      this.answerSurvey.controls['current_address_village'].enable();
+      this.answerSurvey.controls['current_address_building'].enable();
+      this.answerSurvey.controls['current_address_sub_district'].enable();
+      this.answerSurvey.controls['current_address_district'].enable();
+      this.answerSurvey.controls['current_address_province'].enable();
+      this.answerSurvey.controls['current_address_country'].enable();
+      this.answerSurvey.controls['current_address_zip_code'].enable();
+      this.answerSurvey.controls['current_address_phone_number'].enable();
+
 
     } else {
 
@@ -654,6 +674,16 @@ export class BachelorThaiComponent implements OnInit {
       this.answerSurvey.controls['current_address_country'].clearValidators()
       this.answerSurvey.controls['current_address_zip_code'].clearValidators()
       this.answerSurvey.controls['current_address_phone_number'].clearValidators()
+
+      this.answerSurvey.controls['current_address_no'].disable();
+      this.answerSurvey.controls['current_address_village'].disable();
+      this.answerSurvey.controls['current_address_building'].disable();
+      this.answerSurvey.controls['current_address_sub_district'].disable();
+      this.answerSurvey.controls['current_address_district'].disable();
+      this.answerSurvey.controls['current_address_province'].disable();
+      this.answerSurvey.controls['current_address_country'].disable();
+      this.answerSurvey.controls['current_address_zip_code'].disable();
+      this.answerSurvey.controls['current_address_phone_number'].disable();
 
     }
 
@@ -685,7 +715,7 @@ export class BachelorThaiComponent implements OnInit {
   }
 
   onSave() {
-    console.log("submit", this.answerSurvey.controls['disability'].value)
+    console.log("submit", this.answerSurvey)
   }
 
 } // จบ class

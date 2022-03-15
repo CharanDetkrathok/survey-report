@@ -11,10 +11,6 @@ export const routes: Routes = [
         loadChildren: () => import('./home-page/home-page.module').then(m => m.HomePageModule)
     },
     {
-        path: 'admin',
-        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
-    },
-    {
         path: 'student',
         loadChildren: () => import('./student/student.module').then(m => m.StudentModule)
     },

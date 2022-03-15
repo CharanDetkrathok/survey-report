@@ -372,7 +372,7 @@
                             <p>{{a1_8.ARTICLE_CONTENT_TH}}</p>
                             <div *ngFor="let choice of a1_8.CHOICES">
                                 <span>{{choice.CHOICE_NO}}. </span>
-                                <input type="radio" id="article-input-1-8" name="article-input-1-8" value="">
+                                <input type="radio" id="article-input-1-8" formControlName="offered_funds_to_study" value="{{choice.CHOICE_NO}}">
                                 <span>{{choice.CHOICE_CONTENT_TH}} </span>
                                 <br>
                             </div>
@@ -385,7 +385,7 @@
                             <p>{{a1_9.ARTICLE_CONTENT_TH}}</p>
                             <div *ngFor="let choice of a1_9.CHOICES">
                                 <span>{{choice.CHOICE_NO}}. </span>
-                                <input type="radio" id="article-input-1-9" name="article-input-1-9" value="">
+                                <input type="radio" id="article-input-1-9" formControlName="could_you_graduate_in_the_set_period_of_time_in_the_program" value="{{choice.CHOICE_NO}}">
                                 <span>{{choice.CHOICE_CONTENT_TH}} </span>
                                 <br>
                             </div>
@@ -406,9 +406,9 @@
                                     <ng-container *ngIf="choice.CHOICE_VALUED == '1.4'">
                                         <div class="article-input-choice-1-11">
                                             <span>{{choice.CHOICE_VALUED}}. </span>
-                                            <input type="radio" id="article-input-1-10" name="article-input-1-10" value="">
+                                            <input type="radio" id="article-input-1-10" formControlName="before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere" value="{{choice.CHOICE_VALUED}}">
                                             <span>{{choice.CHOICE_CONTENT_TH}} </span>
-                                            <input id="article-text-1-10" name="article-text-1-10" value="1.4" type="text">
+                                            <input id="article-text-1-10" formControlName="before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere_text" value="" type="text">
                                         </div>
                                     </ng-container>
 
@@ -416,7 +416,7 @@
                                     <ng-container *ngIf="choice.CHOICE_VALUED != '1.4'">
                                         <div class="article-input-choice-1-11">
                                             <span>{{choice.CHOICE_VALUED}}. </span>
-                                            <input type="radio" id="article-input-1-10" name="article-input-1-10" value="">
+                                            <input type="radio" id="article-input-1-10" formControlName="before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere" value="{{choice.CHOICE_VALUED}}">
                                             <span>{{choice.CHOICE_CONTENT_TH}} </span>
                                         </div>
                                     </ng-container>
@@ -424,7 +424,7 @@
                                 </ng-container>
                                 <ng-container *ngIf="choice.CHOICE_NO == '2'">
                                     <span>{{choice.CHOICE_NO}}. </span>
-                                    <input type="radio" id="article-input-1-10" name="article-input-1-10" value="">
+                                    <input type="radio" id="article-input-1-10" formControlName="before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere" value="{{choice.CHOICE_VALUED}}">
                                     <span>{{choice.CHOICE_CONTENT_TH}} </span>
                                 </ng-container>
                             </ng-container>
@@ -438,7 +438,7 @@
                             <ng-container *ngFor="let choice of a1_11.CHOICES">
                                 <ng-container *ngIf="choice.CHOICE_NO != '5' && choice.CHOICE_SUB_NO == '0'">
                                     <span>{{choice.CHOICE_NO}}. </span>
-                                    <input type="radio" id="article-input-1-11" name="article-input-1-11" value="">
+                                    <input type="radio" id="article-input-1-11" formControlName="current_working_status" value="{{choice.CHOICE_NO}}">
                                     <span>{{choice.CHOICE_CONTENT_TH}} </span>
                                     <br>
                                 </ng-container>
@@ -451,15 +451,15 @@
                                     <ng-container *ngIf="choice.CHOICE_VALUED == '5.5'">
                                         <div class="article-input-choice-1-12">
                                             <span>{{choice.CHOICE_VALUED}}. </span>
-                                            <input type="radio" id="article-input-1-11" name="article-input-1-11" value="">
+                                            <input type="radio" id="article-input-1-11" formControlName="current_working_status" value="{{choice.CHOICE_VALUED}}">
                                             <span>{{choice.CHOICE_CONTENT_TH}} </span>
-                                            <input id="article-text-1-11" name="article-text-1-11" value="5.5" type="text">
+                                            <input id="article-text-1-11" formControlName="current_working_status_text" type="text">
                                         </div>
                                     </ng-container>
                                     <ng-container *ngIf="choice.CHOICE_VALUED != '5.5'">
                                         <div class="article-input-choice-1-12">
                                             <span>{{choice.CHOICE_VALUED}}. </span>
-                                            <input type="radio" id="article-input-1-11" name="article-input-1-11" value="">
+                                            <input type="radio" id="article-input-1-11" formControlName="current_working_status" value="{{choice.CHOICE_VALUED}}">
                                             <span>{{choice.CHOICE_CONTENT_TH}}</span>
                                         </div>
                                     </ng-container>
@@ -468,6 +468,9 @@
                         </div>
                     </article>
                 </div>
+            </section>
+            <section class="section-btn-submit">
+                <button class="btn-submit" type="submit">บันทึก</button>
             </section>
             <hr>
             <section class="part" id="part-2">
@@ -971,11 +974,11 @@
                 </div>
             </section>
             <hr>
-            <section class="section-btn-submit">
-                <!-- <span class="submit-text-warning-invalid" formControlName="validatingFormGroup.invalid">กรุณาตรวจสอบ และกรอกข้อมูลให้ครบถ้วน ณ จุดที่มีเครื่องหมาย (*)</span>
-                <button class="btn-submit" type="submit" [disabled]="validatingFormGroup.invalid">บันทึก</button> -->
+            <!-- <section class="section-btn-submit">
+                <span class="submit-text-warning-invalid" formControlName="validatingFormGroup.invalid">กรุณาตรวจสอบ และกรอกข้อมูลให้ครบถ้วน ณ จุดที่มีเครื่องหมาย (*)</span>
+                <button class="btn-submit" type="submit" [disabled]="validatingFormGroup.invalid">บันทึก</button> 
                 <button class="btn-submit" type="submit">บันทึก</button>
-            </section>
+            </section> -->
         </div>
     </form>
 </div>
