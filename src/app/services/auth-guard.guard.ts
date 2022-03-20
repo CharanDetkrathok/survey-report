@@ -8,6 +8,8 @@ import { SignInService } from 'src/app/services/sign-in.service';
 })
 export class AuthGuardGuard implements CanActivate {
 
+  isAuthentication: boolean;
+
   constructor(private router: Router, private signInServices: SignInService) {}
 
   canActivate(
@@ -20,9 +22,11 @@ export class AuthGuardGuard implements CanActivate {
 
   isCheckedSignin(): boolean {
 
-    let isAuthen: boolean = this.signInServices.getIsAuthen();
+    this.signInServices.getStudentStateInformation.subscribe(obs => {
+      this.isAuthentication = obs.isAuthentication; 
+    }); 
 
-    if ( isAuthen === true) {
+    if ( this.isAuthentication === true) {
       return true;
     } else {
       this.signInServices.signOut()     

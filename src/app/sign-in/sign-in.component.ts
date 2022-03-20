@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { SignInService } from 'src/app/services/sign-in.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,17 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  isAuthen: boolean = false;
+  isAuthentication: boolean;
 
-  constructor() {}
-
-  ngOnInit(): void {
-
-    if (localStorage.getItem('isAuthen') != null || localStorage.getItem('isAuthen') != undefined) {
-      this.isAuthen = true;
-    }
-
+  constructor(private signInService: SignInService) {
+    this.signInService.getStudentStateInformation.subscribe(obs => {
+      this.isAuthentication = obs.isAuthentication; 
+    });    
   }
+
+  ngOnInit(): void { }
 
   onClickStaffButton() {
 
