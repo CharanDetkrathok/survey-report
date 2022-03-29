@@ -1,0 +1,1015 @@
+<div class="wrapper">
+    <div class="">
+        <div class="header-wrapper">
+            <div>
+                <img id="logo-img" class="logo-img" src="assets/imgs/logo-for-survey-welcom-blue.png">
+            </div>
+            <div class="header-h1-1">
+                <p class="header-h1-1-text">{{header['HEADER_CONTENT_TH']}}</p>
+            </div>
+            <div class="header-h1-2">
+                <p id="direction-1">คำชี้แจง:</p>
+                <p id="direction-2">{{header['HEADER_DIRECTION_TH']}}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <form [formGroup]="answerSurvey" (ngSubmit)="onSave()">
+        <div>
+            <section class="part" id="part-1">
+                <div class="part-text">
+                    <p>{{part1['PART_CONTENT_TH']}}</p>
+                </div>
+                <div class="article-wrapper">
+
+                    <article id="article-1-1">
+                        <div class="article-content-outside-wrapper">
+                            <label>1.)</label>
+                            <div class="article-content-inside-wrapper">
+                                <div class="article-content-1-1" *ngFor="let a1_1 of article1_1; let i = index;">
+                                    <p>
+                                        {{a1_1.ARTICLE_CONTENT_TH}}
+                                    </p>
+                                    <div *ngIf="i+1 == 1">
+                                        <div class="article-input">
+                                            <span *ngIf="validating.Faculty_name_thai.invalid" class="start-red"></span>
+                                            <input id="article-text-1-1-1" formControlName="Faculty_name_thai" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="i+1 == 2">
+                                        <div class="article-input">
+                                            <span *ngIf="validating.Major_name_thai.invalid" class="start-red"></span>
+                                            <input id="article-text-1-1-2" formControlName="Major_name_thai" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="i+1 == 3">
+                                        <div class="article-input">
+                                            <span *ngIf="validating.Year_end.invalid" class="start-red"></span>
+                                            <input id="article-text-1-1-3" formControlName="Year_end" type="text" maxlength="4" minlength="4" (keypress)="keyPressNumber($event)">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="i+1 == 4">
+                                        <div class="article-input">
+                                            <span *ngIf="validating.Semester_end.invalid" class="start-red"></span>
+                                            <input id="article-text-1-1-4" formControlName="Semester_end" type="text" maxlength="1" minlength="1" (keypress)="keyPressSemester($event)">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="i+1 == 5">
+                                        <div class="article-input">
+                                            <span *ngIf="validating.GPA.invalid" class="start-red"></span>
+                                            <input id="article-text-1-1-5" formControlName="GPA" type="text" maxlength="4" minlength="4" (keypress)="keyPressGPA($event)">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="i+1 == 6">
+                                        <div class="article-input">
+                                            <span *ngIf="validating.Campus.invalid" class="start-red"></span>
+                                            <input id="article-text-1-1-6" formControlName="Campus" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-2">
+                        <div class="article-content-outside-wrapper">
+                            <label>2.)</label>
+                            <div class="article-content-inside-wrapper">
+                                <div class="article-content-1-2" *ngFor="let a1_2 of article1_2; let i = index">
+                                    <p>{{a1_2.ARTICLE_CONTENT_TH}} </p>
+                                    <div class="article-input" *ngIf="a1_2.ARTICLE_SUB_NO != '6'">
+                                        <div *ngIf="i+1 == 1">
+                                            <div class="">
+                                                <input id="article-text-1-2-1" formControlName="First_name_thai" type="text" readonly>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="i+1 == 2">
+                                            <div class="">
+                                                <input id="article-text-1-2-2" formControlName="Last_name_thai" type="text" readonly>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="i+1 == 3">
+                                            <div class="">
+                                                <input id="article-text-1-2-3" formControlName="Std_code" type="text" readonly>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="i+1 == 4">
+                                            <div class="">
+                                                <span *ngIf="validating.Personal_id.invalid" class="start-red"></span>
+                                                <input id="article-text-1-2-4" formControlName="Personal_id" type="text" maxlength="13" minlength="13" (keypress)="keyPressNumber($event)">
+                                            </div>
+                                        </div>
+                                        <div *ngIf="i+1 == 5">
+                                            <div class="">
+                                                <input id="article-text-1-2-5" formControlName="Age" type="text" readonly>ปี
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="article-input-radio" *ngIf="a1_2.ARTICLE_SUB_NO == '6'">
+                                        <span *ngIf="validating.Sex.invalid" class="start-red">
+                                        </span>
+                                        <div *ngFor="let choice of a1_2.CHOICES; let j = index;">
+                                            <div class="article-input-wrapper-1-2">
+                                                <input type="radio" id="article-input-1-2" formControlName="Sex" value="{{choice.CHOICE_VALUED}}">
+                                                <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-3">
+                        <label>3.)</label>
+                        <div class="article-content-1-3" *ngFor="let a1_3 of article1_3">
+                            <div class="article-content-wrapper-1-3">
+                                <p>{{a1_3.ARTICLE_CONTENT_TH}}</p>
+                                <div *ngFor="let article7 of article7 | slice:1; let i = index">
+                                    <div class="article-input-text-1-3">
+                                        <div *ngIf="a1_3.ARTICLE_SUB_NO == '1' && article7.ARTICLE_NO == '11'">
+                                            <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                            <span *ngIf="validating.House_domicile.invalid" class="start-red">
+                                            </span>
+                                            <input id="article-text-1-3-0" formControlName="House_domicile" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </div>
+                                        <div class="article-input-text-1-3" *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                            <br>
+                                            <div *ngIf="i == 0">
+
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_no.invalid" class="start-red"></span>
+                                                    <input id="article-text-1-3-1" formControlName="House_address_no" type="text" (keypress)="keyPressSlash($event)" maxlength="7">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 1">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <input id="article-text-1-3-1" formControlName="House_address_village_no" type="text" (keypress)="keyPressNumber($event)" maxlength="3">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 2">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_village.invalid" class="start-red">
+                                                    </span>
+                                                    <input id="article-text-1-3-2" formControlName="House_address_village" type="text" (keyup)="setRequireAddressVillageAndBuilding($event,1,'House_address_')">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 3">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_building.invalid" class="start-red">
+                                                    </span>
+                                                    <input id="article-text-1-3-3" formControlName="House_address_building" type="text" (keyup)="setRequireAddressVillageAndBuilding($event,2,'House_address_')">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 4">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_floor.invalid" class="start-red"></span>
+                                                    <input id="article-text-1-3-4" formControlName="House_address_floor" type="text" (keypress)="keyPressSlash($event)" maxlength="6">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 5">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_alley.invalid" class="start-red"></span>
+                                                    <input id="article-text-1-3-5" formControlName="House_address_alley" type="text">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 6">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_road.invalid" class="start-red"></span>
+                                                    <input id="article-text-1-3-6" formControlName="House_address_road" type="text">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 7">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_sub_district.invalid" class="start-red"></span>
+                                                    <input id="article-text-1-3-7" formControlName="House_address_sub_district" type="text">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 8">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_district.invalid" class="start-red"></span>
+                                                    <input id="article-text-1-3-8" formControlName="House_address_district" type="text">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 9">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_province.invalid" class="start-red"></span>
+                                                    <input id="article-text-1-3-9" formControlName="House_address_province" type="text">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 10">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_country.invalid" class="start-red"></span>
+                                                    <input id="article-text-1-3-10" formControlName="House_address_country" type="text">
+                                                </div>
+                                            </div>
+                                            <div *ngIf="i == 11">
+                                                <div *ngIf="a1_3.ARTICLE_SUB_NO == '2'">
+                                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                    <span *ngIf="validating.House_address_zip_code.invalid" class="start-red"></span>
+                                                    <input id="article-text-1-3-11" formControlName="House_address_zip_code" type="text" (keypress)="keyPressNumber($event)" minlength="5" maxlength="5">
+                                                </div>
+                                            </div>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-4">
+                        <div class="article-content-1-4" *ngFor="let a1_4 of article1_4">
+                            <label>4.)</label>
+                            <div class="article-content-p-1-4">
+                                <p>
+                                    {{a1_4.ARTICLE_CONTENT_TH}}
+                                    <span *ngIf="validating.current_address.invalid" class="start-red"></span>
+                                </p>
+                            </div>
+                            <div class="article-content-choice-wrapper-1-4">
+                                <div *ngFor="let choice of a1_4.CHOICES; let j = index;">
+                                    <div class="article-content-wrapper-1-4">
+                                        <span>{{choice.CHOICE_NO}}. </span>
+                                        <input type="radio" id="article-input-1-4" formControlName="current_address" value="{{choice.CHOICE_NO}}" (change)="currentAddressRadioChoices($event)">
+                                        <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                    </div>
+                                    <!-- [style.display]="'none'" -->
+                                    <div class="article-text-wrapper-1-4" *ngIf="choice.CHOICE_NO == '2'">
+                                        <div class="article-text-content-1-4" *ngFor="let article7 of article7 | slice:1; let i = index;">
+                                            <div *ngIf="i == 0">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_no.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-1" formControlName="current_address_no" type="text" (keypress)="keyPressSlash($event)" maxlength="7">
+                                            </div>
+                                            <div *ngIf="i == 1">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <input id="article-text-1-3-1" formControlName="current_address_village_no" type="text" (keypress)="keyPressNumber($event)" maxlength="7">
+                                            </div>
+                                            <div *ngIf="i == 2">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_village.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-2" formControlName="current_address_village" type="text" (keyup)="setRequireAddressVillageAndBuilding($event,1,'current_address_')">
+                                            </div>
+                                            <div *ngIf="i == 3">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_building.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-3" formControlName="current_address_building" type="text" (keyup)="setRequireAddressVillageAndBuilding($event,2,'current_address_')">
+                                            </div>
+                                            <div *ngIf="i == 4">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_floor.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-4" formControlName="current_address_floor" type="text" (keypress)="keyPressSlash($event)" maxlength="6">
+                                            </div>
+                                            <div *ngIf="i == 5">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_alley.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-5" formControlName="current_address_alley" type="text">
+                                            </div>
+                                            <div *ngIf="i == 6">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_road.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-6" formControlName="current_address_road" type="text">
+                                            </div>
+                                            <div *ngIf="i == 7">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_sub_district.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-7" formControlName="current_address_sub_district" type="text">
+                                            </div>
+                                            <div *ngIf="i == 8">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_district.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-8" formControlName="current_address_district" type="text">
+                                            </div>
+                                            <div *ngIf="i == 9">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_province.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-9" formControlName="current_address_province" type="text">
+                                            </div>
+                                            <div *ngIf="i == 10">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_country.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-10" formControlName="current_address_country" type="text">
+                                            </div>
+                                            <div *ngIf="i == 11">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_zip_code.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-11" formControlName="current_address_zip_code" type="text" (keypress)="keyPressNumber($event)" maxlength="5">
+                                            </div>
+                                            <div *ngIf="i == 12">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <span *ngIf="validating.current_address_phone_number.invalid" class="start-red"></span>
+                                                <input id="article-text-1-3-12" formControlName="current_address_phone_number" type="text" (keypress)="keyPressNumber($event)" minlength="10">
+                                            </div>
+                                            <div *ngIf="i == 15">
+                                                <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                                <input id="article-text-1-3-15" formControlName="current_address_e_mail" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-5">
+                        <label>5.)</label>
+                        <div class="article-content-1-5" *ngFor="let a1_5 of article1_5">
+                            <p>{{a1_5.ARTICLE_CONTENT_TH}} </p>
+                            <ng-container *ngFor="let choice of a1_5.CHOICES">
+                                <ng-container *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_SUB_NO == '0'">
+                                    <br>
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                </ng-container>
+                                <ng-container *ngIf="choice.CHOICE_NO == '1'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-1-5" formControlName="you_applied_to_study_by" value="{{choice.CHOICE_VALUED}}">
+                                    <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                </ng-container>
+                                <ng-container *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_SUB_NO != '0'">
+                                    <div class="article-input-choice-1-5">
+                                        <span>{{choice.CHOICE_VALUED}}. </span>
+                                        <input type="radio" id="article-input-1-5" formControlName="you_applied_to_study_by" value="{{choice.CHOICE_VALUED}}">
+                                        <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-6">
+                        <label>6.)</label>
+                        <div class="article-content" *ngFor="let a1_6 of article1_6">
+                            <p>{{a1_6.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a1_6.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="radio" id="article-input-1-6" formControlName="program_attended" value="{{choice.CHOICE_VALUED}}">
+                                <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                <br>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-7">
+                        <label>7.)</label>
+                        <div class="article-content" *ngFor="let a1_7 of article1_7">
+                            <p>{{a1_7.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a1_7.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="radio" id="article-input-1-7" formControlName="disability" value="{{choice.CHOICE_VALUED}}">
+                                <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                <br>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-8">
+                        <label>8.)</label>
+                        <div class="article-content" *ngFor="let a1_8 of article1_8">
+                            <p>{{a1_8.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a1_8.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="radio" id="article-input-1-8" formControlName="offered_funds_to_study" value="{{choice.CHOICE_NO}}">
+                                <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                <br>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-9">
+                        <label>9.)</label>
+                        <div class="article-content" *ngFor="let a1_9 of article1_9">
+                            <p>{{a1_9.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a1_9.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="radio" id="article-input-1-9" formControlName="could_you_graduate_in_the_set_period_of_time_in_the_program" value="{{choice.CHOICE_NO}}">
+                                <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                <br>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-10">
+                        <label>10.)</label>
+                        <div class="article-content-1-10" *ngFor="let a1_10 of article1_10">
+                            <p>{{a1_10.ARTICLE_CONTENT_TH}}</p>
+                            <ng-container *ngFor="let choice of a1_10.CHOICES">
+                                <ng-container *ngIf="choice.CHOICE_NO == '1'  && choice.CHOICE_SUB_NO == '0'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </ng-container>
+                                <ng-container *ngIf="choice.CHOICE_NO == '1' && choice.CHOICE_SUB_NO != '0'">
+
+                                    <ng-container *ngIf="choice.CHOICE_VALUED == '1.4'">
+                                        <div class="article-input-choice-1-11">
+                                            <span>{{choice.CHOICE_VALUED}}. </span>
+                                            <input type="radio" id="article-input-1-10" formControlName="before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere" value="{{choice.CHOICE_VALUED}}">
+                                            <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                            <input id="article-text-1-10" formControlName="before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere_text" value="" type="text">
+                                        </div>
+                                    </ng-container>
+
+
+                                    <ng-container *ngIf="choice.CHOICE_VALUED != '1.4'">
+                                        <div class="article-input-choice-1-11">
+                                            <span>{{choice.CHOICE_VALUED}}. </span>
+                                            <input type="radio" id="article-input-1-10" formControlName="before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere" value="{{choice.CHOICE_VALUED}}">
+                                            <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                        </div>
+                                    </ng-container>
+
+                                </ng-container>
+                                <ng-container *ngIf="choice.CHOICE_NO == '2'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-1-10" formControlName="before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere" value="{{choice.CHOICE_VALUED}}">
+                                    <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-1-11">
+                        <label>11.)</label>
+                        <div class="article-content" *ngFor="let a1_11 of article1_11">
+                            <p>{{a1_11.ARTICLE_CONTENT_TH}}</p>
+                            <ng-container *ngFor="let choice of a1_11.CHOICES">
+                                <ng-container *ngIf="choice.CHOICE_NO != '5' && choice.CHOICE_SUB_NO == '0'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-1-11" formControlName="current_working_status" value="{{choice.CHOICE_NO}}">
+                                    <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                    <br>
+                                </ng-container>
+                                <ng-container *ngIf="choice.CHOICE_NO == '5' && choice.CHOICE_SUB_NO == '0'">
+                                    <span>{{choice.CHOICE_VALUED}}. </span>
+                                    <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                </ng-container>
+                                <ng-container *ngIf="choice.CHOICE_NO == '5' && choice.CHOICE_SUB_NO != '0'">
+
+                                    <ng-container *ngIf="choice.CHOICE_VALUED == '5.5'">
+                                        <div class="article-input-choice-1-12">
+                                            <span>{{choice.CHOICE_VALUED}}. </span>
+                                            <input type="radio" id="article-input-1-11" formControlName="current_working_status" value="{{choice.CHOICE_VALUED}}">
+                                            <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                            <input id="article-text-1-11" formControlName="current_working_status_text" type="text">
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="choice.CHOICE_VALUED != '5.5'">
+                                        <div class="article-input-choice-1-12">
+                                            <span>{{choice.CHOICE_VALUED}}. </span>
+                                            <input type="radio" id="article-input-1-11" formControlName="current_working_status" value="{{choice.CHOICE_VALUED}}">
+                                            <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <hr>
+            <section class="section-btn-submit">
+                <ng-container *ngIf="validatingFormGroup.invalid; then invalidFormGroupThen; else invalidFormGroupElse;">
+                </ng-container>
+
+                <ng-template #invalidFormGroupThen>
+                    <span class="submit-text-warning-invalid">
+                        กรุณาตรวจสอบ และกรอกข้อมูลให้ครบถ้วน ณ จุดที่มีเครื่องหมาย (*)
+                    </span>
+                    <button class="btn-submit" type="submit" disabled>บันทึก</button>
+                </ng-template>
+                <ng-template #invalidFormGroupElse>
+                    <button class="btn-submit" type="submit">บันทึก</button>
+                </ng-template>
+            </section>
+            <hr>
+            <section class="part" id="part-2">
+                <div class="part-text">
+                    <h1>{{part2['PART_CONTENT_TH']}}</h1>
+                </div>
+                <div class="article-wrapper">
+                    <article id="article-2-1">
+                        <label>1.)</label>
+                        <div class="article-content-2-1" *ngFor="let a2_1 of article2_1">
+                            <p>{{a2_1.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a2_1.CHOICES">
+                                <div *ngIf="choice.CHOICE_SUB_NO == '0'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '1' && choice.CHOICE_SUB_NO != '0'">
+                                    <div class="article-input-choice-2-1">
+                                        <span>{{choice.CHOICE_VALUED}}. </span>
+                                        <input type="radio" id="article-input-2-1" name="article-input-2-1" value="">
+                                        <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                    </div>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_SUB_NO != '0'">
+                                    <div class="article-input-choice-2-1">
+                                        <span>{{choice.CHOICE_VALUED}}. </span>
+                                        <input type="radio" id="article-input-2-1" name="article-input-2-1" value="">
+                                        <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-2-2">
+                        <label>2.)</label>
+                        <div class="article-content-2-2" *ngFor="let a2_2 of article2_2">
+                            <p>{{a2_2.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a2_2.CHOICES">
+                                <div *ngIf="choice.CHOICE_SUB_NO == '0' && choice.CHOICE_NO != '6'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-2-2" name="article-input-2-2" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '6' && choice.CHOICE_SUB_NO == '0'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '6' && choice.CHOICE_SUB_NO != '0'">
+                                    <div class="article-input-choice-2-2">
+                                        <div *ngIf="choice.CHOICE_VALUED == '6.5'">
+                                            <span>{{choice.CHOICE_VALUED}}. </span>
+                                            <input type="radio" id="article-input-2-2" name="article-input-2-2" value="">
+                                            <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                            <input id="article-text-2-2" name="article-text-2-2" value="6.5" type="text">
+                                        </div>
+                                        <div *ngIf="choice.CHOICE_VALUED != '6.5'">
+                                            <span>{{choice.CHOICE_VALUED}}. </span>
+                                            <input type="radio" id="article-input-2-2" name="article-input-2-2" value="">
+                                            <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-2-3">
+                        <label>3.)</label>
+                        <div class="article-content-2-3" *ngFor="let a2_3 of article2_3">
+                            <p>{{a2_3.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a2_3.CHOICES">
+                                <div *ngIf="choice.CHOICE_SUB_NO == '0'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '1' && choice.CHOICE_SUB_NO != '0'">
+                                    <div class="article-input-choice-2-3">
+                                        <span>{{choice.CHOICE_VALUED}}. </span>
+                                        <input type="radio" id="article-input-2-3" name="article-input-2-3" value="">
+                                        <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                    </div>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_SUB_NO != '0'">
+                                    <div class="article-input-choice-2-3">
+                                        <span>{{choice.CHOICE_VALUED}}. </span>
+                                        <input type="radio" id="article-input-2-3" name="article-input-2-3" value="">
+                                        <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-2-4">
+                        <label>4.)</label>
+                        <div class="article-content-2-4" *ngFor="let a2_4 of article2_4">
+                            <p>{{a2_4.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngIf="a2_4.ARTICLE_SUB_NO == '1'">
+                                <input id="article-text-2-4-1" name="article-text-2-4-1" value="1" type="text"> <span>
+                                    บาท
+                                    &nbsp;&nbsp;</span>
+                            </div>
+                            <div *ngIf="a2_4.ARTICLE_SUB_NO == '2'">
+                                <input id="article-text-2-4-2" name="article-text-2-4-2" value="2" type="text"> <span>
+                                    บาท</span>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-2-5">
+                        <div class="article-content-2-5" *ngFor="let a2_5 of article2_5">
+                            <label>5.)</label>
+                            <p>{{a2_5.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let article7 of article7; let i = index">
+                                <div class="article-text-wrapper-2-5">
+                                    <span>{{article7.ARTICLE_CONTENT_TH}} </span>
+                                    <input id="article-text-2-5-{{i+1}}" name="article-text-2-5-{{i+1}}" value="" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-2-6">
+                        <label>6.)</label>
+                        <div class="article-content-2-6" *ngFor="let a2_6 of article2_6">
+                            <p>{{a2_6.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a2_6.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="radio" id="article-input-2-6" name="article-input-2-6" value="">
+                                <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                <br>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-2-7">
+                        <label>7.)</label>
+                        <div class="article-content-2-7" *ngFor="let a2_7 of article2_7">
+                            <p>{{a2_7.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a2_7.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="radio" id="article-input-2-7" name="article-input-2-7" value="">
+                                <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                <br>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-2-8">
+                        <label>8.)</label>
+                        <div class="article-content-2-8" *ngFor="let a2_8 of article2_8">
+                            <p>{{a2_8.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a2_8.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="radio" id="article-input-2-8" name="article-input-2-8" value="">
+                                <span>{{choice.CHOICE_CONTENT_TH}} </span>
+                                <br>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <hr>
+            <section class="part" id="part-3">
+                <div class="part-text">
+                    <h1>{{part3['PART_CONTENT_TH']}}</h1>
+                </div>
+                <div class="article-wrapper">
+                    <article id="article-3-1">
+                        <label>1.)</label>
+                        <div class="article-content" *ngFor="let a3_1 of article3_1">
+                            <p>{{a3_1.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a3_1.CHOICES">
+                                <div *ngIf="choice.CHOICE_NO != '5'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-3-1" name="article-input-3-1" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '5'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-3-1" name="article-input-3-1" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    <input id="article-text-3-1" name="article-text-3-1" value="1" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-3-2">
+                        <label>2.)</label>
+                        <div class="article-content-3-2" *ngFor="let a3_2 of article3_2">
+                            <p>{{a3_2.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a3_2.CHOICES">
+                                <div *ngIf="choice.CHOICE_NO != '2'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-3-2" name="article-input-3-2" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '2'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-3-2" name="article-input-3-2" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    <input id="article-text-3-2" name="article-text-3-2" value="1" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-3-3">
+                        <label>3.)</label>
+                        <div class="article-content-3-3" *ngFor="let a3_3 of article3_3">
+                            <p>{{a3_3.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a3_3.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="radio" id="article-input-3-3" name="article-input-3-3" value="">
+                                <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                <br>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-3-4">
+                        <label>4.)</label>
+                        <div class="article-content-3-4" *ngFor="let a3_4 of article3_4">
+                            <p>{{a3_4.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a3_4.CHOICES">
+                                <div *ngIf="choice.CHOICE_NO != '4'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-3-4" name="article-input-3-4" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '4'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-3-4" name="article-input-3-4" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    <input id="article-text-3-4" name="article-text-3-4" value="1" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-3-5">
+                        <label>5.)</label>
+                        <div class="article-content-3-5" *ngFor="let a3_5 of article3_5">
+                            <p>{{a3_5.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a3_5.CHOICES">
+                                <div *ngIf="choice.CHOICE_NO != '2'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-3-5" name="article-input-3-5" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_VALUED != '2.5' && choice.CHOICE_SUB_NO == '0'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_VALUED != '2.5' && choice.CHOICE_SUB_NO != '0'">
+                                    <span>{{choice.CHOICE_VALUED}}. </span>
+                                    <input type="radio" id="article-input-3-5" name="article-input-3-5" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_VALUED == '2.5'">
+                                    <span>{{choice.CHOICE_VALUED}}. </span>
+                                    <input type="radio" id="article-input-3-5" name="article-input-3-5" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    <input id="article-text-3-5" name="article-text-3-5" value="1" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <hr>
+            <section class="part" id="part-4">
+                <div class="part-text">
+                    <h1>{{part4['PART_CONTENT_TH']}}</h1>
+                </div>
+                <div class="article-wrapper">
+                    <article id="article-4-1">
+                        <label>1.)</label>
+                        <div class="article-content-4-1" *ngFor="let a4_1 of article4_1">
+                            <p>{{a4_1.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a4_1.CHOICES">
+                                <div *ngIf="choice.CHOICE_NO != '4'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-4-1" name="article-input-4-1" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '4'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-4-1" name="article-input-4-1" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    <input id="article-text-4-1" name="article-text-4-1" value="1" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-4-2">
+                        <label>2.)</label>
+                        <div class="article-content-4-2" *ngFor="let a4_2 of article4_2">
+                            <p>{{a4_2.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a4_2.CHOICES">
+                                <div *ngIf="choice.CHOICE_NO != '2'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-4-2" name="article-input-4-2" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_VALUED != '2.9' && choice.CHOICE_SUB_NO == '0'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div class="article-input-choice-4-2">
+                                    <div *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_VALUED != '2.9' && choice.CHOICE_SUB_NO != '0'">
+                                        <span>{{choice.CHOICE_VALUED}}. </span>
+                                        <input type="radio" id="article-input-4-2" name="article-input-4-2" value="">
+                                        <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    </div>
+                                    <div *ngIf="choice.CHOICE_NO == '2' && choice.CHOICE_VALUED == '2.9'">
+                                        <span>{{choice.CHOICE_VALUED}}. </span>
+                                        <input type="radio" id="article-input-4-2" name="article-input-4-2" value="">
+                                        <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                        <input id="article-text-4-2" name="article-text-4-2" value="1" type="text">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <hr>
+            <section class="part" id="part-5">
+                <div class="part-text">
+                    <h1>{{part5['PART_CONTENT_TH']}}</h1>
+                </div>
+                <div class="article-wrapper">
+                    <article id="article-5-1">
+                        <label>1.)</label>
+                        <div class="article-wrapper-5-1">
+                            <div class="article-content-5-1-1" *ngFor="let a5_1 of article5_1">
+                                <div *ngFor="let choice of a5_1.CHOICES">
+                                    <div *ngIf="choice.CHOICE_NO == '1'">
+                                        <p>{{a5_1.ARTICLE_CONTENT_TH}}</p>
+                                        <span>{{choice.CHOICE_NO}}. </span>
+                                        <input type="radio" id="article-input-5-1" name="article-input-5-1" value="">
+                                        <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="article-content-wrapper-5-1-2">
+                                <div class="article-content-5-1-2" *ngFor="let a5_1 of article5_1">
+                                    <div *ngFor="let choice of a5_1.CHOICES">
+                                        <div *ngIf="choice.CHOICE_NO == '2'">
+                                            <span>{{choice.CHOICE_NO}}. </span>
+                                            <input type="radio" id="article-input-5-1" name="article-input-5-1" value="">
+                                            <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="a5_1.ARTICLE_SUB_NO == '21'">
+                                        <span>&nbsp;&nbsp;{{a5_1.ARTICLE_CONTENT_TH}}</span>
+                                        <input id="article-text-5-2-1" name="article-text-5-2-1" value="1" type="text">
+                                    </div>
+                                    <div *ngIf="a5_1.ARTICLE_SUB_NO == '22'">
+                                        <span>&nbsp;&nbsp;{{a5_1.ARTICLE_CONTENT_TH}}</span>
+                                        <input id="article-text-5-2-2" name="article-text-5-2-2" value="1" type="text">
+                                    </div>
+                                    <div *ngIf="a5_1.ARTICLE_SUB_NO == '23'">
+                                        <span>&nbsp;&nbsp;{{a5_1.ARTICLE_CONTENT_TH}}</span>
+                                        <input id="article-text-5-2-3" name="article-text-5-2-3" value="1" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-5-2">
+                        <label>2.)</label>
+                        <div class="article-content-5-2" *ngFor="let a5_2 of article5_2">
+                            <p>{{a5_2.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a5_2.CHOICES">
+                                <div *ngIf="choice.CHOICE_NO != '4'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-5-2" name="article-input-5-2" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '4'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-5-2" name="article-input-5-2" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    <input id="article-text-5-2" name="article-text-5-2" value="1" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-5-3">
+                        <label>3.)</label>
+                        <div class="article-content-5-3" *ngFor="let a5_3 of article5_3">
+                            <p>{{a5_3.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a5_3.CHOICES">
+                                <div *ngIf="choice.CHOICE_NO != '6'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-5-3" name="article-input-5-3" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '6'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="radio" id="article-input-5-3" name="article-input-5-3" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    <input id="article-text-5-3" name="article-text-5-3" value="1" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-5-4">
+                        <label>4.)</label>
+                        <div class="article-content-5-4" *ngFor="let a5_4 of article5_4">
+                            <p>{{a5_4.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a5_4.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="radio" id="article-input-5-4" name="article-input-5-4" value="">
+                                <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-5-5">
+                        <label>5.)</label>
+                        <div class="article-content-5-5" *ngFor="let a5_5 of article5_5">
+                            <p>{{a5_5.ARTICLE_CONTENT_TH}}</p>
+                            <input id="article-text-5-5" name="article-text-5-5" value="1" type="text">
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <hr>
+            <section class="part" id="part-6">
+                <div class="part-text">
+                    <h1>{{part6['PART_CONTENT_TH']}}</h1>
+                </div>
+                <div class="article-wrapper">
+                    <article id="article-6-1">
+                        <label>1.)</label>
+                        <div class="article-content-6-1" *ngFor="let a6_1 of article6_1">
+                            <p>{{a6_1.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a6_1.CHOICES; let i = index">
+                                <div *ngIf="choice.CHOICE_NO != '9'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="checkbox" id="article-input-6-1-{{i+1}}" name="article-input-6-1-{{i+1}}" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                </div>
+                                <div *ngIf="choice.CHOICE_NO == '9'">
+                                    <span>{{choice.CHOICE_NO}}. </span>
+                                    <input type="checkbox" id="article-input-6-1-{{i+1}}" name="article-input-6-1-{{i+1}}" value="">
+                                    <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                                    <input id="article-text-6-1-{{i+1}}" name="article-text-6-1-{{i+1}}" value="1" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-6-2">
+                        <label>2.)</label>
+                        <div class="article-content-6-2" *ngFor="let a6_2 of article6_2">
+                            <p>{{a6_2.ARTICLE_CONTENT_TH}}</p>
+                            <div *ngFor="let choice of a6_2.CHOICES">
+                                <span>{{choice.CHOICE_NO}}. </span>
+                                <input type="checkbox" id="article-input-6-2" name="article-input-6-2" value="">
+                                <span>{{choice.CHOICE_CONTENT_TH}}</span>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-6-3">
+                        <!-- <label>3.)</label> -->
+                        <div class="article-content-6-3" *ngFor="let a6_3 of article6_3; let i = index">
+                            <div class="article-wrapper-content-6-3">
+                                <div *ngIf="a6_3.ARTICLE_SUB_NO == '1'">
+                                    <label>3.)</label>
+                                    <span>{{a6_3.ARTICLE_CONTENT_TH}}</span>
+                                </div>
+                            </div>
+                            <div class="article-text-choice-6-3">
+                                <div *ngIf="a6_3.ARTICLE_SUB_NO > '1'">
+                                    <span>{{i}}. </span>
+                                    <span>{{a6_3.ARTICLE_CONTENT_TH}}</span>
+                                    <input id="article-text-6-3-{{i}}" name="article-text-6-3-{{i}}" value="" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr>
+                    <article id="article-8">
+                        <div *ngFor="let a8 of article8; let i = index">
+                            <p>{{a8.ARTICLE_CONTENT_TH}}</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <hr>
+            <!-- <section class="section-btn-submit">
+                <ng-container
+                    *ngIf="validatingFormGroup.invalid; then invalidFormGroupThen; else invalidFormGroupElse;">
+                </ng-container>
+
+                <ng-template #invalidFormGroupThen>
+                    <span class="submit-text-warning-invalid">
+                        กรุณาตรวจสอบ และกรอกข้อมูลให้ครบถ้วน ณ จุดที่มีเครื่องหมาย (*)
+                    </span>
+                    <button class="btn-submit" type="submit" disabled>บันทึก</button>
+                </ng-template>
+                <ng-template #invalidFormGroupElse>
+                    <button class="btn-submit" type="submit">บันทึก</button>
+                </ng-template>
+            </section> -->
+        </div>
+    </form>
+</div>

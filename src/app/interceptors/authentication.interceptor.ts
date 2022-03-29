@@ -19,16 +19,20 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
 
+  isAuthentication : boolean;
+  
   constructor(
     private signInServices: SignInService,
     private router: Router
-  ) { }
-
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  ) { 
+    this.signInServices.getStudentStateInformation.subscribe(obs => {
+      this.isAuthentication = obs.isAuthentication;  
+    });    
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.signInServices.getIsAuthen()) {
+    if (this.isAuthentication) {
 
       const access_token: string = this.signInServices.getAccessToken();
 
@@ -58,16 +62,17 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
   private handle401Unauthorized(request: HttpRequest<any>, next: HttpHandler) {
 
-    if (!this.signInServices.getIsAuthen()) {
+    if (!this.isAuthentication) {
 
-      this.refreshTokenSubject.next(null);
-      return this.signInServices.refresh_authentication().pipe(switchMap(response => {
+      return this.signInServices.refresh_authentication().pipe(switchMap(() => {
 
         let ACCESS_TOKEN: string = this.signInServices.getAccessToken();
-        this.refreshTokenSubject.next(ACCESS_TOKEN);
+
         return next.handle(this.addTokenHeader(request, ACCESS_TOKEN)).pipe(catchError(err => {
+
           this.signOut();
           return throwError(err);
+
         }));
 
       }));

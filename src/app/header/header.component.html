@@ -16,7 +16,7 @@
                         <a id="home-page" routerLink="/home-page" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a>
                     </li>
                     <div *ngIf="isBechelor">
-                        <div [style.display]="isLanguageTH ? 'flex' : 'none'" style="flex-wrap: wrap; align-items: center; justify-content: space-evenly;">
+                        <div [style.display]="isLanguageTH ? 'flex' : 'none'" class="bechelor-nav">
                             <li (click)="closeMenu()">
                                 <a id="survey-page" routerLink="/student/bachelor-thai" routerLinkActive="active-link">Survey</a>
                             </li>

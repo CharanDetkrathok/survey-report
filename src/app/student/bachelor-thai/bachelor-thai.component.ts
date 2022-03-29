@@ -40,6 +40,8 @@ export class BachelorThaiComponent implements OnInit {
 
   header = {};
 
+  part = [];
+
   part1 = {};
   part2 = {};
   part3 = {};
@@ -153,20 +155,20 @@ export class BachelorThaiComponent implements OnInit {
     // -------- ตอนที่ 1 ข้อ 4 ย่อย -------
 
     current_address: ['', Validators.required],
-    current_address_no: [{value:'', disabled: true}],
-    current_address_village_no: [{value:'', disabled: true}],
-    current_address_village: [{value:'', disabled: true}],
-    current_address_building: [{value:'', disabled: true}],
-    current_address_floor: [{value:'', disabled: true}],
-    current_address_alley: [{value:'', disabled: true}],
-    current_address_road: [{value:'', disabled: true}],
-    current_address_sub_district: [{value:'', disabled: true}],
-    current_address_district: [{value:'', disabled: true}],
-    current_address_province: [{value:'', disabled: true}],
-    current_address_country: [{value:'', disabled: true}],
-    current_address_zip_code: [{value:'', disabled: true}],
-    current_address_phone_number: [{value:'', disabled: true}],
-    current_address_e_mail: [{value:'', disabled: true}],
+    current_address_no: [{ value: '', disabled: true }],
+    current_address_village_no: [{ value: '', disabled: true }],
+    current_address_village: [{ value: '', disabled: true }],
+    current_address_building: [{ value: '', disabled: true }],
+    current_address_floor: [{ value: '', disabled: true }],
+    current_address_alley: [{ value: '', disabled: true }],
+    current_address_road: [{ value: '', disabled: true }],
+    current_address_sub_district: [{ value: '', disabled: true }],
+    current_address_district: [{ value: '', disabled: true }],
+    current_address_province: [{ value: '', disabled: true }],
+    current_address_country: [{ value: '', disabled: true }],
+    current_address_zip_code: [{ value: '', disabled: true }],
+    current_address_phone_number: [{ value: '', disabled: true }],
+    current_address_e_mail: [{ value: '', disabled: true }],
 
     // -------- ตอนที่ 1 ข้อ 5 ย่อย -------
 
@@ -186,7 +188,7 @@ export class BachelorThaiComponent implements OnInit {
 
     // -------- ตอนที่ 1 ข้อ 10 ย่อย -------
     before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere: ['', Validators.required],
-    before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere_text: ['', Validators.required],
+    before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere_text: [''],
 
     // -------- ตอนที่ 1 ข้อ 11 ย่อย -------
     current_working_status: ['', Validators.required],
@@ -327,7 +329,6 @@ export class BachelorThaiComponent implements OnInit {
   private async getHeaders() {
     await this.http.fetchHeaders().subscribe(response => {
       this.header = response[0];
-      // console.log(this.header);
     });
   }
 
@@ -341,14 +342,16 @@ export class BachelorThaiComponent implements OnInit {
       this.part6 = response[5];
       this.part7 = response[6];
 
-      // console.log("this.part7 => ", this.part7)
+      this.part = response;
+
+      console.log("this.part => ", this.part)
     });
   }
 
   private async getArticlesAndChoices() {
     await this.http.fetchArticlesAndChoices().subscribe(response => {
 
-      console.log(response)
+      // console.log(response)
 
       response.forEach(partInArticle => {
         switch (partInArticle.PART_ID) {
@@ -653,14 +656,19 @@ export class BachelorThaiComponent implements OnInit {
       this.answerSurvey.controls['current_address_phone_number'].setValidators([Validators.required]);
 
       this.answerSurvey.controls['current_address_no'].enable();
+      this.answerSurvey.controls['current_address_village_no'].enable();
       this.answerSurvey.controls['current_address_village'].enable();
       this.answerSurvey.controls['current_address_building'].enable();
+      this.answerSurvey.controls['current_address_floor'].enable();
+      this.answerSurvey.controls['current_address_alley'].enable();
+      this.answerSurvey.controls['current_address_road'].enable();
       this.answerSurvey.controls['current_address_sub_district'].enable();
       this.answerSurvey.controls['current_address_district'].enable();
       this.answerSurvey.controls['current_address_province'].enable();
       this.answerSurvey.controls['current_address_country'].enable();
       this.answerSurvey.controls['current_address_zip_code'].enable();
       this.answerSurvey.controls['current_address_phone_number'].enable();
+      this.answerSurvey.controls['current_address_e_mail'].enable();
 
 
     } else {
@@ -675,43 +683,54 @@ export class BachelorThaiComponent implements OnInit {
       this.answerSurvey.controls['current_address_zip_code'].clearValidators()
       this.answerSurvey.controls['current_address_phone_number'].clearValidators()
 
+      this.answerSurvey.controls['current_address_no'].patchValue('');
+      this.answerSurvey.controls['current_address_village_no'].patchValue('');
+      this.answerSurvey.controls['current_address_village'].patchValue('');
+      this.answerSurvey.controls['current_address_building'].patchValue('');
+      this.answerSurvey.controls['current_address_floor'].patchValue('');
+      this.answerSurvey.controls['current_address_alley'].patchValue('');
+      this.answerSurvey.controls['current_address_road'].patchValue('');
+      this.answerSurvey.controls['current_address_sub_district'].patchValue('');
+      this.answerSurvey.controls['current_address_district'].patchValue('');
+      this.answerSurvey.controls['current_address_province'].patchValue('');
+      this.answerSurvey.controls['current_address_country'].patchValue('');
+      this.answerSurvey.controls['current_address_zip_code'].patchValue('');
+      this.answerSurvey.controls['current_address_phone_number'].patchValue('');
+      this.answerSurvey.controls['current_address_e_mail'].patchValue('');
+
       this.answerSurvey.controls['current_address_no'].disable();
+      this.answerSurvey.controls['current_address_village_no'].disable();
       this.answerSurvey.controls['current_address_village'].disable();
       this.answerSurvey.controls['current_address_building'].disable();
+      this.answerSurvey.controls['current_address_floor'].disable();
+      this.answerSurvey.controls['current_address_alley'].disable();
+      this.answerSurvey.controls['current_address_road'].disable();
       this.answerSurvey.controls['current_address_sub_district'].disable();
       this.answerSurvey.controls['current_address_district'].disable();
       this.answerSurvey.controls['current_address_province'].disable();
       this.answerSurvey.controls['current_address_country'].disable();
       this.answerSurvey.controls['current_address_zip_code'].disable();
       this.answerSurvey.controls['current_address_phone_number'].disable();
+      this.answerSurvey.controls['current_address_e_mail'].disable();
+
 
     }
 
+    this.answerSurvey.controls['current_address'].updateValueAndValidity();
     this.answerSurvey.controls['current_address_no'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_village_no'].updateValueAndValidity();
     this.answerSurvey.controls['current_address_village'].updateValueAndValidity();
     this.answerSurvey.controls['current_address_building'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_floor'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_alley'].updateValueAndValidity();
+    this.answerSurvey.controls['current_address_road'].updateValueAndValidity();
     this.answerSurvey.controls['current_address_sub_district'].updateValueAndValidity();
     this.answerSurvey.controls['current_address_district'].updateValueAndValidity();
     this.answerSurvey.controls['current_address_province'].updateValueAndValidity();
     this.answerSurvey.controls['current_address_country'].updateValueAndValidity();
     this.answerSurvey.controls['current_address_zip_code'].updateValueAndValidity();
     this.answerSurvey.controls['current_address_phone_number'].updateValueAndValidity();
-
-    // current_address: ['', Validators.required],
-    // current_address_no: ['', Validators.required],
-    // current_address_village_no: [''],
-    // current_address_village: ['', Validators.required],
-    // current_address_building: ['', Validators.required],
-    // current_address_floor: [''],
-    // current_address_alley: [''],
-    // current_address_road: [''],
-    // current_address_sub_district: ['', Validators.required],
-    // current_address_district: ['', Validators.required],
-    // current_address_province: ['', Validators.required],
-    // current_address_country: ['', Validators.required],
-    // current_address_zip_code: ['', Validators.required],
-    // current_address_phone_number: ['', Validators.required],
-    // current_address_e_mail: ['', Validators.required],
+    this.answerSurvey.controls['current_address_e_mail'].updateValueAndValidity();
   }
 
   onSave() {
