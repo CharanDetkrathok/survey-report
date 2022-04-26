@@ -17,10 +17,148 @@
     </div>
     <hr>
 
-    <div *ngFor="let part of part" class="part-wrapper">
-        <div class="part-inside">
-            <p class="part-content-text">{{part.PART_CONTENT_TH}}</p>
-        </div>
-    </div>
+    <div class="form-wrapper">
 
+        <form [formGroup]="answerSurvey" (ngSubmit)="onSave()" class="form-style">
+            <ng-container *ngFor="let part of part; let i = index;" class="survey-wrapper">
+                <div class="part-wrapper">
+                    <p class="part-content-text">{{part.PART_CONTENT_TH}}</p>
+                </div>
+
+                <ng-container *ngFor="let articleNoDistinct of articleNoDistinct; let i = index;">
+                    <ng-container *ngIf="part.PART_ID == articleNoDistinct.PART_ID">
+                        <div class="article-no">
+                            <p class="article-no-content-text">{{articleNoDistinct.ARTICLE_NO}} )</p>
+                        </div>
+
+                        <ng-container *ngFor="let article of article">
+
+                            <ng-container *ngIf="part.PART_ID == article.PART_ID && article.ARTICLE_NO == articleNoDistinct.ARTICLE_NO">
+
+                                <div class="article-wrapper">
+                                    <div class="article-inside">
+                                        <p> {{article.ARTICLE_CONTENT_TH}}</p>
+
+                                        <span *ngIf="answerSurvey.controls[article.ANSWER].invalid" class="start-red"></span>
+
+                                        <div *ngIf="article.INPUTS.length > 0;" class="article-input-style">
+                                            <ng-container *ngIf="
+                                        article.ANSWER == 'FACULTY' || 
+                                        article.ANSWER == 'FIELD_OF_STUDY' || 
+                                        article.ANSWER == 'SEMESTER_OF_COMPLETION' ||
+                                        article.ANSWER == 'YEAR_OF_COMPLETION' || 
+                                        article.ANSWER == 'GPA' ||
+                                        article.ANSWER == 'CAMPUS'; 
+                                        then answerFixThen; else answerFixElse;"></ng-container>
+
+                                            <ng-template #answerFixThen>
+                                                <div *ngIf="article.ANSWER == 'FACULTY'">
+                                                    <input formControlName="{{article.ANSWER}}" type="text" readonly>
+                                                </div>
+                                                <div *ngIf="article.ANSWER == 'FIELD_OF_STUDY'">
+                                                    <input formControlName="{{article.ANSWER}}" type="text" readonly>
+                                                </div>
+                                                <div *ngIf="article.ANSWER == 'SEMESTER_OF_COMPLETION'">
+                                                    <div>
+                                                        <input class="select-semester-style" #selectSemester type="text" (click)="onSelectedSEMESTER(selectSemester.value)" formControlName="{{article.ANSWER}}" placeholder="{{article.INPUTS[0].INPUT_CONTENT_TH}}" readonly>
+                                                        <div class="style-ul-wrapper">
+                                                            <div class="style-ul-wrapper" [style.display]="isSemesterSelected == true ? 'block':'none'">
+                                                                <div class="style-ul-inside">
+                                                                    <ul class="style-ul">
+                                                                        <input #semester class="style-input" type="text" value="{{semesters}}" (click)="onClickSemester(semester.value)" readonly *ngFor="let semesters of semesters">
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="article.ANSWER == 'YEAR_OF_COMPLETION'">
+                                                    <input formControlName="{{article.ANSWER}}" type="text" maxlength="4" minlength="4" (keypress)="keyPressNumber($event)" placeholder="{{article.INPUTS[0].INPUT_CONTENT_TH}}">
+                                                </div>
+                                                <div *ngIf="article.ANSWER == 'GPA'">
+                                                    <div>
+                                                        <input id="GPA" type="text" maxlength="4" minlength="4" (input)="keyInputGPA()" formControlName="{{article.ANSWER}}" placeholder="{{article.INPUTS[0].INPUT_CONTENT_TH}}">
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="article.ANSWER == 'CAMPUS'">
+                                                    <div>
+                                                        <input id="search-regional-center" class="search-regional-center-style" #searchRegionalCenter type="text" (input)="keyInputCAMPUS(searchRegionalCenter.value)" formControlName="{{article.ANSWER}}" placeholder="{{article.INPUTS[0].INPUT_CONTENT_TH}}" minlength="10">
+                                                        <div *ngIf="regionalCenter" class="style-ul-wrapper" [style.display]="isRegionalCenter == true ? 'block':'none'">
+                                                            <div class="style-ul-inside">
+                                                                <ul class="style-ul">
+                                                                    <input #campus class="style-input" type="text" value="{{regionalCenter.REGIONAL_NAME}}" (click)="onClickCampus(campus.value)" readonly *ngFor="let regionalCenter of regionalCenter">
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+
+                                            <ng-template #answerFixElse>
+
+                                                <ng-container *ngIf="article.INPUTS[0].INPUT_VALUED == 'TEXT'; then textThen; else textElse">
+                                                </ng-container>
+
+                                                <ng-template #textThen>
+
+                                                    <div>
+                                                        <input formControlName="{{article.ANSWER}}" type="text" placeholder="{{article.INPUTS[0].INPUT_CONTENT_TH}}">
+                                                    </div>
+
+                                                </ng-template>
+                                                <ng-template #textElse>
+
+                                                    <ng-container *ngIf="article.INPUTS[0].INPUT_VALUED == 'INTEGER'; then integerThen; else integerElse">
+                                                    </ng-container>
+
+                                                    <ng-template #integerThen>
+
+                                                        <div>
+                                                            <input formControlName="{{article.ANSWER}}" text="number">
+                                                        </div>
+
+                                                    </ng-template>
+                                                    <ng-template #integerElse>
+
+                                                        <!-- article.INPUTS[0].INPUT_VALUED == 'FLOAT' -->
+                                                        <div>
+                                                            <input formControlName="{{article.ANSWER}}" type="number" value="">
+                                                        </div>
+
+                                                    </ng-template>
+
+                                                </ng-template>
+
+
+                                            </ng-template>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        <div class="hr-inside">
+                            <hr>
+                        </div>
+                    </ng-container>
+                </ng-container>
+
+            </ng-container>
+            <section class="section-btn-submit">
+                <ng-container *ngIf="validatingFormGroup.invalid; then invalidFormGroupThen; else invalidFormGroupElse;">
+                </ng-container>
+
+                <ng-template #invalidFormGroupThen>
+                    <span class="submit-text-warning-invalid">
+                        กรุณาตรวจสอบ และกรอกข้อมูลให้ครบถ้วน ณ จุดที่มีเครื่องหมาย (*)
+                    </span>
+                    <button class="btn-submit" type="submit" disabled>บันทึก</button>
+                </ng-template>
+                <ng-template #invalidFormGroupElse>
+                    <button class="btn-submit" type="submit">บันทึก</button>
+                </ng-template>
+            </section>
+        </form>
+
+    </div>
 </div>

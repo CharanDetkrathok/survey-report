@@ -17,7 +17,6 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.homeContent.fetchHomeContent().subscribe(res => {
       // To do something
-      console.log(res)
     })
   }
 

@@ -29,13 +29,27 @@ export interface disclosureResponse {
   CONFIRM_EN: string;
 }
 
+
+
+export interface bechelorArticlesNoDistinctResponse {
+  PART_ID: string;
+  ARTICLE_NO: string;
+}
+
 export interface bechelorArticlesAndChoicesResponse {
   PART_ID: string;
   ARTICLE_NO: string;
   ARTICLE_SUB_NO: string;
   ARTICLE_CONTENT_TH: string;
   ARTICLE_CONTENT_EN: string;
+  ANSWER_INPUTS: string;
+  ANSWER_CHOICES: string;
+  ANSWER_CHECKBOX: string;
+  ANSWER_REQUIRED: string;
+  ANSWER: string;
   CHOICES: bechelorChoices[];
+  INPUTS: bechelorInputs[];
+  CHECKBOXS: bechelorCheckboxs[];
 }
 
 interface bechelorChoices {
@@ -44,6 +58,20 @@ interface bechelorChoices {
   CHOICE_VALUED: string;
   CHOICE_CONTENT_TH: string;
   CHOICE_CONTENT_EN: string;
+}
+interface bechelorInputs {
+  INPUT_NO: string;
+  INPUT_SUB_NO: string;
+  INPUT_VALUED: string;
+  INPUT_CONTENT_TH: string;
+  INPUT_CONTENT_EN: string;
+}
+interface bechelorCheckboxs {
+  CHECKBOX_NO: string;
+  CHECKBOX_SUB_NO: string;
+  CHECKBOX_VALUED: string;
+  CHECKBOX_CONTENT_TH: string;
+  CHECKBOX_CONTENT_EN: string;
 }
 
 export interface bechelorPartsOfArticlesRepose {
@@ -59,4 +87,10 @@ export interface headersRepose {
   HEADER_CONTENT_EN: string;
   HEADER_DIRECTION_TH: string;
   HEADER_DIRECTION_EN: string;
+}
+
+export interface RegionalCenterResponse {
+  REGIONAL_NO: string;
+  REGIONAL_NAME: string;
+  REGIONAL_NAME_ENG: string;
 }

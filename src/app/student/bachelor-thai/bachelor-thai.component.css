@@ -23,6 +23,37 @@ hr {
         height: 0.1rem;
         width: 95vw;
     }
+    .hr-inside {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+    p {
+        margin: 0;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin-right: 0.3rem;
+        width: 1.1rem;
+        height: 1.1rem;
+    }
+    input {
+        border: none;
+        border-bottom: 2px solid rgb(84 84 84);
+        outline: none;
+        text-align: center;
+        width: 90vw;
+    }
+    input:hover,
+    input:focus {
+        border-bottom: 2px solid rgb(255 166 0);
+    }
+    .start-red::after {
+        content: '*';
+        color: rgb(175, 0, 0);
+        font-weight: bold;
+    }
     /* ครอบ header รูปพ่อขุนและตัวหนังสือ */
     .header-wrapper {
         margin: 0 0.5rem;
@@ -47,6 +78,7 @@ hr {
     }
     .header-content-1 {
         display: flex;
+        margin-bottom: 1rem;
     }
     .header-content-text-1 {
         font-size: 0.9rem;
@@ -56,6 +88,7 @@ hr {
     .header-content-2 {
         display: flex;
         flex-direction: column;
+        margin-bottom: 1rem;
     }
     .header-content-text-direction-1 {
         font-size: 0.9rem;
@@ -72,15 +105,153 @@ hr {
         text-align: justify;
     }
     /* ตอนที่ 1 - 6 */
+    .form-wrapper {
+        width: 100vw;
+    }
+    .survey-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        align-content: center;
+        margin: 1rem 0.5rem 1rem 0.5rem;
+    }
     .part-wrapper {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         align-content: center;
-        width: 90vw;
+        width: 100%;
     }
-    .part-inside {}
     .part-content-text {
-        font-size: 1.3rem;
+        font-size: 1rem;
+        margin: 0 0.5rem;
+    }
+    .article-no {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+        width: 100vw;
+    }
+    .article-no-content-text {
+        font-size: 1rem;
+        margin: 0 0.5rem;
+    }
+    .form-style {
+        width: 100%;
+    }
+    .article-wrapper {
+        display: flex;
+        margin-left: 0.8rem;
+    }
+    .article-inside {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin: 0.8rem 0;
+    }
+    .article-input-style {
+        margin: 0.8rem 0 0 0;
+    }
+    .select-semester-style {
+        cursor: pointer;
+        background-image: url('../../../assets/imgs/angle-down.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position-x: right;
+    }
+    .search-regional-center-style {
+        cursor: pointer;
+        background-image: url('../../../assets/imgs/search.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position-x: right;
+    }
+    .style-ul-wrapper {
+        position: relative;
+    }
+    .style-ul-inside {
+        position: absolute;
+        top: 100%;
+        z-index: 1;
+        background: rgb(255, 255, 255);
+        width: 100%;
+        border: 1px solid rgb(206 206 206);
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        box-shadow: rgb(125 124 124) 0px 3px 8px;
+    }
+    .style-ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    .style-ul:hover,
+    .style-ul:focus,
+    .style-ul-inside:hover,
+    .style-ul-inside:focus {
+        color: white;
+        cursor: pointer;
+    }
+    .style-input {
+        margin: 0;
+        padding: 1rem 1rem;
+        border-bottom: 1px solid rgb(206 206 206);
+        text-align: start;
+    }
+    .style-input:hover,
+    .style-input:focus {
+        background: rgb(255 166 0);
+        color: white;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        cursor: pointer;
+    }
+    .section-btn-submit {
+        width: 100%;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        margin: 1rem 0;
+        gap: 1rem;
+    }
+    .btn-submit {
+        font-size: 1rem;
+        width: 80%;
+        padding: 1rem 1rem;
+        margin: 0 0.2rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 255, 255, 0);
+        border: 2px solid rgb(18, 2, 90);
+        color: rgb(18, 2, 90);
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+    }
+    .submit-text-warning-invalid {
+        color: rgb(255 0 0);
+        font-size: 1rem;
+        text-align: center;
+    }
+    .btn-submit:hover {
+        background-color: rgb(18, 2, 90);
+        color: rgb(255, 255, 255);
+        box-shadow: rgb(125 124 124) 0px 3px 8px;
+    }
+    .btn-submit:disabled {
+        background-color: rgb(120 120 120);
+        border: 2px solid rgb(120 120 120);
+        color: rgb(255 255 255);
     }
 }

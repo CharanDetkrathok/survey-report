@@ -1,4 +1,3 @@
-import { bechelorArticlesAndChoicesResponse } from './../bachelor-interface';
 import { Component, OnInit } from '@angular/core';
 import { SignInService } from 'src/app/services/sign-in.service';
 import { BechelorThaiService } from '../../services/bechelor-thai.service';
@@ -6,7 +5,10 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { messagesDialog } from 'src/app/disclosure-dialog/disclosure-dialog-interface';
 import { DisclosureDialogComponent, DisclosureDialogModel } from '../../disclosure-dialog/disclosure-dialog.component';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NEVER, Subject } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
+import { RegionalCenterResponse } from '../bachelor-interface';
 
 
 
@@ -17,84 +19,21 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class BachelorThaiComponent implements OnInit {
 
-  // answerSurvey = this.formGroup.group({
-  //   Std_code: [this.signInServices.getStdCode()],
-  //   Prename_no: [this.signInServices.getStudent().StudentInfo.Prename_no],
-  //   Prename_thai: [this.signInServices.getStudent().StudentInfo.Prename_thai],
-  //   Prename_eng: [this.signInServices.getStudent().StudentInfo.Prename_eng],
-  //   First_name_thai: [this.signInServices.getStudent().StudentInfo.First_name_thai],
-  //   First_name_eng: [this.signInServices.getStudent().StudentInfo.Faculty_name_eng],
-  //   Last_name_thai: [this.signInServices.getStudent().StudentInfo.Last_name_thai],
-  //   Last_name_eng: [this.signInServices.getStudent().StudentInfo.Last_name_eng],
-  //   Birth_date: [this.signInServices.getStudent().StudentInfo.Birth_date],
-  //   Faculty_no: [this.signInServices.getStudent().StudentInfo.Faculty_no],
-  //   Faculty_name_thai: [this.signInServices.getStudent().StudentInfo.Faculty_name_thai],
-  //   Faculty_name_eng: [this.signInServices.getStudent().StudentInfo.Faculty_name_eng],
-  //   Curr_no: [this.signInServices.getStudent().StudentInfo.Curr_no],
-  //   Major_no: [this.signInServices.getStudent().StudentInfo.Major_no],
-  //   Major_flag: [this.signInServices.getStudent().StudentInfo.Major_flag],
-  //   Major_name_thai: [this.signInServices.getStudent().StudentInfo.Major_name_thai],
-  //   Major_name_eng: [this.signInServices.getStudent().StudentInfo.Major_name_eng],
-  //   Lev_id: [this.signInServices.getStudent().StudentInfo.Lev_id],
-  // });
-
   header = {};
-
   part = [];
+  article = [];
+  articleNoDistinct = [];
 
-  part1 = {};
-  part2 = {};
-  part3 = {};
-  part4 = {};
-  part5 = {};
-  part6 = {};
-  part7 = {};
+  semesters = ['ภาค - 1','ภาคซ่อม - 1','ภาค - 2','ภาคซ่อม - 2 หรือ ภาคซ่อม - ฤดูร้อน','ภาค - ฤดูร้อน']
+  isSemesterSelected: boolean = false;
 
-  article1_1 = [];
-  article1_2 = [];
-  article1_3 = [];
-  article1_4 = [];
-  article1_5 = [];
-  article1_6 = [];
-  article1_7 = [];
-  article1_8 = [];
-  article1_9 = [];
-  article1_10 = [];
-  article1_11 = [];
-
-  article2_1 = [];
-  article2_2 = [];
-  article2_3 = [];
-  article2_4 = [];
-  article2_5 = [];
-  article2_6 = [];
-  article2_7 = [];
-  article2_8 = [];
-
-  article3_1 = [];
-  article3_2 = [];
-  article3_3 = [];
-  article3_4 = [];
-  article3_5 = [];
-
-  article4_1 = [];
-  article4_2 = [];
-
-  article5_1 = [];
-  article5_2 = [];
-  article5_3 = [];
-  article5_4 = [];
-  article5_5 = [];
-
-  article6_1 = [];
-  article6_2 = [];
-  article6_3 = [];
-
-  article7 = [];
-  article8 = [];
+  regionalCenter: RegionalCenterResponse[] = [];
+  onSearchRegionalCenter = new Subject<string>();
+  isRegionalCenter: boolean = false;
+  campusSelectedText: number = 0;
+  isCampusSelected: boolean = false;
 
   answerSurvey = this.formGroup.group({
-
     Lev_id: [this.signInServices.getStudent().StudentInfo.Lev_id],
     Language: [this.signInServices.getLanguage()],
 
@@ -109,90 +48,18 @@ export class BachelorThaiComponent implements OnInit {
     Major_name_thai: [this.signInServices.getStudent().StudentInfo.Major_name_thai],
     Major_name_eng: [this.signInServices.getStudent().StudentInfo.Major_name_eng],
 
-    Year_end: ['', Validators.required],
-    Semester_end: ['', Validators.required],
-    GPA: ['', Validators.required],
-    Campus: ['', Validators.required],
-
     // -------- ตอนที่ 1 ข้อ 2 ย่อย --------
 
     Prename_no: [this.signInServices.getStudent().StudentInfo.Prename_no],
     Prename_thai: [this.signInServices.getStudent().StudentInfo.Prename_thai],
     Prename_eng: [this.signInServices.getStudent().StudentInfo.Prename_eng],
     First_name_thai: [this.signInServices.getStudent().StudentInfo.First_name_thai],
-    First_name_eng: [this.signInServices.getStudent().StudentInfo.Faculty_name_eng],
+    First_name_eng: [this.signInServices.getStudent().StudentInfo.First_name_eng],
 
     Last_name_thai: [this.signInServices.getStudent().StudentInfo.Last_name_thai],
     Last_name_eng: [this.signInServices.getStudent().StudentInfo.Last_name_eng],
     Birth_date: [this.signInServices.getStudent().StudentInfo.Birth_date],
-
-    Std_code: [this.signInServices.getStdCode()],
-    Personal_id: ['', Validators.required],
-    Age: [this.signInServices.getAge(), Validators.required], // 5   
-    Sex: ['', Validators.required],
-
-    // -------- ตอนที่ 1 ข้อ 3 ย่อย -------
-
-    House_domicile: ['', Validators.required],
-    House_address_no: ['', Validators.required],
-    House_address_village_no: [''],
-    House_address_village: ['', Validators.required],
-    House_address_building: ['', Validators.required],
-    House_address_floor: [''],
-    House_address_alley: [''],
-    House_address_road: [''],
-    House_address_sub_district: ['', Validators.required],
-    House_address_district: ['', Validators.required],
-    House_address_province: ['', Validators.required],
-    House_address_country: ['', Validators.required],
-    House_address_zip_code: ['', Validators.required],
-    // House_address_phone_number: ['' , Validators.required],
-    // House_address_tel: ['' , Validators.required],
-    // House_address_fax: ['' , Validators.required],
-    // House_address_e_mail: ['' , Validators.required],
-    // House_address_website: ['' , Validators.required],
-
-    // -------- ตอนที่ 1 ข้อ 4 ย่อย -------
-
-    current_address: ['', Validators.required],
-    current_address_no: [{ value: '', disabled: true }],
-    current_address_village_no: [{ value: '', disabled: true }],
-    current_address_village: [{ value: '', disabled: true }],
-    current_address_building: [{ value: '', disabled: true }],
-    current_address_floor: [{ value: '', disabled: true }],
-    current_address_alley: [{ value: '', disabled: true }],
-    current_address_road: [{ value: '', disabled: true }],
-    current_address_sub_district: [{ value: '', disabled: true }],
-    current_address_district: [{ value: '', disabled: true }],
-    current_address_province: [{ value: '', disabled: true }],
-    current_address_country: [{ value: '', disabled: true }],
-    current_address_zip_code: [{ value: '', disabled: true }],
-    current_address_phone_number: [{ value: '', disabled: true }],
-    current_address_e_mail: [{ value: '', disabled: true }],
-
-    // -------- ตอนที่ 1 ข้อ 5 ย่อย -------
-
-    you_applied_to_study_by: ['', Validators.required],
-
-    // -------- ตอนที่ 1 ข้อ 6 ย่อย -------
-    program_attended: ['', Validators.required],
-
-    // -------- ตอนที่ 1 ข้อ 7 ย่อย -------
-    disability: ['', Validators.required],
-
-    // -------- ตอนที่ 1 ข้อ 8 ย่อย -------
-    offered_funds_to_study: ['', Validators.required],
-
-    // -------- ตอนที่ 1 ข้อ 9 ย่อย -------
-    could_you_graduate_in_the_set_period_of_time_in_the_program: ['', Validators.required],
-
-    // -------- ตอนที่ 1 ข้อ 10 ย่อย -------
-    before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere: ['', Validators.required],
-    before_enrolling_at_ramkhamhaeng_university_had_you_worked_somewhere_text: [''],
-
-    // -------- ตอนที่ 1 ข้อ 11 ย่อย -------
-    current_working_status: ['', Validators.required],
-    current_working_status_text: [''],
+    Age: [this.signInServices.getAge()],
 
   });
 
@@ -206,19 +73,35 @@ export class BachelorThaiComponent implements OnInit {
     private signInServices: SignInService,
     private router: Router,
     private formGroup: FormBuilder
-  ) { }
+  ) {
+
+    this.onSearchRegionalCenter
+      .pipe(
+        debounceTime(300),
+        switchMap(searchRegionalCenter => {
+          return this.http.fetchRegionalCenter(searchRegionalCenter);
+        })
+      )
+      .subscribe(regionalCenter => {
+        this.regionalCenter = regionalCenter;
+        if (this.regionalCenter.length > 0) {
+          this.isRegionalCenter = true;
+        } else {
+          this.isRegionalCenter = false;
+        }
+      });
+
+  }
 
   ngOnInit(): void {
-
-    console.log(this.answerSurvey)
 
     if (localStorage.getItem('isDisclosure') != 'true') {
       this.getDisclosure();
     }
     this.getHeaders();
     this.getPartsOfArticles();
+    this.getArticlesNoDistinct();
     this.getArticlesAndChoices();
-    // console.log(this.signInServices.getAge())
   }
 
   private getDisclosure() {
@@ -334,175 +217,41 @@ export class BachelorThaiComponent implements OnInit {
 
   private async getPartsOfArticles() {
     await this.http.fetchPartsOfArticles().subscribe(response => {
-      this.part1 = response[0];
-      this.part2 = response[1];
-      this.part3 = response[2];
-      this.part4 = response[3];
-      this.part5 = response[4];
-      this.part6 = response[5];
-      this.part7 = response[6];
 
       this.part = response;
 
-      console.log("this.part => ", this.part)
+    });
+  }
+
+  private async getArticlesNoDistinct() {
+    await this.http.fetchArticlesNoDistinct().subscribe(response => {
+
+      this.articleNoDistinct = response
+
     });
   }
 
   private async getArticlesAndChoices() {
     await this.http.fetchArticlesAndChoices().subscribe(response => {
 
-      // console.log(response)
+      this.article = response;
+      console.log(this.article);
+      this.article.forEach(article => {
 
-      response.forEach(partInArticle => {
-        switch (partInArticle.PART_ID) {
-          case '1':
-            switch (partInArticle.ARTICLE_NO) {
-              case '1':
-                this.article1_1.push(partInArticle);
-                break;
-              case '2':
-                this.article1_2.push(partInArticle);
-                break;
-              case '3':
-                this.article1_3.push(partInArticle);
-                break;
-              case '4':
-                this.article1_4.push(partInArticle);
-                break;
-              case '5':
-                this.article1_5.push(partInArticle);
-                break;
-              case '6':
-                this.article1_6.push(partInArticle);
-                break;
-              case '7':
-                this.article1_7.push(partInArticle);
-                break;
-              case '8':
-                this.article1_8.push(partInArticle);
-                break;
-              case '9':
-                this.article1_9.push(partInArticle);
-                break;
-              case '10':
-                this.article1_10.push(partInArticle);
-                break;
-              case '11':
-                this.article1_11.push(partInArticle);
-                break;
-              default:
-                break;
-            }
+        switch (article.ANSWER) {
+          case "FACULTY":
+            this.answerSurvey.addControl(article.ANSWER, new FormControl(this.answerSurvey.controls['Faculty_name_thai'].value, article.ANSWER_REQUIRED === "1" ? [Validators.required] : []));
             break;
-          case '2':
-            switch (partInArticle.ARTICLE_NO) {
-              case '1':
-                this.article2_1.push(partInArticle);
-                break;
-              case '2':
-                this.article2_2.push(partInArticle);
-                break;
-              case '3':
-                this.article2_3.push(partInArticle);
-                break;
-              case '4':
-                this.article2_4.push(partInArticle);
-                break;
-              case '5':
-                this.article2_5.push(partInArticle);
-                break;
-              case '6':
-                this.article2_6.push(partInArticle);
-                break;
-              case '7':
-                this.article2_7.push(partInArticle);
-                break;
-              case '8':
-                this.article2_8.push(partInArticle);
-                break;
-              default:
-                break;
-            }
-            break;
-          case '3':
-            switch (partInArticle.ARTICLE_NO) {
-              case '1':
-                this.article3_1.push(partInArticle);
-                break;
-              case '2':
-                this.article3_2.push(partInArticle);
-                break;
-              case '3':
-                this.article3_3.push(partInArticle);
-                break;
-              case '4':
-                this.article3_4.push(partInArticle);
-                break;
-              case '5':
-                this.article3_5.push(partInArticle);
-                break;
-              default:
-                break;
-            }
-            break;
-          case '4':
-            switch (partInArticle.ARTICLE_NO) {
-              case '1':
-                this.article4_1.push(partInArticle);
-                break;
-              case '2':
-                this.article4_2.push(partInArticle);
-                break;
-              default:
-                break;
-            }
-            break;
-          case '5':
-            switch (partInArticle.ARTICLE_NO) {
-              case '1':
-                this.article5_1.push(partInArticle);
-                break;
-              case '2':
-                this.article5_2.push(partInArticle);
-                break;
-              case '3':
-                this.article5_3.push(partInArticle);
-                break;
-              case '4':
-                this.article5_4.push(partInArticle);
-                break;
-              case '5':
-                this.article5_5.push(partInArticle);
-                break;
-              default:
-                break;
-            }
-            break;
-          case '6':
-            switch (partInArticle.ARTICLE_NO) {
-              case '1':
-                this.article6_1.push(partInArticle);
-                break;
-              case '2':
-                this.article6_2.push(partInArticle);
-                break;
-              case '3':
-                this.article6_3.push(partInArticle);
-                break;
-              default:
-                break;
-            }
-            break;
-          case '7':
-            this.article7.push(partInArticle);
-            break;
-          case '8':
-            this.article8.push(partInArticle);
+          case "FIELD_OF_STUDY":
+            this.answerSurvey.addControl(article.ANSWER, new FormControl(this.answerSurvey.controls['Major_name_thai'].value, article.ANSWER_REQUIRED === "1" ? [Validators.required] : []));
             break;
           default:
+            this.answerSurvey.addControl(article.ANSWER, new FormControl('', article.ANSWER_REQUIRED === "1" ? [Validators.required] : []));
             break;
         }
+
       });
+
     });
   }
 
@@ -588,153 +337,98 @@ export class BachelorThaiComponent implements OnInit {
     return /[1-3]/i.test(e.key);
   }
 
-  keyPressGPA(e: KeyboardEvent) {
-    return /[0-9a-zA-Z\.]/i.test(e.key);
-  }
+  keyInputGPA() {
+    const gpa = document.querySelector<HTMLInputElement>('#GPA').value;
 
-  // ตอนที่ 1 ข้อย่อยที่ 3 และ ข้อย่อยที่ 4
-  // กรณีเลือกกรอกข้อมูล หมู่บ้าน หรือกรอก อาคาร/ตึก
-  // ทำการยกเลือก Validators.required
-  // state == 1 คือ "หมู่บ้าน" 
-  // state == 2 คือ "อาคาร/ตึก" 
-  // async setRequireHouseAddressVillageAndBuilding(event, state) {
-  async setRequireAddressVillageAndBuilding(event, state: number, FormControlName: string) {
-    const VILLAGE = FormControlName + "village";
-    const BUILDING = FormControlName + "building";
-    const FLOOR = FormControlName + "floor";
-    const ALLEY = FormControlName + "alley";
-    const ROAD = FormControlName + "road"
+    if (gpa.charAt(0) >= '1' && gpa.charAt(0) <= '4') {
 
-    const TEXT_VALUE = await event.target.value != '' ? true : false;
+      if (gpa.charAt(0) == '4') {
 
-    if (TEXT_VALUE) {
+        if (gpa.charAt(1) == '.') {
+          if (gpa.charAt(2) == '0' && gpa.charAt(3) == '0') {
 
-      if (state == 1) {
-        await this.answerSurvey.controls[BUILDING].setValidators([]);
+            this.answerSurvey.controls['GPA'].patchValue(gpa);
+
+          }
+        } else {
+
+          this.answerSurvey.controls['GPA'].patchValue(gpa.substring(0, 1));
+
+        }
+
       } else {
-        await this.answerSurvey.controls[VILLAGE].setValidators([]);
-        await this.answerSurvey.controls[FLOOR].setValidators([Validators.required]);
-        await this.answerSurvey.controls[ALLEY].setValidators([Validators.required]);
-        await this.answerSurvey.controls[ROAD].setValidators([Validators.required]);
+        if (gpa.charAt(1) == '.') {
+          if (gpa.charAt(2) != '' && gpa.charAt(3) != '') {
+
+            this.answerSurvey.controls['GPA'].patchValue(gpa);
+
+          }
+        } else {
+
+          this.answerSurvey.controls['GPA'].patchValue(gpa.substring(0, 1));
+
+        }
       }
 
     } else {
-      if (state == 1) {
-        await this.answerSurvey.controls[BUILDING].setValidators([Validators.required]);
-      } else {
-        await this.answerSurvey.controls[VILLAGE].setValidators([Validators.required]);
-        await this.answerSurvey.controls[FLOOR].setValidators([]);
-        await this.answerSurvey.controls[ALLEY].setValidators([]);
-        await this.answerSurvey.controls[ROAD].setValidators([]);
-      }
+      this.answerSurvey.controls['GPA'].patchValue(null);
     }
 
-    await this.answerSurvey.controls[VILLAGE].updateValueAndValidity();
-
-    await this.answerSurvey.controls[BUILDING].updateValueAndValidity();
-    await this.answerSurvey.controls[FLOOR].updateValueAndValidity();
-    await this.answerSurvey.controls[ALLEY].updateValueAndValidity();
-    await this.answerSurvey.controls[ROAD].updateValueAndValidity();
-
+    this.answerSurvey.controls['GPA'].updateValueAndValidity()
   }
 
-  // ตอนที่ 1 ข้อย่อยที่ 4
-  // ถ้าเลือกข้อ radio ข้อ 1 ที่อยู่ตามทะเบียนบ้าน ให้ disable ข้อ 2 ที่อยู่ปัจจุบัน
-  currentAddressRadioChoices(event) {
-    console.log(this.answerSurvey.controls['current_address'].value)
+  keyInputCAMPUS(searchRegionalCenter: string) {
 
-    if (this.answerSurvey.controls['current_address'].value == 2) {
+    if (this.isCampusSelected) {
 
-      this.answerSurvey.controls['current_address_no'].setValidators([Validators.required]);
-      this.answerSurvey.controls['current_address_village'].setValidators([Validators.required]);
-      this.answerSurvey.controls['current_address_building'].setValidators([Validators.required]);
-      this.answerSurvey.controls['current_address_sub_district'].setValidators([Validators.required]);
-      this.answerSurvey.controls['current_address_district'].setValidators([Validators.required]);
-      this.answerSurvey.controls['current_address_province'].setValidators([Validators.required]);
-      this.answerSurvey.controls['current_address_country'].setValidators([Validators.required]);
-      this.answerSurvey.controls['current_address_zip_code'].setValidators([Validators.required]);
-      this.answerSurvey.controls['current_address_phone_number'].setValidators([Validators.required]);
+      if (this.campusSelectedText != searchRegionalCenter.length) {
+        this.isCampusSelected = false;
+        this.answerSurvey.controls['CAMPUS'].patchValue(null);
+        this.answerSurvey.controls['CAMPUS'].updateValueAndValidity();
 
-      this.answerSurvey.controls['current_address_no'].enable();
-      this.answerSurvey.controls['current_address_village_no'].enable();
-      this.answerSurvey.controls['current_address_village'].enable();
-      this.answerSurvey.controls['current_address_building'].enable();
-      this.answerSurvey.controls['current_address_floor'].enable();
-      this.answerSurvey.controls['current_address_alley'].enable();
-      this.answerSurvey.controls['current_address_road'].enable();
-      this.answerSurvey.controls['current_address_sub_district'].enable();
-      this.answerSurvey.controls['current_address_district'].enable();
-      this.answerSurvey.controls['current_address_province'].enable();
-      this.answerSurvey.controls['current_address_country'].enable();
-      this.answerSurvey.controls['current_address_zip_code'].enable();
-      this.answerSurvey.controls['current_address_phone_number'].enable();
-      this.answerSurvey.controls['current_address_e_mail'].enable();
-
+        document.querySelector<HTMLInputElement>('#search-regional-center').classList.add('search-regional-center-style');
+      }
 
     } else {
 
-      this.answerSurvey.controls['current_address_no'].clearValidators();
-      this.answerSurvey.controls['current_address_village'].clearValidators()
-      this.answerSurvey.controls['current_address_building'].clearValidators()
-      this.answerSurvey.controls['current_address_sub_district'].clearValidators()
-      this.answerSurvey.controls['current_address_district'].clearValidators()
-      this.answerSurvey.controls['current_address_province'].clearValidators()
-      this.answerSurvey.controls['current_address_country'].clearValidators()
-      this.answerSurvey.controls['current_address_zip_code'].clearValidators()
-      this.answerSurvey.controls['current_address_phone_number'].clearValidators()
+      searchRegionalCenter = searchRegionalCenter.replace(/\s/g, "");
+      if (searchRegionalCenter != "" && searchRegionalCenter.length > 3) {
 
-      this.answerSurvey.controls['current_address_no'].patchValue('');
-      this.answerSurvey.controls['current_address_village_no'].patchValue('');
-      this.answerSurvey.controls['current_address_village'].patchValue('');
-      this.answerSurvey.controls['current_address_building'].patchValue('');
-      this.answerSurvey.controls['current_address_floor'].patchValue('');
-      this.answerSurvey.controls['current_address_alley'].patchValue('');
-      this.answerSurvey.controls['current_address_road'].patchValue('');
-      this.answerSurvey.controls['current_address_sub_district'].patchValue('');
-      this.answerSurvey.controls['current_address_district'].patchValue('');
-      this.answerSurvey.controls['current_address_province'].patchValue('');
-      this.answerSurvey.controls['current_address_country'].patchValue('');
-      this.answerSurvey.controls['current_address_zip_code'].patchValue('');
-      this.answerSurvey.controls['current_address_phone_number'].patchValue('');
-      this.answerSurvey.controls['current_address_e_mail'].patchValue('');
+        this.onSearchRegionalCenter.next(searchRegionalCenter);
 
-      this.answerSurvey.controls['current_address_no'].disable();
-      this.answerSurvey.controls['current_address_village_no'].disable();
-      this.answerSurvey.controls['current_address_village'].disable();
-      this.answerSurvey.controls['current_address_building'].disable();
-      this.answerSurvey.controls['current_address_floor'].disable();
-      this.answerSurvey.controls['current_address_alley'].disable();
-      this.answerSurvey.controls['current_address_road'].disable();
-      this.answerSurvey.controls['current_address_sub_district'].disable();
-      this.answerSurvey.controls['current_address_district'].disable();
-      this.answerSurvey.controls['current_address_province'].disable();
-      this.answerSurvey.controls['current_address_country'].disable();
-      this.answerSurvey.controls['current_address_zip_code'].disable();
-      this.answerSurvey.controls['current_address_phone_number'].disable();
-      this.answerSurvey.controls['current_address_e_mail'].disable();
-
-
+      }
     }
 
-    this.answerSurvey.controls['current_address'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_no'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_village_no'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_village'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_building'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_floor'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_alley'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_road'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_sub_district'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_district'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_province'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_country'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_zip_code'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_phone_number'].updateValueAndValidity();
-    this.answerSurvey.controls['current_address_e_mail'].updateValueAndValidity();
+  }
+
+  onClickCampus(campus: string) {
+
+    this.campusSelectedText = campus.length;
+    this.isCampusSelected = true;
+    this.onSearchRegionalCenter.next();
+    this.answerSurvey.controls['CAMPUS'].patchValue(campus);
+    this.answerSurvey.controls['CAMPUS'].updateValueAndValidity();
+
+    document.querySelector<HTMLInputElement>('#search-regional-center').classList.remove('search-regional-center-style');
+
+  }
+
+  onSelectedSEMESTER(semester: string) {
+    this.isSemesterSelected = true;
+  }
+
+  
+  onClickSemester(semester: string) {
+    this.isSemesterSelected = false;
+    this.answerSurvey.controls['SEMESTER_OF_COMPLETION'].patchValue(semester);
+    this.answerSurvey.controls['SEMESTER_OF_COMPLETION'].updateValueAndValidity();
+
   }
 
   onSave() {
-    console.log("submit", this.answerSurvey)
+
+    console.log("submit", this.answerSurvey.controls);
+
   }
 
 } // จบ class

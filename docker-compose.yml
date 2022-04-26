@@ -1,0 +1,14 @@
+version: "3.5"
+services:
+  survey-report:
+    build: .
+    container_name: survey-report
+    restart: always
+    ports:
+      - 8881:80
+    networks:
+      - ram-apps
+
+networks:
+  ram-apps:
+    driver: bridge

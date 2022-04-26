@@ -10,8 +10,7 @@
 
 	COPY . .
 
-	# RUN npm run ng -- build --prod --base-href /survey-report/ --deploy-url /survey-report/
-	RUN npm run ng -- build --prod --base-href /survey-report-test/ --deploy-url /survey-report-test/
+	RUN npm run ng -- build --prod --base-href /survey-report/ --deploy-url /survey-report/
 
 	FROM nginx:alpine
 
