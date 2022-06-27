@@ -24,7 +24,7 @@ export class BachelorThaiComponent implements OnInit {
   article = [];
   articleNoDistinct = [];
 
-  semesters = ['ภาค - 1','ภาคซ่อม - 1','ภาค - 2','ภาคซ่อม - 2 หรือ ภาคซ่อม - ฤดูร้อน','ภาค - ฤดูร้อน']
+  semesters = ['ภาค - 1', 'ภาคซ่อม - 1', 'ภาค - 2', 'ภาคซ่อม - 2 หรือ ภาคซ่อม - ฤดูร้อน', 'ภาค - ฤดูร้อน']
   isSemesterSelected: boolean = false;
 
   regionalCenter: RegionalCenterResponse[] = [];
@@ -86,8 +86,12 @@ export class BachelorThaiComponent implements OnInit {
         this.regionalCenter = regionalCenter;
         if (this.regionalCenter.length > 0) {
           this.isRegionalCenter = true;
+          document.querySelector<HTMLInputElement>('#search-regional-center-inside').classList.remove('style-ul-inside');
+          document.querySelector<HTMLInputElement>('#search-regional-center-inside').classList.add('style-ul-inside-data');
         } else {
           this.isRegionalCenter = false;
+          document.querySelector<HTMLInputElement>('#search-regional-center-inside').classList.add('style-ul-inside');
+          document.querySelector<HTMLInputElement>('#search-regional-center-inside').classList.remove('style-ul-inside-data');
         }
       });
 
@@ -338,43 +342,37 @@ export class BachelorThaiComponent implements OnInit {
   }
 
   keyInputGPA() {
+
     const gpa = document.querySelector<HTMLInputElement>('#GPA').value;
 
     if (gpa.charAt(0) >= '1' && gpa.charAt(0) <= '4') {
-
       if (gpa.charAt(0) == '4') {
-
         if (gpa.charAt(1) == '.') {
-          if (gpa.charAt(2) == '0' && gpa.charAt(3) == '0') {
-
-            this.answerSurvey.controls['GPA'].patchValue(gpa);
-
+          if (gpa.charAt(2) == '0') {
+            this.answerSurvey.controls['GPA'].patchValue(gpa.substring(0, 3));
+            if (gpa.charAt(3) == '0') {
+              this.answerSurvey.controls['GPA'].patchValue(gpa);
+            }
+          } else {
+            this.answerSurvey.controls['GPA'].patchValue(gpa.substring(0, 2));
           }
         } else {
-
           this.answerSurvey.controls['GPA'].patchValue(gpa.substring(0, 1));
-
         }
-
       } else {
+
         if (gpa.charAt(1) == '.') {
           if (gpa.charAt(2) != '' && gpa.charAt(3) != '') {
-
             this.answerSurvey.controls['GPA'].patchValue(gpa);
-
           }
         } else {
-
           this.answerSurvey.controls['GPA'].patchValue(gpa.substring(0, 1));
-
         }
       }
-
     } else {
       this.answerSurvey.controls['GPA'].patchValue(null);
     }
-
-    this.answerSurvey.controls['GPA'].updateValueAndValidity()
+    this.answerSurvey.controls['GPA'].updateValueAndValidity();
   }
 
   keyInputCAMPUS(searchRegionalCenter: string) {
@@ -382,19 +380,32 @@ export class BachelorThaiComponent implements OnInit {
     if (this.isCampusSelected) {
 
       if (this.campusSelectedText != searchRegionalCenter.length) {
+
         this.isCampusSelected = false;
         this.answerSurvey.controls['CAMPUS'].patchValue(null);
         this.answerSurvey.controls['CAMPUS'].updateValueAndValidity();
 
         document.querySelector<HTMLInputElement>('#search-regional-center').classList.add('search-regional-center-style');
+
       }
 
     } else {
 
       searchRegionalCenter = searchRegionalCenter.replace(/\s/g, "");
       if (searchRegionalCenter != "" && searchRegionalCenter.length > 3) {
-
         this.onSearchRegionalCenter.next(searchRegionalCenter);
+
+      } else if (searchRegionalCenter == "") {
+
+        this.isRegionalCenter = false;
+        this.isCampusSelected = false;
+        this.answerSurvey.controls['CAMPUS'].patchValue(null);
+        this.answerSurvey.controls['CAMPUS'].updateValueAndValidity();
+
+        document.querySelector<HTMLInputElement>('#search-regional-center').classList.add('search-regional-center-style');
+
+        document.querySelector<HTMLInputElement>('#search-regional-center-inside').classList.add('style-ul-inside');
+        document.querySelector<HTMLInputElement>('#search-regional-center-inside').classList.remove('style-ul-inside-data');
 
       }
     }
@@ -414,14 +425,21 @@ export class BachelorThaiComponent implements OnInit {
   }
 
   onSelectedSEMESTER(semester: string) {
+    
     this.isSemesterSelected = true;
+
+    document.querySelector<HTMLInputElement>('#select-semester-inside').classList.remove('style-ul-inside');
+    document.querySelector<HTMLInputElement>('#select-semester-inside').classList.add('style-ul-inside-data');
   }
 
-  
+
   onClickSemester(semester: string) {
     this.isSemesterSelected = false;
     this.answerSurvey.controls['SEMESTER_OF_COMPLETION'].patchValue(semester);
     this.answerSurvey.controls['SEMESTER_OF_COMPLETION'].updateValueAndValidity();
+
+    document.querySelector<HTMLInputElement>('#select-semester-inside').classList.add('style-ul-inside');
+    document.querySelector<HTMLInputElement>('#select-semester-inside').classList.remove('style-ul-inside-data');
 
   }
 

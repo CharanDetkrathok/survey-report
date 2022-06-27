@@ -5,7 +5,7 @@ services:
     container_name: survey-report
     restart: always
     ports:
-      - 8881:80
+      - 8880:80
     networks:
       - ram-apps
 

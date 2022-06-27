@@ -63,7 +63,7 @@
                                                         <input class="select-semester-style" #selectSemester type="text" (click)="onSelectedSEMESTER(selectSemester.value)" formControlName="{{article.ANSWER}}" placeholder="{{article.INPUTS[0].INPUT_CONTENT_TH}}" readonly>
                                                         <div class="style-ul-wrapper">
                                                             <div class="style-ul-wrapper" [style.display]="isSemesterSelected == true ? 'block':'none'">
-                                                                <div class="style-ul-inside">
+                                                                <div id="select-semester-inside" class="style-ul-inside">
                                                                     <ul class="style-ul">
                                                                         <input #semester class="style-input" type="text" value="{{semesters}}" (click)="onClickSemester(semester.value)" readonly *ngFor="let semesters of semesters">
                                                                     </ul>
@@ -84,9 +84,9 @@
                                                     <div>
                                                         <input id="search-regional-center" class="search-regional-center-style" #searchRegionalCenter type="text" (input)="keyInputCAMPUS(searchRegionalCenter.value)" formControlName="{{article.ANSWER}}" placeholder="{{article.INPUTS[0].INPUT_CONTENT_TH}}" minlength="10">
                                                         <div *ngIf="regionalCenter" class="style-ul-wrapper" [style.display]="isRegionalCenter == true ? 'block':'none'">
-                                                            <div class="style-ul-inside">
+                                                            <div id="search-regional-center-inside" class="style-ul-inside">
                                                                 <ul class="style-ul">
-                                                                    <input #campus class="style-input" type="text" value="{{regionalCenter.REGIONAL_NAME}}" (click)="onClickCampus(campus.value)" readonly *ngFor="let regionalCenter of regionalCenter">
+                                                                    <input #campus class="style-input-lists" type="text" value="{{regionalCenter.REGIONAL_NAME}}" (click)="onClickCampus(campus.value)" readonly *ngFor="let regionalCenter of regionalCenter">
                                                                 </ul>
                                                             </div>
                                                         </div>
