@@ -7,23 +7,51 @@
             <h1>Sign in</h1>
         </div>
 
-        <div class="student-form-content">
+        <div id="my-signin2"></div>
+        <script>
+          function onSuccess(googleUser) {
+            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+          }
+          function onFailure(error) {
+            console.log(error);
+          }
+          function renderButton() {
+            gapi.signin2.render('my-signin2', {
+              'scope': 'profile email',
+              'width': 240,
+              'height': 50,
+              'longtitle': true,
+              'theme': 'dark',
+              'onsuccess': onSuccess,
+              'onfailure': onFailure
+            });
+          }
+        </script>
+      
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+        <div class="student-form-content" style="display:none;">
             <form [formGroup]="signInStudentFormGroup" (ngSubmit)="onStudentSingInSubmit()">
                 <section class="section-input-std-code">
-                    <input id="stdCode" type="text" class="input-std-code" placeholder=" " (keyup)="onKeyUpStdCode($event)" formControlName="inputStdCode" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10">
+                    <input id="stdCode" type="text" class="input-std-code" placeholder=" "
+                        (keyup)="onKeyUpStdCode($event)" formControlName="inputStdCode"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                        maxlength="10">
                     <label class="label-input-std-code">Student ID</label>
-                    <span id="stdCode-span-error-message" class="error-message-std-code-hidden">Please enter valid student ID.</span>
+                    <span id="stdCode-span-error-message" class="error-message-std-code-hidden">Please enter valid
+                        student ID.</span>
                 </section>
 
                 <section class="section-input-birthday">
-                    <input id="birthday" type="text" [value]="tempInputBirthday" placeholder=" " class="input-birthday" readonly>
+                    <input id="birthday" type="text" [value]="tempInputBirthday" placeholder=" " class="input-birthday"
+                        readonly>
                     <label id="birthday-label" class="label-input-birthday">Birthday</label>
                     <span id="birthday-span-error-message" class="error-message-birthday-hidden">
                         Please enter a valid date of birth.</span>
                 </section>
                 <mat-form-field appearance="fill" id="input-birthday-datepicker" (click)="picker.open()">
                     <mat-label>Choose a date</mat-label>
-                    <input matInput [matDatepicker]="picker" (dateChange)="onChangeBirthday('change', $event)" formControlName="inputBirthday">
+                    <input matInput [matDatepicker]="picker" (dateChange)="onChangeBirthday('change', $event)"
+                        formControlName="inputBirthday">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker touchUi #picker startView="multi-year" color="primary"></mat-datepicker>
                 </mat-form-field>
@@ -31,13 +59,15 @@
                         class="input-birthday-button-img" src="assets/imgs/calendar.png" alt="calendar"></button> -->
 
                 <section class="section-input-degree">
-                    <select id="degree" formControlName="inputDegree" class="input-degree" (change)="onChangeDegree($event)">
+                    <select id="degree" formControlName="inputDegree" class="input-degree"
+                        (change)="onChangeDegree($event)">
                         <option value="1">Bachelor's degree</option>
                         <option value="2">Master's degree</option>
                         <option value="3">Doctoral Degree</option>
                     </select>
                     <label id="degree-label" class="label-input-degree">Degree</label>
-                    <span id="degree-span-error-message" class="error-message-degree-hidden">กรุณาเลือกระดับการศึกษา</span>
+                    <span id="degree-span-error-message"
+                        class="error-message-degree-hidden">กรุณาเลือกระดับการศึกษา</span>
                 </section>
 
                 <div class="button-and-checkbox">
@@ -45,12 +75,15 @@
                         <button id="btnSignInStudent" class="btn-sign-in-student" disabled="true">Sign in</button>
                     </section>
                     <section class="section-remember-student">
-                        <input type="checkbox" class="check-remember-student" formControlName="checkRememberMe" (click)="onCheckRememberMe($event)">
+                        <input type="checkbox" class="check-remember-student" formControlName="checkRememberMe"
+                            (click)="onCheckRememberMe($event)">
                         <label class="label-remember-student">Remember me</label>
                     </section>
                 </div>
 
             </form>
+
+
         </div>
 
     </div>
