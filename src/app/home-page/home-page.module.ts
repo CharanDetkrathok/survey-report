@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +9,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignInStudentComponent } from '../sign-in/sign-in-student/sign-in-student.component';
 import { MaterialsModule } from '../materials/materials.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { OAuthModule } from 'angular-oauth2-oidc'
 
 
 
@@ -23,7 +21,6 @@ import { OAuthModule } from 'angular-oauth2-oidc'
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
     HomePageRoutingModule,
     ReactiveFormsModule,
     MaterialsModule,

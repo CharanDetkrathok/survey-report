@@ -8,12 +8,15 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { SignInService } from '../../services/sign-in.service';
-import { ConfirmationDialogComponent, ConfirmDialogModel } from 'src/app/confirmation-dialog/confirmation-dialog.component';
+
 import { MatDialog } from '@angular/material/dialog';
 import { studentResponseInfo } from './sign-in-student-interface';
-import { messagesDialog } from 'src/app/confirmation-dialog/confirmation-dialog-interface';
-import { switchMap } from 'rxjs/operators';
 
+
+import { SocialAuthService, SocialUser } from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login";
+import { messagesDialog } from '../../confirmation-dialog/confirmation-dialog-interface';
+import { ConfirmationDialogComponent, ConfirmDialogModel } from '../../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-sign-in-student',
@@ -21,6 +24,8 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./sign-in-student.component.css']
 })
 export class SignInStudentComponent implements OnInit {
+
+  socialUser: SocialUser;
 
   pipe = new DatePipe('en-EN');
 
@@ -33,7 +38,6 @@ export class SignInStudentComponent implements OnInit {
 
   tempInputBirthday: string = "";
 
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -42,12 +46,46 @@ export class SignInStudentComponent implements OnInit {
     public translate: TranslateService,
     private signInServices: SignInService,
     public dialog: MatDialog,
+    private authService: SocialAuthService
   ) { }
 
   ngOnInit(): void {
     this.pathValueSignInStudentFormGroup_by_CookieRememberUser();
   }
 
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+    .then( userData => {
+      console.log(JSON.stringify(userData.idToken));
+      console.log(JSON.stringify(userData.email));
+      console.log(JSON.stringify(userData.name));
+      console.log(JSON.stringify(userData.firstName));
+      console.log(JSON.stringify(userData.lastName));
+      console.log(JSON.stringify(userData.photoUrl));
+      console.log(JSON.stringify(userData.provider));
+      console.log(JSON.stringify(userData.response));
+      this.socialUser = userData;
+    })
+    .catch( err => {
+      console.log(JSON.stringify(err));
+    });
+  }
+
+  signOut(): void {
+
+      // this.authService.signOut(true);
+      // sessionStorage.clear();
+      var cookies = document.cookie.split(";");
+      console.log(JSON.stringify(cookies));
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        console.log(JSON.stringify(cookie));
+        // document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+  }
+  
   pathValueSignInStudentFormGroup_by_CookieRememberUser() {
 
     if (this.cookieService.get('__remember_student_check_remember_me')) {
@@ -347,20 +385,7 @@ export class SignInStudentComponent implements OnInit {
     return STATUS_MESSAGE;
   }
 
-  onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
 
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-  }
 
 
 

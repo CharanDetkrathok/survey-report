@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { SignInService } from 'src/app/services/sign-in.service';
+import { SignInService } from '../services/sign-in.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,7 +11,9 @@ export class SignInComponent implements OnInit {
 
   isAuthentication: boolean;
 
-  constructor(private signInService: SignInService) {
+  constructor(
+    private signInService: SignInService
+    ) {
     this.signInService.getStudentStateInformation.subscribe(obs => {
       this.isAuthentication = obs.isAuthentication; 
     });    

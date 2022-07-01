@@ -8,16 +8,20 @@ import { HomeContentService } from '../services/home-content.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private homeContent : HomeContentService) {
+  constructor(
+    private homeContent: HomeContentService
+  ) {
     this.homeContent.checkAuthentication().subscribe(res => {
       // To do something
     })
-   }
+  }
 
   ngOnInit(): void {
     this.homeContent.fetchHomeContent().subscribe(res => {
       // To do something
     })
   }
+
+
 
 }

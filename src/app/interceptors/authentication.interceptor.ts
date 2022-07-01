@@ -1,4 +1,4 @@
-import { environment } from 'src/environments/environment.prod';
+
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -6,15 +6,12 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHeaders,
-  HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
-import { BehaviorSubject, Observable, throwError } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { catchError, switchMap } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { SignInService } from '../services/sign-in.service';
-import { studentResponseInfo } from '../sign-in/sign-in-student/sign-in-student-interface';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {

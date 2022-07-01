@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { SignInService } from 'src/app/services/sign-in.service';
 import { BechelorThaiService } from '../../services/bechelor-thai.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { messagesDialog } from 'src/app/disclosure-dialog/disclosure-dialog-interface';
+import { messagesDialog } from '../../disclosure-dialog/disclosure-dialog-interface';
 import { DisclosureDialogComponent, DisclosureDialogModel } from '../../disclosure-dialog/disclosure-dialog.component';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NEVER, Subject } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { RegionalCenterResponse } from '../bachelor-interface';
+import { SignInService } from '../../services/sign-in.service';
 
 
 

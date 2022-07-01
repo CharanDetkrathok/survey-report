@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SignInService } from 'src/app/services/sign-in.service';
 import { Router } from '@angular/router';
 import { messagesDialog } from '../confirmation-dialog/confirmation-dialog-interface';
 import { ConfirmDialogModel, ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { StudentStateInterface } from '../services/sign-in.service';
+import { SignInService } from '../services/sign-in.service';
 
 @Component({
   selector: 'app-header',

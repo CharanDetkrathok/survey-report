@@ -26,6 +26,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "angular-oauth2-oidc": "^13.0.1",
+    "angularx-social-login": "^3.5.7",
     "ngx-cookie-service": "^12.0.3",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",

@@ -1,11 +1,10 @@
-import { switchMap, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment.prod';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { studentResponseInfo, refreshTokenResponse } from '../sign-in/sign-in-student/sign-in-student-interface';
-import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { environment } from 'survey-report/src/environments/environment.prod';
 
 export interface StudentStateInterface {
   isAuthentication: boolean;
@@ -16,13 +15,6 @@ export interface StudentStateInterface {
   role: string;
 }
 
-// const oAuthConfig : AuthConfig = {
-//   issuer : 'https://accounts.google.com',
-//   strictDiscoveryDocumentValidation: false,
-//   redirectUri: window.location.origin,
-//   clientId: '583838290735-ehb40aqt6kbva2ipss6uovsi0k15vrbm.apps.googleusercontent.com',
-//   scope: 'openid profile email'
-// };
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +40,6 @@ export class SignInService {
     private http: HttpClient,
     private router: Router
   ) {
-    console.log("google login...");
 
     this.setIsAuthen(localStorage.getItem('isAuthen'));
   }

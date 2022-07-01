@@ -1,23 +1,36 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+    "baseUrl": "../",
+    "outDir": "../dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "module": "es2020",
+    "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
     "lib": [
       "es2018",
       "dom"
+    ],
+    "types": [
+      "node"
     ]
   },
+  "include": [
+    "src//*.ts"
+  ],
+  "exclude": [
+    "src/test.ts",
+    "src//*.spec.ts"
+  ],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "strict": false,
+  "strictTemplates":false,
+  "noImplicitReturns": false
 }

@@ -17,11 +17,20 @@ import { MaterialsModule } from './materials/materials.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider
+} from 'angularx-social-login';
 
 // เปลี่ยนภาษา TH - EN
 export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
 }
+
+// const googleLoginOptions = {
+//   scope: 'profile email'
+// }; // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
+
 
 
 @NgModule({
@@ -47,12 +56,31 @@ export function HttpLoaderFactory(httpClient: HttpClient): TranslateHttpLoader {
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
       }
-    })
+    }),
+    SocialLoginModule
   ],
   providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '65828115548-4m56tvbn46ab1askb225ee2bkmkbh13h.apps.googleusercontent.com',
+              {
+                scope: 'profile email',
+                pluginName: 'survey-report-355004'
+              }
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    },
     CookieService,
     { provide: LocationStrategy, useClass: PathLocationStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
