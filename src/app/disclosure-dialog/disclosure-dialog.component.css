@@ -34,7 +34,7 @@ b {
     top: 0;
     height: auto;
     padding: 1rem;
-    background-color: rgb(18, 2, 90);
+    background-color: rgb(6, 0, 94);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,7 +69,7 @@ b {
 .disclosure-select-this {
     background-color: rgb(23 251 174);
     border: 2px solid rgb(23 251 174);
-    color: rgb(18, 2, 90);
+    color: rgb(6, 0, 94);
     font-size: 1.4rem;
     box-shadow: rgb(125 124 124) 0px 3px 8px;
 }
@@ -80,8 +80,8 @@ b {
     margin: 0 0.2rem;
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0);
-    border: 2px solid rgb(18, 2, 90);
-    color: rgb(18, 2, 90);
+    border: 2px solid rgb(6, 0, 94);
+    color: rgb(6, 0, 94);
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
     -ms-border-radius: 0.5rem;
@@ -89,7 +89,7 @@ b {
 }
 
 .disclosure-btn-ok:hover {
-    background-color: rgb(18, 2, 90);
+    background-color: rgb(6, 0, 94);
     color: rgb(255, 255, 255);
     box-shadow: rgb(125 124 124) 0px 3px 8px;
 }

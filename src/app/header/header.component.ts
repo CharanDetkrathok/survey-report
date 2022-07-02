@@ -4,6 +4,7 @@ import { messagesDialog } from '../confirmation-dialog/confirmation-dialog-inter
 import { ConfirmDialogModel, ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SignInService } from '../services/sign-in.service';
+import { SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private signInService: SignInService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authSignOutGoogleService: SocialAuthService
   ) {
 
     this.signInService.getStudentStateInformation.subscribe(obs => {
@@ -69,7 +71,9 @@ export class HeaderComponent implements OnInit {
 
       let dialog_confirm_result = dialogResult;
       if (dialog_confirm_result) {
+        this.authSignOutGoogleService.signOut(true);
         this.signInService.signOut().then(() => {
+          
           this.router.navigate(['/home-page']);
         });
       }

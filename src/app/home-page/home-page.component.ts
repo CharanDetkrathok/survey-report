@@ -11,15 +11,11 @@ export class HomePageComponent implements OnInit {
   constructor(
     private homeContent: HomeContentService
   ) {
-    this.homeContent.checkAuthentication().subscribe(res => {
-      // To do something
-    })
+    this.homeContent.checkAuthentication().subscribe();
   }
 
   ngOnInit(): void {
-    this.homeContent.fetchHomeContent().subscribe(res => {
-      // To do something
-    })
+    this.homeContent.fetchHomeContent().subscribe();
   }
 
 

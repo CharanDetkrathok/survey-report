@@ -1,8 +1,8 @@
-import { tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { studentResponseInfo, refreshTokenResponse } from '../sign-in/sign-in-student/sign-in-student-interface';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from 'survey-report/src/environments/environment.prod';
 
@@ -48,6 +48,11 @@ export class SignInService {
 
     return this.http.post<studentResponseInfo>(`${environment.BASE_URL}${environment.AUTHENTICATION}`, PLAY_LOAD);
 
+  }
+
+  public googleAuthentication(PLAY_LOAD: any): Observable<any> {
+
+    return this.http.post<studentResponseInfo>(`${environment.BASE_URL}${environment.GOOGLE_AUTHENTICATION}`, PLAY_LOAD);
   }
 
   public authorization(): Observable<any> {
