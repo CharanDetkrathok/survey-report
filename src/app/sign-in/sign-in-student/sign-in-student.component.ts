@@ -68,6 +68,7 @@ export class SignInStudentComponent implements OnInit {
       this.signInServices.setAge(response.StudentInfo.Birth_date)
       let makeMessage: messagesDialog = {
         title: `Sign in`,
+        imgPath: "",
         message: "",
         description: "",
         descriptionDetail: "",
@@ -128,6 +129,7 @@ export class SignInStudentComponent implements OnInit {
       this.authSignInGoogleService.signOut(true);
       let makeMessage: messagesDialog = {
         title: "Sign in Fail",
+        imgPath: "warning.png",
         message: error.error.message,
         description: error.error.role,
         descriptionDetail: "",
@@ -154,7 +156,7 @@ export class SignInStudentComponent implements OnInit {
   }
 
   newMessageDialog(makeMessage: messagesDialog): any {
-    return new ConfirmDialogModel(makeMessage.title, makeMessage.message, makeMessage.description, makeMessage.descriptionDetail, makeMessage.btnLeftDisable, makeMessage.btnRightDisable, makeMessage.txtBtnLeft, makeMessage.txtBtnRight, makeMessage.messageThaiLanguage, makeMessage.messageEngLanguage, makeMessage.isSelectLanguageDisable);
+    return new ConfirmDialogModel(makeMessage.title, makeMessage.imgPath, makeMessage.message, makeMessage.description, makeMessage.descriptionDetail, makeMessage.btnLeftDisable, makeMessage.btnRightDisable, makeMessage.txtBtnLeft, makeMessage.txtBtnRight, makeMessage.messageThaiLanguage, makeMessage.messageEngLanguage, makeMessage.isSelectLanguageDisable);
   }
 
 } // end component...

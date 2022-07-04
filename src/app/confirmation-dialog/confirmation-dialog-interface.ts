@@ -1,5 +1,6 @@
 export interface messagesDialog {
     title: string;
+    imgPath: string;
     message: string;
     description: string;
     descriptionDetail: string;

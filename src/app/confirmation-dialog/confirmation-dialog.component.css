@@ -47,6 +47,11 @@
     text-align: center;
 }
 
+.img-path {
+    width: 20%;
+    margin-top: -1rem;
+}
+
 .p-language {
     display: flex;
     flex-direction: column;

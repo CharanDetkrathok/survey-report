@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
 
     let makeMessage: messagesDialog = {
       title: `Sign Out`,
+      imgPath: "",
       message: "คุณต้องการออกจากระบบใช่หรือไม่?",
       description: "Do you want to Sign out?",
       descriptionDetail: "",
@@ -83,7 +84,7 @@ export class HeaderComponent implements OnInit {
   }
 
   newMessageDialog(makeMessage: messagesDialog): any {
-    return new ConfirmDialogModel(makeMessage.title, makeMessage.message, makeMessage.description, makeMessage.descriptionDetail, makeMessage.btnLeftDisable, makeMessage.btnRightDisable, makeMessage.txtBtnLeft, makeMessage.txtBtnRight, makeMessage.messageThaiLanguage, makeMessage.messageEngLanguage, makeMessage.isSelectLanguageDisable);
+    return new ConfirmDialogModel(makeMessage.title, makeMessage.imgPath, makeMessage.message, makeMessage.description, makeMessage.descriptionDetail, makeMessage.btnLeftDisable, makeMessage.btnRightDisable, makeMessage.txtBtnLeft, makeMessage.txtBtnRight, makeMessage.messageThaiLanguage, makeMessage.messageEngLanguage, makeMessage.isSelectLanguageDisable);
   }
 
   checkStatusCode(status_code: number): string[] {

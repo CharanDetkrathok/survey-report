@@ -21,12 +21,16 @@ export class ConfirmationDialogComponent implements OnInit {
   messageThaiLanguage: string;
   messageEngLanguage: string;
   isSelectLanguageDisable:boolean;
+  imgPath: string;
+
+  isImgPath: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel) {
 
     this.title = data.title;
+    this.imgPath = data.imgPath;
     this.message = data.message;
     this.description = data.description;
     this.descriptionDetail = data.descriptionDetail;
@@ -37,6 +41,9 @@ export class ConfirmationDialogComponent implements OnInit {
     this.messageThaiLanguage = data.messageThaiLanguage;
     this.messageEngLanguage = data.messageEngLanguage;
     this.isSelectLanguageDisable = data.isSelectLanguageDisable;
+
+    this.isImgPath = this.imgPath.length === 0 ? false : true;
+
   }
 
   ngOnInit(): void { }
@@ -69,6 +76,7 @@ export class ConfirmDialogModel {
 
   constructor(
     public title: string,
+    public imgPath: string,
     public message: string,
     public description: string,
     public descriptionDetail: string,

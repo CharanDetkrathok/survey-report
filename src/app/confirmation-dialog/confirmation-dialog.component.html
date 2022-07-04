@@ -1,9 +1,13 @@
 <div class="container-wrapper">
     <div class="dialog-header">
-        <img src="assets/imgs/logo-for-survey-dialog.png" alt="">
+        <img src="../../assets/imgs/logo-for-survey-dialog.png" alt="">
         <h1>{{title}}</h1>
     </div>
     <div class="container-content" [style.display]="isSelectLanguageDisable? 'none':'flex' ">
+
+        <div [style.display]="!isImgPath? 'none':'block' ">
+            <img class="img-path" src="../../assets/imgs/{{imgPath}}" alt="img-path">
+        </div>
         <p>{{message}}</p>
         <p>{{description}}</p>
         <p>{{descriptionDetail}}</p>

@@ -19,16 +19,24 @@ export class SignInComponent implements OnInit {
     });    
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    // document.querySelector<HTMLElement>('div.student').style.display = "none";
+    // document.querySelector<HTMLElement>('div.staff').style.display = "none";
+   }
 
   onClickStaffButton() {
 
+    // document.querySelector<HTMLElement>('div.staff').style.display = "block";
     document.querySelector<HTMLElement>('div.staff').style.marginLeft = "0";
     document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "100vw";
 
   }
 
   onClickWelcomButton() {
+
+    // document.querySelector<HTMLElement>('div.student').style.display = "block" ? document.querySelector<HTMLElement>('div.student').style.display = "none": document.querySelector<HTMLElement>('div.student').style.display = "block";
+    // document.querySelector<HTMLElement>('div.student').style.display = "none";
+    // document.querySelector<HTMLElement>('div.staff').style.display = "block"? document.querySelector<HTMLElement>('div.staff').style.display = "none" : document.querySelector<HTMLElement>('div.staff').style.display = "block";
 
     document.querySelector<HTMLElement>('div.staff').style.marginLeft = "-100vw";
     document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "0";
@@ -38,6 +46,7 @@ export class SignInComponent implements OnInit {
 
   onClickStudentButton() {
 
+    // document.querySelector<HTMLElement>('div.student').style.display = "block";
     document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "-100vw";
     document.querySelector<HTMLElement>('div.student').style.marginLeft = "0";
 
