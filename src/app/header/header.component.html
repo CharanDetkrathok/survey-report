@@ -1,8 +1,9 @@
 <div class="nav-wrapper">
     <nav class="nav-bar">
         <div class="branding">
-            <img src="../../assets/imgs/logo-for-survey-header.png" alt>
+            <img class="img-logo-header" src="../../assets/imgs/logo-for-survey-header.png" alt>
             <div id="hamburger-menu" *ngIf="isAuthentication">
+                <!-- <div id="hamburger-menu"> -->
                 <input id="open-menu" type="checkbox" (click)="openMenu()" />
                 <span></span>
                 <span></span>
@@ -11,14 +12,20 @@
         </div>
         <div class="list-items-wrapper" *ngIf="isAuthentication">
             <div class="list-items" [style.display]="isAuthentication ? 'flex' :'none'">
+                <!-- <div class="list-items-wrapper">
+            <div class="list-items"> -->
                 <ul id="menu">
                     <li (click)="closeMenu()">
-                        <a id="home-page" routerLink="/home-page" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a>
+                        <a id="home-page" routerLink="/home-page" routerLinkActive="active-link"
+                            [routerLinkActiveOptions]="{exact: true}">Home</a>
                     </li>
                     <div *ngIf="isBechelor">
                         <div [style.display]="isLanguageTH ? 'flex' : 'none'" class="bechelor-nav">
+                            <!-- <div class="list-bachelor">
+                        <div class="bechelor-nav"> -->
                             <li (click)="closeMenu()">
-                                <a id="survey-page" routerLink="/student/bachelor-thai" routerLinkActive="active-link">Survey</a>
+                                <a id="survey-page" routerLink="/student/bachelor-thai"
+                                    routerLinkActive="active-link">Survey</a>
                             </li>
                             <li (click)="closeMenu()">
                                 <a id="report-page">Report</a>

@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 * {
   font-family: "Prompt", sans-serif !important;
   margin: 0;
@@ -12,11 +10,15 @@ body {
   padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif !important;
 }
-/* @media only screen and (max-height: 319px) and (orientation: landscape) {
+
+
+@media only screen and (max-height: 398px) and (orientation: landscape) {
   body {
-    height: 100vw;
+    height: 100vh;
+    width: 100vw;
     transform: rotate(-90deg);
+    overflow: hidden;
   }
-} */
+}
 
 
