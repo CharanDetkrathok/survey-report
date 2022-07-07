@@ -13,11 +13,14 @@ body {
 
 
 @media only screen and (max-height: 398px) and (orientation: landscape) {
-  body {
-    height: 100vh;
-    width: 100vw;
+  html {
     transform: rotate(-90deg);
-    overflow: hidden;
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
 }
 
