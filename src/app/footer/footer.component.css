@@ -1,3 +1,4 @@
+
 .footer {
   height: auto;
   width: 100%;
@@ -13,7 +14,7 @@
     rgba(0, 0, 0, 0.25) 0px 12px 13px, rgba(0, 0, 0, 0.25) 0px -3px 5px; */
 }
 .footer img {
-  width: 15rem;
+  width: 45%;
   margin-bottom: 1rem;
 }
 .footer p {
@@ -23,18 +24,22 @@
 
 /* ผู้ใช่หมุนจอ */
 @media only screen and (max-height: 398px) and (orientation: landscape) {
-  .footer {
-    width: 100vh;
-    /* position: fixed; */
-    bottom: 0;
+  .footer img {
+    width: 50%;
   }
 }
 
 /* จอแนวตั้ง จอมือถือ */
 @media only screen and (max-width: 720px) and (orientation: portrait) {
-  .footer {
-    width: 100vw;
-    /* position: fixed; */
-    bottom: 0;
+  .footer img {
+    width: 70%;
   }
 }
+
+/* จอ ipad และ taplet */
+@media only screen and (min-width: 721px) and (max-width: 820px) {
+  .footer img {
+    width: 69%;
+  }
+}
+

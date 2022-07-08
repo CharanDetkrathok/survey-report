@@ -41,12 +41,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void { }
 
   public openMenu() {
-    // document.querySelector<HTMLElement>('.list-items-wrapper').style.display = 'block';
     document.querySelector<HTMLElement>('ul').classList.value == 'active-menu' ? document.querySelector<HTMLElement>('ul').classList.remove('active-menu') : document.querySelector<HTMLElement>('ul').classList.add('active-menu');
   }
 
   public closeMenu() {
-    // document.querySelector<HTMLElement>('.list-items-wrapper').style.display = 'none';
     document.querySelector<HTMLInputElement>('#open-menu').checked === true ? document.querySelector<HTMLInputElement>('#open-menu').checked = false : null;
     document.querySelector<HTMLElement>('ul').classList.value == 'active-menu' ? document.querySelector<HTMLElement>('ul').classList.remove('active-menu') : document.querySelector<HTMLElement>('ul').classList.add('active-menu');
   }

@@ -61,7 +61,6 @@ export class SignInStudentComponent implements OnInit {
     const PLAY_LOAD = { id_token: this.googleUserinfo.idToken };
     this.signInServices.googleAuthentication(PLAY_LOAD).subscribe(response => {
 
-      console.log(response)
       let studentResponse: studentResponseInfo = response;
       this.signInServices.setStudent(studentResponse);
       this.signInServices.setLanguage('TH');

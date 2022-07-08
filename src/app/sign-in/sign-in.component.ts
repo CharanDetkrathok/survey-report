@@ -19,59 +19,27 @@ export class SignInComponent implements OnInit {
     });    
   }
 
-  ngOnInit(): void {
-    // document.querySelector<HTMLElement>('div.student').style.display = "none";
-    // document.querySelector<HTMLElement>('div.staff').style.display = "none";
-   }
+  ngOnInit(): void { }
 
   onClickStaffButton() {
 
-    // document.querySelector<HTMLElement>('div.staff').style.display = "block";
-
-    if (window.matchMedia("only screen and (max-height: 398px) and (orientation: landscape)").matches) {
-      document.querySelector<HTMLElement>('div.staff').style.marginLeft = "0";
-      document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "100vh";
-       // console.log("landscape min-height : 398")
-    } else {
       document.querySelector<HTMLElement>('div.staff').style.marginLeft = "0";
       document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "100vw";
-    }
-  
 
   }
 
   onClickWelcomButton() {
 
-    // document.querySelector<HTMLElement>('div.student').style.display = "block" ? document.querySelector<HTMLElement>('div.student').style.display = "none": document.querySelector<HTMLElement>('div.student').style.display = "block";
-    // document.querySelector<HTMLElement>('div.student').style.display = "none";
-    // document.querySelector<HTMLElement>('div.staff').style.display = "block"? document.querySelector<HTMLElement>('div.staff').style.display = "none" : document.querySelector<HTMLElement>('div.staff').style.display = "block";
-
-    if (window.matchMedia("only screen and (max-height: 398px) and (orientation: landscape)").matches) {
-      document.querySelector<HTMLElement>('div.staff').style.marginLeft = "-100vh";
-      document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "0";
-      document.querySelector<HTMLElement>('div.student').style.marginLeft = "100vh";
-       // console.log("landscape min-height : 398")
-    } else {
       document.querySelector<HTMLElement>('div.staff').style.marginLeft = "-100vw";
       document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "0";
       document.querySelector<HTMLElement>('div.student').style.marginLeft = "100vw";
-    }
 
   }
 
   onClickStudentButton() {
    
-   if (window.matchMedia("only screen and (max-height: 398px) and (orientation: landscape)").matches) {
-    document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "-100vh";
-    document.querySelector<HTMLElement>('div.student').style.marginLeft = "0";
-    // console.log("landscape min-height : 398")
-   } else {
     document.querySelector<HTMLElement>('div.welcom').style.marginLeft = "-100vw";
     document.querySelector<HTMLElement>('div.student').style.marginLeft = "0";
-   }
-
-    // document.querySelector<HTMLElement>('div.student').style.display = "block";
-   
 
   }
 

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-import { ConfirmationDialogComponent } from './disclosure-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+
 
 export const routes: Routes = [
     {

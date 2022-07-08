@@ -23,7 +23,7 @@ nav .branding {
   display: flex;
 }
 nav .branding img {
-  width: 16rem;
+  width: 17.7rem;
   margin: 0.8rem 0 0.8rem 4rem;
 }
 
@@ -66,10 +66,11 @@ nav ul li a::after {
 
 .active-link {
   border-bottom: 3px solid rgb(255, 145, 0);
+  margin-top: 0.2rem !important;
 }
 
 nav ul li a:hover {
-  color: #858585;
+  color: rgb(255 145 0);
   cursor: pointer;
 }
 
@@ -92,6 +93,7 @@ nav .list-items ul li {
 
 nav .list-items ul li span {
   color: rgb(255, 145, 0);
+  letter-spacing: -0.1rem;
 }
 
 nav .list-items ul li button {
@@ -136,14 +138,26 @@ hr {
 }
 
 .list-bachelor {
-  padding: 0 0 4px 0;
+  padding: 0;
   margin: 0;
+}
+
+.user-info-and-sign-out {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-user-logo {
+  width: 1.5rem;
+  margin: 0 0.5rem 0.6rem 0;
 }
 
 /* ผู้ใช่หมุนจอ */
 @media only screen and (max-height: 398px) and (orientation: landscape) {
   .nav-wrapper nav {
-    width: 100vh;
+    width: 100vw;
     display: flex;
     align-items: center;
     align-content: center;
@@ -242,7 +256,7 @@ hr {
     justify-content: center;
     align-items: center;
     padding: 0;
-    margin: -200% 0 0 0;
+    margin: -300% 0 0 0;
     transform: translate(0, 0);
     transition: margin-left 1s ease-in-out;
     -webkit-transition: margin-left 1s ease-in-out;
@@ -260,7 +274,7 @@ hr {
     align-content: center;
     justify-content: center;
     align-items: center;
-    margin: 0 0 0 70% !important;
+    margin: 0 0 0 100% !important;
     transition: margin-left 1s ease-in-out !important;
     -webkit-transition: margin-left 1s ease-in-out !important;
     -moz-transition: margin-left 1s ease-in-out !important;
@@ -295,8 +309,9 @@ hr {
     align-items: center;
     flex-direction: column;
   }
-  nav ul li a {
-    padding: 2px 0;
+
+  .user-info-and-sign-out {
+    flex-direction: column;
   }
 }
 
@@ -420,7 +435,7 @@ hr {
     align-content: center;
     justify-content: center;
     align-items: center;
-    margin: 0 0 0 70% !important;
+    margin: 0 0 0 100% !important;
     transition: margin-left 1s ease-in-out !important;
     -webkit-transition: margin-left 1s ease-in-out !important;
     -moz-transition: margin-left 1s ease-in-out !important;
@@ -455,8 +470,8 @@ hr {
     align-items: center;
     flex-direction: column;
   }
-  nav ul li a {
-    padding: 2px 0;
+  .user-info-and-sign-out {
+    flex-direction: column;
   }
 }
 

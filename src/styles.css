@@ -12,7 +12,7 @@ body {
 }
 
 
-@media only screen and (max-height: 398px) and (orientation: landscape) {
+/* @media only screen and (max-height: 398px) and (orientation: landscape) {
   html {
     transform: rotate(-90deg);
     transform-origin: left top;
@@ -22,6 +22,6 @@ body {
     top: 100%;
     left: 0;
   }
-}
+} */
 
 

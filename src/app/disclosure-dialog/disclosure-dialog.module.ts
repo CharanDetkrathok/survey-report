@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ConfirmationDialogRoutingModule } from './disclosure-dialog-routing.module';
-import { ConfirmationDialogComponent } from './disclosure-dialog.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+
 
 
 @NgModule({

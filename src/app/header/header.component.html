@@ -6,18 +6,18 @@
         src="../../assets/imgs/logo-for-survey-header.png"
         alt
       />
-      <!-- <div id="hamburger-menu" *ngIf="isAuthentication"> -->
-      <div id="hamburger-menu">
+      <div id="hamburger-menu" *ngIf="isAuthentication">
         <input id="open-menu" type="checkbox" (click)="openMenu()" />
         <span></span>
         <span></span>
         <span></span>
       </div>
     </div>
-    <!-- <div class="list-items-wrapper" *ngIf="isAuthentication">
-            <div class="list-items" [style.display]="isAuthentication ? 'flex' :'none'"> -->
-    <div class="list-items-wrapper">
-      <div class="list-items">
+    <div class="list-items-wrapper" *ngIf="isAuthentication">
+      <div
+        class="list-items"
+        [style.display]="isAuthentication ? 'flex' : 'none'"
+      >
         <ul id="menu">
           <li (click)="closeMenu()">
             <a
@@ -28,13 +28,11 @@
               >Home</a
             >
           </li>
-          <!-- <div *ngIf="isBechelor">
+          <div *ngIf="isBechelor">
             <div
               [style.display]="isLanguageTH ? 'flex' : 'none'"
               class="bechelor-nav"
-            > -->
-              <div class="list-bachelor">
-                        <div class="bechelor-nav">
+            >
               <li (click)="closeMenu()">
                 <a
                   id="survey-page"
@@ -48,13 +46,17 @@
               </li>
             </div>
           </div>
-
-          <li>
-            <span>{{ studentName }}</span>
-          </li>
-          <li>
-            <button (click)="signOut()">SignOut</button>
-          </li>
+          
+          <div class="user-info-and-sign-out">
+            <li>
+              <img class="img-user-logo" src="../../assets/imgs/user.png" alt="user-logo" />
+              <span>{{ studentName }}</span>
+            </li>
+            <li>
+              <button (click)="signOut()">SignOut</button>
+            </li>
+          </div>
+          
         </ul>
       </div>
     </div>
