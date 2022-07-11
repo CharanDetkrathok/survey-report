@@ -6,37 +6,33 @@
       </div>
       <div class="text-presentation-sign-in-google-wrapper">
         <label class="text-presentation-sign-in-google"
-          >Sign in with Google</label
+          >Sign in</label
         >
       </div>
     </div>
 
     <div class="google-sing-in-description">
-      <label class="text-google-sing-in-description-th">
+      <div class="text-google-sing-in-description-th">
         <p> เข้าสู่ระบบด้วย gmail โดยมีขั้นตอนการเข้าใช้งานดังนี้</p>
-        <!-- <br /> -->
         <p> ทำการป้อน email ของท่าน </p>
-        <!-- <br /> -->
-        <p><b>รหัสนักศึกษา@rumail.ru.ac.th</b></p>
-        <!-- <br /> -->
+        <p><b>รหัสนักศึกษา<span>@rumail.ru.ac.th</span></b></p>
         <p> แล้วตามด้วย รหัสผ่านของท่าน</p>
-      </label>
-      <hr class="hr-style" />
-      <label class="text-google-sing-in-description-eng">
-        <p>Log in with gmail with the following login steps</p>
-        <!-- <br /> -->
-        <p>Enter your email, </p>
-        <!-- <br /> -->
+      </div>
+      <div class="hr-google-sign-in">
+        <hr class="hr-style" />
+      </div>
+      <div class="text-google-sing-in-description-eng">
+        <p>Log in with gmail with the following</p>
+        <p> login steps Enter your email, </p>
         <p><b>studentID@rumail.ru.ac.th</b></p>
-        <!-- <br /> -->
         <p>followed by your password</p>
-      </label>
+      </div>
     </div>
 
     <div class="sign-in-google-wrapper-btn">
       <button (click)="signInWithGoogle()" class="btn-sign-in-google">
         <img
-          src="../../../assets/imgs/google-logo-sign-in.png"
+          src="assets/imgs/google-logo-sign-in.png"
           alt=""
           class="img-btn-sign-in-google"
         />

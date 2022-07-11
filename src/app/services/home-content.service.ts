@@ -1,7 +1,7 @@
 import { EMPTY, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'survey-report/src/environments/environment.prod';
+import { environment } from '../../environments/environment.prod';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -18,12 +18,12 @@ export class HomeContentService {
 	- เพื่อทำการ clear localStorage และ State managements
 	- จะทำการ set navigation bar ใหม่ จะทำให้ได้ navigation bar ที่ถูกต้องเสมอ 
 	*/
-  checkAuthentication() {
-    return this.http.get(`${environment.BASE_URL}${environment.CHECK_AUTH_WHEN_GO_HOME_PAGE}`)
-  }
+  // checkAuthentication() {
+  //   return this.http.get(`${environment.BASE_URL}${environment.CHECK_AUTH_WHEN_GO_HOME_PAGE}`)
+  // }
 
-  fetchHomeContent() {
-    return this.http.get(`${environment.BASE_URL}${environment.HOME_CONTENT}`)
-  }
+  // fetchHomeContent() {
+  //   return this.http.get(`${environment.BASE_URL}${environment.HOME_CONTENT}`)
+  // }
 
 }

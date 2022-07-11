@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { studentResponseInfo, refreshTokenResponse } from '../sign-in/sign-in-student/sign-in-student-interface';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { environment } from 'survey-report/src/environments/environment.prod';
+import { environment } from '../../environments/environment.prod';
 
 export interface StudentStateInterface {
   isAuthentication: boolean;

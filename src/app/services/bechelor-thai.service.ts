@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { disclosureResponse, bechelorArticlesAndChoicesResponse, bechelorPartsOfArticlesRepose, headersRepose, bechelorArticlesNoDistinctResponse, RegionalCenterResponse } from '../student/bachelor-interface';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { environment } from 'survey-report/src/environments/environment.prod';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
